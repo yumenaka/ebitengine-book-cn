@@ -182,6 +182,302 @@
                     <main>
                         <div class="content-wrap">
                             <h1 id="第十八章-指针pointer"><a class="header" href="#第十八章-指针pointer">第十八章 指针（Pointer）</a></h1>
+<p>这次，我们将讨论编程初学者的“鬼门”，指针。我认为比起 C 语言，遇到困难的人并不多，但仍然会有不少人感到困难，因此我会仔细进行解说。</p>
+<h2 id="ポインター-指针"><a class="header" href="#ポインター-指针">ポインター 指针</a></h2>
+<p><strong>指针/pointer</strong> 是一个表示“指示某物”的词，表示变量等存在的“位置”。如下所示使用。</p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+	x := 42
+	p := &amp;x         // xのアドレスをpに代入
+	fmt.Println(p)  // 0xから始まる謎の数字
+	fmt.Println(*p) // 42
+	*p = 99         // pが指し示す場所に99を代入
+	fmt.Println(*p) // 99
+	fmt.Println(x)  // 99
+}
+$ go run .
+0x1400009a020
+42
+99
+99
+</code></pre>
+<p>新出现的 <code>&amp;</code> 和 <code>*</code> 是进行指针相关操作的符号。可能会让人感到困惑，我们来一步步看看。</p>
+<h2 id="计算机的内部结构"><a class="header" href="#计算机的内部结构">计算机的内部结构</a></h2>
+<p>计算机的核心是进行计算的 **CPU（英特尔的那种）**和用于存储数据的内存（8GB 或 16GB 等）。它们通常被比作人类的大脑和桌面上的工作区域。大脑越聪明，计算越快；桌面越大，工作空间越宽裕。</p>
+<p>这张桌子上的所有数据都井然有序地排列着，每个数据都有一个表示位置的数字。这个数字就是地址/address。最初是表示“住所”的词，有时也被翻译为“番地”。</p>
+<p>下图是这样的内存中变量 <code>x</code> <code>y</code> <code>vy</code> 被保存的样子。</p>
+<p>!954、958、974 等地址仅仅是为了说明“存在地址这个数字”而临时指定的值，因此与实际地址的分配方式有很大不同。请注意。</p>
+<p><img src="18_pointer.assets/%E3%83%A1%E3%83%A2%E3%83%AA%E3%81%AE%E5%86%85%E9%83%A8.png" alt="メモリの内部" /> <em>メモリ内部のイメージ 内存内部的图像</em></p>
+<p>变量存储在内存中，内存上的数据分配了地址，如果掌握了这些，指针就可以轻松应对了。</p>
+<h2 id="和-"><a class="header" href="#和-">&amp; 和 *</a></h2>
+<p>在 Go 中，如下图所示，可以通过 <code>&amp;</code> 获取分配给变量的地址，通过 <code>*</code> 获取地址所指向的内容。</p>
+<p><img src="18_pointer.assets/%E3%83%9B%E3%82%9A%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%81%AE%E7%9F%A2%E5%8D%B0.png" alt="ポインターの矢印" /></p>
+<p>这样一来，开头的程序也一定能读懂了。</p>
+<p>再贴一遍</p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+	x := 42
+	p := &amp;x         // xのアドレスをpに代入
+	fmt.Println(p)  // 0xから始まる謎の数字の正体は、xのアドレス！
+	fmt.Println(*p) // 42 (指し示す先はxなので)
+	*p = 99         // pが指し示すxに99を代入
+	fmt.Println(*p) // 99
+	fmt.Println(x)  // 99
+}
+</code></pre>
+<p>なお， <code>fmt.Println(p)</code> で显示的 <code>0x</code> ，这是 <strong>16 进制</strong>的意思。平常使用的 10 进制是用 0 到 9 的数字表示一位，而 16 进制则是用 0 到 9 和 A 到 F 共 16 种表示一位。在 Go 中，16 进制的前面加上 <code>0x</code> 以区分于 10 进制。</p>
+<p>总之只是表示法不同而已，实际上只是整数，所以完全不用担心。例如 <code>0x1400009a020</code> 转换为十进制是 <code>1374390165536</code> 。地址使用十六进制只是一个习惯，所以不必太在意。</p>
+<h2 id="指针类型"><a class="header" href="#指针类型">指针类型</a></h2>
+<p>下图中还有一个地方没有解释，那就是 <code>p *int</code> 的部分。</p>
+<p><img src="18_pointer.assets/%E3%83%9B%E3%82%9A%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%81%AE%E7%9F%A2%E5%8D%B0.png" alt="ポインターの矢印" /></p>
+<p>在 Go 中，可以将地址赋值给<strong>指针类型</strong>。指针类型以 <code>*int</code> 的形式写作 <code>*型名</code> 。</p>
+<p>麻烦的是， <code>&amp;</code> 获取的地址结果的类型不是 <code>&amp;int</code> 而是 <code>*int</code> 。不过这是历史原因造成的，只能记住。个人来说，我希望指针类型叫 <code>&amp;int</code> 。</p>
+<h2 id="零值nil"><a class="header" href="#零值nil">零值，nil</a></h2>
+<p>指针类型的零值是 **nil（尼尔）**这个特殊值。nil 表示不指向任何地方的无效值。
+nil 指向的地方在 <code>*</code> 中使用时会崩溃，所以请小心使用。</p>
+<pre><code class="language-go">func main() {
+	var p *int
+	*p = 42 // クラッシュ
+	fmt.Println(*p)
+}
+</code></pre>
+<p>利用 nil 的含义，也可以用来表示有无效和有效时的变量。</p>
+<pre><code class="language-go">func main() {
+	p := 何らかの関数() // 返り値が無効な時と有効な時がある
+	if p != nil {       // 有効な (nilではない) 時だけ処理を行う
+		fmt.Println(*p)
+	}
+}
+</code></pre>
+<p>nil 不仅用于纯粹的指针类型，还用于 Go 提供的几种类型，表示空值。关于这一点我们会稍后再提。</p>
+<h2 id="结构体和指针"><a class="header" href="#结构体和指针">结构体和指针</a></h2>
+<p>为了结合结构体和指针，提供了一些特殊的便利功能。</p>
+<p>首先，在合成字面量前加上 <code>&amp;</code> ，可以直接创建该结构体的指针，而无需通过变量。这是相当常用的。</p>
+<pre><code class="language-go">pp := &amp;position{10, 20}
+// ↑と↓は同じ意味
+p := position{10, 20}
+pp := &amp;p
+</code></pre>
+<p>另一个，当从结构体指针使用字段时，可以像普通结构体一样写 <code>pp.x</code> 。</p>
+<pre><code class="language-go">pp := &amp;position{10, 20}
+pp.x = 30
+fmt.Println(pp.x) // 30
+</code></pre>
+<p>如果没有这个功能，需要通过指针指向的结构体，那么在考虑 <code>*</code> 和 <code>.</code> 的优先级时，就必须写成 <code>(*pp).x</code> ，这真是一个非常感谢的功能。对于有 C 系语言经验的人来说，听到可以不必区分 <code>.</code> 和 <code>-&gt;</code> ，应该就能明白了。</p>
+<h2 id="指针的使用场合"><a class="header" href="#指针的使用场合">指针的使用场合</a></h2>
+<p>指针大致有三个使用场景。</p>
+<ul>
+<li>避免大数据的复制</li>
+<li>中身被改写</li>
+<li>无效值用 nil 表示</li>
+</ul>
+<p>最后一个已经提到过了，接下来我将对前两个进行解说。</p>
+<h3 id="使用场景-1避免大量数据的复制"><a class="header" href="#使用场景-1避免大量数据的复制">使用场景 1：避免大量数据的复制</a></h3>
+<p>当将参数传递给函数时，该参数会被复制。如果该参数非常庞大，复制将耗费时间（复制庞大数据对计算机来说是重负担）。</p>
+<p>指针只是一个数字，因此只需复制指针，就可以相对快速地在函数中通过指针使用该巨大数据。</p>
+<p><img src="18_pointer.assets/%E5%A4%A7%E3%81%8D%E3%81%AA%E3%83%86%E3%82%99%E3%83%BC%E3%82%BF%E3%81%A8%E3%83%9B%E3%82%9A%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC.png" alt="大きなデータとポインター" /></p>
+<h3 id="使用场景-2要求更改原始内容"><a class="header" href="#使用场景-2要求更改原始内容">使用场景 2：要求更改原始内容</a></h3>
+<p>这也是由于参数被复制而引起的事情，但在函数内部对参数这个副本进行的任何修改都不会影响原始变量。</p>
+<p>使用指针时，复制的指针也会指向原始变量，因此即使在函数内部也可以修改原始变量。</p>
+<pre><code class="language-go">func f(x int) {
+	x = 99
+}
+
+func g(p *int) {
+	*p = 99 // 指し示す先 = オリジナルを書き換える
+}
+
+func main() {
+	x := 42
+	f(x)
+	fmt.Println(x) // 42。xは書き換わらない
+	g(&amp;x)
+	fmt.Println(x) // 99。xは書き換わる
+}
+</code></pre>
+<p>猜数字游戏中出现的 <code>fmt.Scanln</code> 函数取参数为指针也是为了这个原因。</p>
+<pre><code class="language-go">x := 0
+fmt.Scanln(&amp;x) // x を書き換えてもらう
+</code></pre>
+<h3 id="其他用途"><a class="header" href="#其他用途">其他用途</a></h3>
+<p>基本是以上所述，但在实践中正确区分所有指针，即使是熟练的程序员也非常困难。因此，这次我将传授一个大致可以说是 OK 的粗略指导。虽然提到了尚未涉及的 Go 功能，但请您谅解，并将其放在脑海的一角。</p>
+<p><strong>应使用指针的情况：</strong></p>
+<ul>
+<li>值写入函数</li>
+<li>结构体型的参数</li>
+<li>切片元素的类型</li>
+</ul>
+<p><strong>不需要使用指针的情况：</strong></p>
+<ul>
+<li>数值、真值型的参数（没有将其指针化的好处）</li>
+<li>文字串、切片、映射、通道、闭包、接口类型的参数（实质上是指针类型）</li>
+</ul>
+<h2 id="重构"><a class="header" href="#重构">重构</a></h2>
+<p>那么照例，我们来试试在重构中使用指针的感觉。根据上述指导方针，这次关注的是“切片元素的类型”和“结构体类型的参数”。在 <code>var walls</code> 和 <code>drawWalls</code> 附近似乎可以使用指针。</p>
+<pre><code class="language-go">var walls = []*wall{}
+func drawWalls(w *wall) {
+</code></pre>
+<p>那么我们来将其应用于整体。</p>
+<pre><code class="language-diff-go">package main
+
+import (
+	"embed"
+	"math/rand/v2"
+
+	"github.com/eihigh/miniten"
+)
+
+//go:embed *.png
+var fsys embed.FS
+
+type wall struct {
+	wallX int
+	holeY int
+}
+
+var (
+	x    = 200.0
+	y    = 150.0
+	vy   = 0.0  // Velocity of y (速度のy成分) の略
+	g    = 0.1  // Gravity (重力加速度) の略
+	jump = -4.0 // ジャンプ力
+
+	frames     = 0         // 経過フレーム数
+	interval   = 120       // 壁の追加間隔
+	wallStartX = 640       // 壁の初期X座標
+	walls      = []*wall{} // 壁のX座標と穴のY座標
+	wallWidth  = 20        // 壁の幅
+	wallHeight = 360       // 壁の高さ
+	holeYMax   = 150       // 穴のY座標の最大値
+	holeHeight = 170       // 穴のサイズ（高さ）
+
+	gopherWidth  = 60
+	gopherHeight = 75
+
+	scene         = "title"
+	score         = 0     // スコアのグローバル変数
+	isPrevClicked = false // 前のフレームでクリックされていたか
+	isJustClicked = false // 今のフレームでクリックされたか
+)
+
+func main() {
+	miniten.Run(draw)
+}
+
+func draw() {
+	// ...省略...
+}
+
+func drawTitle() {
+	// ...省略...
+}
+
+func drawGame() {
+	miniten.DrawImageFS(fsys, "sky.png", 0, 0)
+	for i, wall := range walls {
+		if wall.wallX &lt; int(x) {
+			score = i + 1
+		}
+	}
+	miniten.Println("Score", score)
+	if miniten.IsClicked() {
+		vy = jump
+	}
+	vy += g // 速度に加速度を足す
+	y += vy // 位置に速度を足す
+	miniten.DrawImageFS(fsys, "gopher.png", int(x), int(y))
+
+	// 壁追加処理ここから
+	frames += 1
+	if frames%interval == 0 {
+		wall := &amp;wall{wallStartX, rand.N(holeYMax)}
+		walls = append(walls, wall)
+	}
+	// 壁追加処理ここまで
+
+	for i := range walls {
+		walls[i].wallX -= 2 // 少しずつ左へ
+	}
+	for _, wall := range walls {
+		wall.wallX -= 2 // 少しずつ左へ
+	}
+	for _, wall := range walls {
+		drawWalls(wall)
+
+		// ...省略...
+	}
+
+	if y &lt; 0 {
+		scene = "gameover"
+	}
+	if 360 &lt; y {
+		scene = "gameover"
+	}
+}
+
+func drawGameover() {
+	// 背景、gopher、壁の描画はdrawGame関数のコピペ
+	miniten.DrawImageFS(fsys, "sky.png", 0, 0)
+	miniten.DrawImageFS(fsys, "gopher.png", int(x), int(y))
+	for _, wall := range walls {
+		drawWalls(wall)
+	}
+
+	miniten.Println("Game Over")
+	miniten.Println("Score", score)
+	if isJustClicked {
+		scene = "title"
+
+		x = 200.0
+		y = 150.0
+		vy = 0.0
+		frames = 0
+		walls = []*wall{}
+		score = 0
+	}
+}
+
+func drawWalls(w *wall) {
+	// 上の壁の描画
+	miniten.DrawImageFS(fsys, "wall.png", w.wallX, w.holeY-wallHeight)
+
+	// 下の壁の描画
+	miniten.DrawImageFS(fsys, "wall.png", w.wallX, w.holeY+holeHeight)
+}
+
+func hitTestRects(aLeft, aTop, aRight, aBottom, bLeft, bTop, bRight, bBottom int) bool {
+	return aLeft &lt; bRight &amp;&amp;
+		bLeft &lt; aRight &amp;&amp;
+		aTop &lt; bBottom &amp;&amp;
+		bTop &lt; aBottom
+}
+</code></pre>
+<p>最初提到的 <code>walls</code> 变量声明和 <code>drawWalls</code> 函数声明以外，</p>
+<ul>
+<li>壁的附加处理（ <code>&amp;wall{...}</code> ）</li>
+<li>壁的移动处理（ <code>wall.wallX -= 2</code> ）</li>
+<li>壁的重置处理（ <code>walls = []*wall{}</code> ）</li>
+</ul>
+<p>对全局影响不大，意外地容易适用。</p>
+<p>有趣的是墙壁的移动处理。 <code>for range</code> 文中提取的元素类型变成了指针，因此可以通过复制的 <code>wall</code> 指针来修改原始值，结果不再需要使用循环次数 <code>i</code> 。实际上，这种新的写法在 Go 中是常见的写法。</p>
+<pre><code class="language-diff-go">// before
+	for i := range walls {
+		walls[i].wallX -= 2 // 少しずつ左へ
+	}
+// after
+	for _, wall := range walls {
+		wall.wallX -= 2 // 少しずつ左へ
+	}
+</code></pre>
+<h2 id="本章总结"><a class="header" href="#本章总结">本章总结</a></h2>
+<p>指针表示变量的位置。在 Go 中，使用 <code>&amp;</code> 获取地址，使用 <code>*</code> 获取地址所指向的内容。指针用于避免大数据的复制或在函数中修改变量。</p>
+<p>计算机的核心与其深度相关，想要正确使用即使是熟练者也会感到困难，但如果掌握基本方针，大多数情况下应该能够编写出合格的程序。</p>
 
                         </div>
                         <div class="sidetoc">
