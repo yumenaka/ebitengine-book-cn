@@ -1,0 +1,482 @@
+<!DOCTYPE HTML>
+<html lang="zh-Hans" class="rust" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>第二章 安装软件，配置环境 - 从零开始的游戏编程：Go 语言与 Ebitengine</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="面向初学者，从零开始作游戏的 Go 语言与 Ebitengine 教程">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/pagetoc.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('rust')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="01_intro.html"><strong aria-hidden="true">1.</strong> 第一章 关于这本书</a></li><li class="chapter-item expanded "><a href="02_setup.html" class="active"><strong aria-hidden="true">2.</strong> 第二章 安装软件，配置环境</a></li><li class="chapter-item expanded "><a href="03_hello-world.html"><strong aria-hidden="true">3.</strong> 第三章 你好，世界！（开始开发，程序结构）</a></li><li class="chapter-item expanded "><a href="04_expr.html"><strong aria-hidden="true">4.</strong> 第四章 做算数（公式、变量和函数）</a></li><li class="chapter-item expanded "><a href="05_import.html"><strong aria-hidden="true">5.</strong> 第五章 显示随机数（包与导入）</a></li><li class="chapter-item expanded "><a href="06_if.html"><strong aria-hidden="true">6.</strong> 第六章 玩抽签（条件分支）</a></li><li class="chapter-item expanded "><a href="07_for.html"><strong aria-hidden="true">7.</strong> 第七章 做猜数字游戏（for循环）</a></li><li class="chapter-item expanded "><a href="08_window.html"><strong aria-hidden="true">8.</strong> 第八章 绘制窗口</a></li><li class="chapter-item expanded "><a href="09_frames.html"><strong aria-hidden="true">9.</strong> 第九章 移动角色（帧和相关概念）</a></li><li class="chapter-item expanded "><a href="10_float.html"><strong aria-hidden="true">10.</strong> 第十章 让角色跳得自然（浮点数和类型）</a></li><li class="chapter-item expanded "><a href="11_slice.html"><strong aria-hidden="true">11.</strong> 第十一章 加快动作（切片与循环）</a></li><li class="chapter-item expanded "><a href="12_flappy1.html"><strong aria-hidden="true">12.</strong> 第十二章 飞天地鼠游戏 （1）会动的墙</a></li><li class="chapter-item expanded "><a href="13_flappy2.html"><strong aria-hidden="true">13.</strong> 第十三章 飞天地鼠游戏 （2）碰撞判定</a></li><li class="chapter-item expanded "><a href="14_flappy3.html"><strong aria-hidden="true">14.</strong> 第十四章 飞天地鼠游戏 （3）画面切换</a></li><li class="chapter-item expanded "><a href="15_build.html"><strong aria-hidden="true">15.</strong> 第十五章 发布游戏让朋友玩（构建和分发）</a></li><li class="chapter-item expanded "><a href="16_struct.html"><strong aria-hidden="true">16.</strong> 第十六章 把数据放在一起（结构体）</a></li><li class="chapter-item expanded "><a href="17_funcdecl.html"><strong aria-hidden="true">17.</strong> 第十七章 把处理放在一起（函数声明）</a></li><li class="chapter-item expanded "><a href="18_pointer.html"><strong aria-hidden="true">18.</strong> 第十八章 指针（Pointer）</a></li><li class="chapter-item expanded "><a href="19_method.html"><strong aria-hidden="true">19.</strong> 第十九章 将函数绑定到类型（method）</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">从零开始的游戏编程：Go 语言与 Ebitengine</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/yumenaka/ebitengine-book-cn" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/yumenaka/ebitengine-book-cn/edit/main/src/02_setup.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="content-wrap">
+                            <h1 id="第二章-安装软件配置环境"><a class="header" href="#第二章-安装软件配置环境">第二章 安装软件，配置环境</a></h1>
+<p>本章配合截图，将详细介绍搭建“编程环境”的过程。</p>
+<h2 id="21-必须的东西"><a class="header" href="#21-必须的东西">2.1 必须的东西</a></h2>
+<p>首先，你需要一台装有 Windows 或 Mac （或 Linux）系统的电脑。哪怕是比较旧的设备也可以。</p>
+<h2 id="22-搭建环境前"><a class="header" href="#22-搭建环境前">2.2 搭建环境前</a></h2>
+<p>为了在准备阶段不出错，首先要确认你当前的输入法，是否正确输入“半角字符”与“英文标点”。</p>
+<p>大多数中文输入法，在中文输入状态的时候，默认输入中文标点。</p>
+<p>使用日文输入法的用户，经常不小心输入全角字符。半角字符是宽度较窄的字符，而全角字符是宽度较宽的字符。</p>
+<p><img src="02_setup.assets/windows_ime_sample.png" alt="windows_ime_sample.png" /><br />
+半角全角，中英标点，两者看起来都非常相似，但实际上是不同的字符。然后包括Golang在内，主流语言使用“半角字符+英文标点”。</p>
+<p>在只接受“半角字符”与“英文标点”的地方输入“全角字符”与“中文标点”，会导致程序出错。所以在编写代码的时候，请确保你的输入模式在“半角字符+英文标点”状态。</p>
+<div class="table-wrapper"><table><thead><tr><th>应该使用</th><th>避免使用</th></tr></thead><tbody>
+<tr><td><code>A</code> （半角字符）</td><td><code>Ａ</code> （全角字符）</td></tr>
+<tr><td><code>M</code> （半角字符）</td><td><code>Ｍ</code> （全角字符）</td></tr>
+<tr><td><code> </code> （半角空格）</td><td><code>　</code> （全角空格）</td></tr>
+<tr><td><code>,</code> （英文逗号）</td><td><code>，</code> （中文逗号）</td></tr>
+</tbody></table>
+</div>
+<p>幸好，后文提到的 VSCode 有个功能，就是用黄色方框圈出全角字符等需要注意的字符，因此即使不小心输错了，也能在检查时发现。真是个便利的时代。</p>
+<p><img src="02_setup.assets/vscode_text_check.png" alt="vscode_text_check.png" /></p>
+<h2 id="23-用到的软件"><a class="header" href="#23-用到的软件">2.3 用到的软件</a></h2>
+<p>本连载中使用的软件全部免费。心怀感激地下载回来吧。</p>
+<p>首先是 <strong>Go</strong>。这是 Go 编程的必备<sup>[1]</sup>软件。这名字，简单直接。</p>
+<p>另一个是名为 <strong>Visual Studio Code (VSCode)</strong> 的文本编辑器（文本编辑软件）。实际上，只要能打字就能编程，因此连记事本也能写程序。但 VSCode 里面有辅助编程的大量附加功能，很方便，所以强烈建议安装。</p>
+<p>另外，如果您对编辑器有特别的偏好，也可以使用其他编辑器。作者使用的是 Vim，还有其他各种付费编辑器，如 GoLand 等。顺便提一下，写 C/C++ 程序常用的 Visual Studio 的名字和 VSCode 名字很像，但两个软件完全是不同的东西。</p>
+<h3 id="231-面向有编程经验的人关于git"><a class="header" href="#231-面向有编程经验的人关于git">2.3.1 [面向有编程经验的人]关于git</a></h3>
+<p>在本系列中，可以“不安装”文件版本管理工具 git。</p>
+<p>一些较旧的 Go（版本 1.13 之前）教程中，可能会有“必须安装 git ”这样的描述，但在某次 Go 更新以后，git 不再是必选项了。</p>
+<h3 id="232-面向有编程经验的人go-不需要版本切换与管理软件"><a class="header" href="#232-面向有编程经验的人go-不需要版本切换与管理软件">2.3.2 [面向有编程经验的人]Go 不需要版本切换与管理软件</a></h3>
+<p>某些编程语言，会推荐使用版本管理工具来区分多个运行环境版本（比如 python ）。但 Go 向下兼容性很好，基本没有这么做的必要。请放心直接安装最新版 Go 。</p>
+<p>Go 有读取 <code>go.mod</code> 中记录的 Go 版本的功能。可以自动下载正确版本的依赖软件（不污染系统 PATH），将相关工具调整为合适的版本。</p>
+<h3 id="233-面向有编程经验的人gopath-和-goroot"><a class="header" href="#233-面向有编程经验的人gopath-和-goroot">2.3.3 [面向有编程经验的人]GOPATH 和 GOROOT</a></h3>
+<p>现在 Go ，不再需要手动设置环境变量 GOPATH 和 GOROOT 了。那些说需要设置的文章，成文时间比较早，建议不要参考。</p>
+<h2 id="24-go-的安装"><a class="header" href="#24-go-的安装">2.4 Go 的安装</a></h2>
+<p>以下均为撰写时的屏幕截图，可能与最新页面有所不同，敬请谅解。</p>
+<p>请访问以下链接（<a href="https://go.dev/dl">go.dev/dl</a>），如果是 Windows，请点击红框部分。 如果是 Mac，请点击 Apple macOS (ARM64) (M1 以后的新Mac电脑) 或 Apple macOS (x86-64) (M1 之前的老Mac电脑) 下载安装程序。</p>
+<p><img src="02_setup.assets/go_site.png" alt="go-dev-dl.png" /></p>
+<p>下载回来的安装程序以后，双击文件运行，一直点击下一步即可完成安装。GO安装完可以直接用，无需重启系统。</p>
+<p>动图演示：
+<img src="02_setup.assets/windows_install_go.gif" alt="Go安装" /></p>
+<h2 id="24-面向中国大陆用户-go-的安装-与-goproxy"><a class="header" href="#24-面向中国大陆用户-go-的安装-与-goproxy">2.4 [面向中国大陆用户] Go 的安装 与 GOPROXY</a></h2>
+<h3 id="241-go-的安装"><a class="header" href="#241-go-的安装">2.4.1 Go 的安装</a></h3>
+<p>中国大陆用户会面临一个尴尬的问题，就是“国外网站与github经常连不上”。</p>
+<p>一个办法是系统全局挂代理。然后一切如常了。</p>
+<p>另一个办法，就是使用国内镜像。</p>
+<p>首先，是 GO 安装包本身。大陆用户，可以访问以下的链接下载go（<a href="https://studygolang.com/dl">https://studygolang.com/dl</a>）</p>
+<p><img src="02_setup.assets/go_install.png" alt="Go安装包下载" />
+*此链接是中国的编程社区在国内提供的 Go 安装包镜像。与官方源相比，更新可能会晚几天。</p>
+<p>同样的，Windows用户，点击上图红框处下载。</p>
+<p>如果是 Mac，用Intel芯片的老机型，点击【Apple macOS macOS 10.15 or later, Intel 64-bit 处理器】。</p>
+<p>最近出的M芯片Mac机型，则是【Apple macOS macOS 11 or later, Apple 64-bit 处理器】。</p>
+<p>下载之后的安装过程与上面一样，一路下一步即可。</p>
+<h3 id="242--什么是-goproxy"><a class="header" href="#242--什么是-goproxy">2.4.2  什么是 GOPROXY</a></h3>
+<p>中国大陆用户还需要额外设置 GOPROXY，设置镜像服务器加速包括 ebitengine 在内的第三方包的下载。</p>
+<p>目前推荐的 GOPROXY 设置为 <code>https://goproxy.cn,direct</code>。</p>
+<p>配置中的 goproxy.cn 是一个由大陆 Go 社区维护的镜像服务器，它提供了对 Go 仓库的镜像服务，可以加速 Go 模块的下载速度。详情可以参考网站 <a href="https://goproxy.cn">https://goproxy.cn</a>。</p>
+<p>当你设置 GOPROXY 为  <code>https://goproxy.cn,direct</code> 时，Go 工具链会优先尝试通过 goproxy.cn 获取依赖，如果无法获取，才会回退到直接访问源仓库（direct）。</p>
+<h3 id="243-面向中国大陆用户windows-如何设置-goproxy"><a class="header" href="#243-面向中国大陆用户windows-如何设置-goproxy">2.4.3 [面向中国大陆用户]windows 如何设置 GOPROXY</a></h3>
+<ol>
+<li>打开“开始”并搜索“env”</li>
+<li>选择“编辑系统环境变量”</li>
+<li>点击“环境变量…”按钮</li>
+<li>在“&lt;你的用户名&gt; 的用户变量”章节下（上半部分）</li>
+<li>点击“新建…”按钮</li>
+<li>选择“变量名”输入框并输入“GOPROXY”</li>
+<li>选择“变量值”输入框并输入  <code>https://goproxy.cn,direct</code></li>
+</ol>
+<p>动图演示：
+<img src="02_setup.assets/SetGoProxy.gif" alt="设置 GOPROXY" /></p>
+<h3 id="244-面向中国大陆用户macos-或-linux-设置-goproxy"><a class="header" href="#244-面向中国大陆用户macos-或-linux-设置-goproxy">2.4.4 [面向中国大陆用户]macOS 或 Linux 设置 GOPROXY</a></h3>
+<p>打开你的终端并执行</p>
+<pre><code class="language-Bash"> export GOPROXY="https://goproxy.cn,direct"
+</code></pre>
+<p>这种做法是一次性的，重启后会失效。为了使其长期有效，可以这样：</p>
+<pre><code class="language-Bash"> echo "export GOPROXY=https://goproxy.cn,direct" &gt;&gt; ~/.profile
+ source ~/.profile
+</code></pre>
+<h2 id="25-vscode-的安装"><a class="header" href="#25-vscode-的安装">2.5 VSCode 的安装</a></h2>
+<p>VSCode 支持 Windows、macOS、Linux 等多种操作系统。<br />
+虽然这里只说明了 Windows 系统的安装方法，但其他操作系统的安装步骤，也基本上是大同小异。</p>
+<h3 id="251-windows-安装-vscode"><a class="header" href="#251-windows-安装-vscode">2.5.1 Windows 安装 VSCode</a></h3>
+<p>请访问以下链接（ <a href="https://code.visualstudio.com/">code.visualstudio.com</a>），并点击 <code>Download for Windows</code> 。</p>
+<p><img src="02_setup.assets/vscode_site.png" alt="img" /></p>
+<p>运行下载回来的安装程序。</p>
+<p>有的时候，会出现这样的弹出窗口，提示“当前安装包不适合为管理员安装，如果想为所有用户安装，请下载专用的安装程序”。在这里点击 <code>OK</code> 继续。</p>
+<p><img src="02_setup.assets/vscode_not_admin_hint.png" alt="img" /></p>
+<p>阅读使用许可并勾选同意，然后点击下一步。</p>
+<p><img src="02_setup.assets/vscode_ok.png" alt="img" /></p>
+<p>确认安装位置，然后点击“下一步”。</p>
+<p><img src="02_setup.assets/vscode_install_select_path.png" alt="setup-vscode-4.png" /></p>
+<p>会询问你是否在开始菜单中创建快捷方式，请根据您的喜好进行设置，然后点击下一步。</p>
+<p><img src="02_setup.assets/vscode_start_menu.png" alt="setup-vscode-5.png" /></p>
+<p>您可以自定义各种选项，根据您的喜好进行设置。个人认为 <code>添加[使用Code打开] 到右键菜单</code> 这很方便，因此推荐启用这个功能。点击“下一步”以继续。</p>
+<p><img src="02_setup.assets/vscode_select_method.png" alt="setup-vscode-6.png" /></p>
+<p>最后会显示你的设置，做最后的确认，没问题的话，就点击安装进行安装。</p>
+<p><img src="02_setup.assets/vscode_check_install_option.png" alt="setup-vscode-7.png" /></p>
+<p>点击完成，结束安装过程。安装后无需重启，可以立即使用。</p>
+<p><img src="02_setup.assets/vscode_start_page_en.png" alt="setup-vscode-8.png" /></p>
+<p>动图演示：
+<img src="02_setup.assets/windows_install_VSCode.gif" alt="Windows安装VSCode" /></p>
+<h3 id="252-vscode-中文化"><a class="header" href="#252-vscode-中文化">2.5.2 VSCode 中文化</a></h3>
+<p>VSCode安装已经完成。但默认的界面语言还是英文。英语不熟练的话，用起来很麻烦，所以需要做一下中文化。</p>
+<p>左边栏的图标中，有一个类似<code>田</code> 的图标（红圈）。点击此图标，打开扩展功能侧边栏。</p>
+<p><img src="02_setup.assets/vscode_plugin_icon.png" alt="vscode-jp-1.png" /></p>
+<p>在搜索框（红框）中输入 <code>Chinese</code> ，找到并选择 <code>Chinese Language Pack for Visual Studio Code</code> ，然后点击 <code>Install</code> 按钮，安装扩展程序。</p>
+<p><img src="02_setup.assets/vscode_change_language.png" alt="vscode-jp-2.png" /></p>
+<p>安装完成后，右下角会出现提示重启的弹出窗口，请点击 <code>Change Language and Restart</code> 以重启 VSCode。</p>
+<p><img src="02_setup.assets/vscode_restart_hint.png" alt="vscode-jp-3.png" /></p>
+<p>再启动后，菜单与界面语言变成了汉语。这样就完成了中文化。</p>
+<p><img src="02_setup.assets/vscode_start_page_cn.png" alt="vscode-jp-4.png" /></p>
+<p>动图演示：
+<img src="02_setup.assets/VSCodeToChinese.gif" alt="VSCode 中文化" /></p>
+<h3 id="253-vscode-安装-go-插件"><a class="header" href="#253-vscode-安装-go-插件">2.5.3 VSCode 安装 Go 插件</a></h3>
+<p>像中文包一样，VSCode 可以通过安装插件来添加各种功能。当然也有方便 Go 开发的插件，快来安装吧。</p>
+<p>先前一样，打开扩展功能侧边栏，在搜索框中输入 <code>go</code> ，并查找 <code>Go</code> 。会有很多结果，但请选择带有表示官方的勾号的选项，并进行安装。</p>
+<p><img src="02_setup.assets/vscode-go-1.png" alt="vscode-go-1.png" /></p>
+<p>虽然，这项工作可以随时进行。但我一般会先完成 go 开发工具的安装。</p>
+<p>从左下角的设置图标（红圈）选择“命令面板...”。或通过键盘快捷键“Ctrl+Shift+p”来打开命令面板。</p>
+<p><img src="02_setup.assets/vscode_open_cmd_panel.png" alt="vscode-go-2.png" /></p>
+<p>下图的红框部分，是执行各种命令的面板。在输入框中，输入文字来搜索 <code>Go: Install/Update Tools</code> 这个项目，选择这个命令来执行。</p>
+<p><img src="02_setup.assets/vscode_install_go_tools.png" alt="vscode-go-3.png" /></p>
+<p>在此处，选择要安装的go开发工具。因此请在输入框左侧的复选框（红圈）中勾选以全部选择，然后点击 <code>确定</code> 进行安装。</p>
+<p><img src="02_setup.assets/vscode_go_tools_select_all.png" alt="vscode-go-4.png" /></p>
+<p>接下来会看到 VSCode 文本日志滚啊滚（如果大陆用户因为网络原因，装到一半中途提示安装失败的话，请多尝试几次 ）。</p>
+<p>如果最后显示 <code>All tools successfully installed. You are ready to Go. :)</code> ，就表示相关工具表示完成了。</p>
+<p>这是一个将英语单词 <code>Go</code> 和 <code>Go</code> 结合的双关句。</p>
+<p><img src="02_setup.assets/vscode_go_tools_all_ready.png" alt="vscode-go-5.png" /></p>
+<p>动图演示：
+<img src="02_setup.assets/InstallGoTools.gif" alt="VSCode 安装 Go 插件" /></p>
+<p>至此，VSCode 的准备工作已全部完成。</p>
+<h2 id="26-打开目录"><a class="header" href="#26-打开目录">2.6 打开目录</a></h2>
+<p>要开始开发，需要创建一个放工作文件的目录。目录与“文件夹”是同义词，但在本系列中，我们将尽量遵循 Go 官方的用法，使用“目录”一词。</p>
+<h3 id="261-创建目录的方法-windows"><a class="header" href="#261-创建目录的方法-windows">2.6.1 创建目录的方法 (Windows)</a></h3>
+<p>这里将说明如何在桌面上创建目录。</p>
+<p>首先在桌面空白处右键点击，选择“新建”子菜单下的“文件夹”。</p>
+<p><img src="02_setup.assets/windows_new_folder.jpg" alt="windows_new_folder.png" /></p>
+<p>接下来会要求输入目录名，请输入您喜欢的名称。不过，为了避免欧美软件出现问题，应该仅使用基本的半角英文或数字。在这里，我们用了 <code>test</code> 。</p>
+<p><img src="02_setup.assets/windows_folder.png" alt="setup-dir-2.png" /></p>
+<p>输入目录名后按回车键确认。这样就创建了目录。</p>
+<p>目录名称可以通过右键单击目录后选择“重命名”来更改。</p>
+<p><img src="02_setup.assets/windows_rename.png" alt="setup-dir-3.png" /></p>
+<h3 id="262-用-vscode-打开目录"><a class="header" href="#262-用-vscode-打开目录">2.6.2 用 VSCode 打开目录</a></h3>
+<p>创建目录后，从 VSCode 左上角的“文件”中选择“打开文件夹...”，打开文件夹选择界面。</p>
+<p><img src="02_setup.assets/vscode_open_folder.png" alt="vscode-dir-4.png" /></p>
+<p>在文件夹选择界面，选择刚刚创建的目录，然后点击“选择文件夹”以打开。</p>
+<p><img src="02_setup.assets/vscode_select_folder.png" alt="vscode_select_folder.png" /></p>
+<p>打开目录时，会显示这样的注意事项。这是为了防止误打开危险文件，但由于这是自己创建的目录，所以没有安全问题。点击“是，我信任此作者”。</p>
+<p><img src="02_setup.assets/vscode_folder_alert.jpg" alt="vscode_folder_alert.png" /></p>
+<p>打开目录，如果左侧的资源管理器（如果未显示，请点击左端的📄图标（红圈））中显示了目录名称（红框。目录名自动大写显示，这没有问题），则表示成功。</p>
+<p><img src="02_setup.assets/vscode_open_test_folder_done.jpg" alt="vscode-dir-7.png" /></p>
+<p>此外，如果在安装 VSCode 时勾选了 <code>添加[用 Code 打开] 到右键菜单</code> ，也可以通过右键单击目录并选择“用 Code 打开”来打开。</p>
+<p><img src="02_setup.assets/windows_open_with_code.gif" alt="vscode-dir-8.png" /></p>
+<p>动图演示：
+<img src="02_setup.assets/OpenFile.gif" alt="用 VSCode 打开目录" /></p>
+<h2 id="27-打开终端"><a class="header" href="#27-打开终端">2.7 打开终端</a></h2>
+<p>接下来的教程，将频繁使用 VSCode 的“终端”功能，因此我们要学会它的使用方法。可以通过菜单栏的“视图”选择“终端”来打开终端（还有其他打开方式）。终端中显示的内容，因操作系统和设置而异。</p>
+<p><img src="02_setup.assets/vscode_open_cmd.jpg" alt="setup-terminal-1.png" /></p>
+<p>终端是一个用于“文本”而非“鼠标”操作计算机的工具。可能有些人想起来程序员常常面对的那些神秘黑屏。没错，就是那玩意。</p>
+<p><img src="02_setup.assets/cool_cmd.png" alt="プログラマーのイラスト" /></p>
+<p>终端是一个在鼠标诞生前就存在的古老工具，至今仍然受到程序员的青睐。</p>
+<p>·  记住或拼接命令很困难，但一旦准备好了，批量执行的操作就会变得很简单</p>
+<p>·  鼠标只能使用应用程序中存在的功能，但在终端<sup>[2]</sup>中，可以组合手头的通用工具，创造性地发明需要的新功能</p>
+<p>由于有诸如这些的好处，终端最开始可能会让人很头大。但如果你能逐渐熟悉终端，我会很高兴。</p>
+<p>顺便提一下，终端的黑色背景，仅仅是一个历史留存。在现代，很多人会设置成更时髦的配色，如果你感兴趣，可以去查一下怎么改。</p>
+<h3 id="271-确认-go-已经装好了"><a class="header" href="#271-确认-go-已经装好了">2.7.1 确认 Go 已经装好了</a></h3>
+<p>为了练习终端，我们来确认一下此时 Go 是否能够正常使用吧。</p>
+<p>在终端中以半角输入 <code>go version</code> ，然后按下回车键。如果显示了 Go 的版本信息，则表示成功！🎉 这里显示的是 <code>go version go1.21.4 windows/amd64</code> ，但根据您的环境，内容可能会有所不同。</p>
+<p><img src="02_setup.assets/CheckGoVersion.gif" alt="确认 Go 版本" />
+命令可以从本文中复制粘贴。如果复制粘贴并输入正确的命令但没有显示版本，则表示安装未正确完成，请再次确认上面的“Go 安装”部分。</p>
+<h3 id="272-使用历史命令"><a class="header" href="#272-使用历史命令">2.7.2 使用历史命令</a></h3>
+<p>用终端时必备的技巧是“历史命令”。按上箭头键，可以显示刚刚输入的命令，利用这个技巧，可以调用过去的命令。连续按上箭头键可以回溯到更早的命令。如果回溯过头，可以按下箭头键返回。</p>
+<p>“上矢印返回并按回车”是终端操作中节省时间的基本技巧，值得记住！</p>
+<h3 id="273-玩一玩示例游戏"><a class="header" href="#273-玩一玩示例游戏">2.7.3 玩一玩示例游戏</a></h3>
+<p>为了纪念你学会使用终端，我们来玩一下 Ebitengine 的示例游戏吧。</p>
+<p>只需输入这个命令，然后敲一下回车即可。因为命令有点长，建议复制粘贴。此外，首次启动可能需要一些时间。</p>
+<pre><code class="language-cmd">go run github.com/hajimehoshi/ebiten/v2/examples/flappy@latest
+</code></pre>
+<p>使用此命令可以运行 <a href="https://github.com/hajimehoshi/ebiten/tree/main/examples/flappy">examples/flappy</a>。请注意音量。</p>
+<p><img src="02_setup.assets/ebiten_game_sample.png" alt="img" /></p>
+<p><em>笔者的华丽表现</em></p>
+<p>要注意不要玩得太多，偏离游戏开发正题！</p>
+<h3 id="274-关于终端画面用法的补充"><a class="header" href="#274-关于终端画面用法的补充">2.7.4 关于终端画面用法的补充</a></h3>
+<p>以下是 Windows 中终端屏幕的截图。红线标记的文本中， <code>test</code> 之前的是当前目录（也称为工作目录）， <code>&gt;</code> 是提示符。</p>
+<p>当前目录表示“当前工作位置”，提示符表示终端处于“输入接收状态”。在这个提示符后面，输入各种命令是终端操作的基础用法。</p>
+<p><img src="02_setup.assets/vscode_terminal.png" alt="vscode_terminal.png" /></p>
+<p>当前目录，基本上与在 VSCode 中打开的目录相同，但有时可能需要移动到其他位置。移动时使用 <code>cd</code> 命令，如果需要，请展开以下说明进行阅读。</p>
+<h3 id="275-cd-命令的用法"><a class="header" href="#275-cd-命令的用法">2.7.5 cd 命令的用法</a></h3>
+<p>终端中显示的当前目录，初始状态下与在 VSCode 中打开的目录相同，但可以通过后续的 <code>cd</code> 命令等进行移动。</p>
+<p><code>cd</code> 命令是通过提供文件路径（也称为路径）来移动到该位置的命令。文件路径是用反斜杠 <code>\</code> 或斜杠 <code>/</code> 分隔的，表示文件或目录位置的文本。文件路径的语法因操作系统而异，因此将分别进行说明。</p>
+<p><strong>Windows 下的 cd 命令</strong></p>
+<p>Windows的文件路径，分割字符是反斜杠 <code>\</code> 。不过这个字符比较麻烦，在某些日文环境中可能会显示为圆形标记 <code>¥</code> 。</p>
+<p>Windows 的完整文件路径从 <code>C:</code> 等驱动器字母开始。例如，用户 <code>tarou</code> 的桌面上的 <code>myprogram</code> 目录是 <code>C:\Users\tarou\Desktop\myprogram</code> 。完整的文件路径称为绝对路径或全路径。</p>
+<p>既然有完整的文件路径，当然也有不完整的文件路径。以普通字符开头的文件路径称为相对路径，表示基于当前目录的文件路径。例如，如果当前目录是 <code>C:\Users\tarou\Desktop</code> ，则相对路径 <code>myprogram</code> 指向 <code>C:\Users\tarou\Desktop\myprogram</code> 。</p>
+<p><code>..</code> 是一个特殊的文件路径，表示当前目录的父目录的相对路径。通过像 <code>..\..</code> 这样用分隔符连接，可以表示父目录的父目录。此外，通过像 <code>..\myprogram</code> 这样将 <code>..</code> 和普通的相对路径组合，可以在这种情况下指向“父目录的孩子”，即兄弟。</p>
+<p><code>.</code> 也是一个特殊的文件路径，指向当前目录本身。因此， <code>.\child</code> 和 <code>child</code> 指向同一个“当前目录中的 <code>child</code> ”。看起来似乎没有什么意义，但实际上相当常用。</p>
+<p>让我们通过实际例子来复习一下。当前目录为 <code>C:\Users\tarou\Pictures</code> 时，要使用相对路径移动到 <code>C:\Users\tarou\Desktop\myprogram</code> ，请输入以下命令。</p>
+<pre><code class="language-cmd">cd ..\Desktop\myprogram
+</code></pre>
+<p>觉得无法一次弄清楚的话，就分拆成一小块，分步解读吧。</p>
+<ul>
+<li>最开始的 <code>..</code> 的意思，就是移动到<code>C:\Users\tarou\Pictures</code> 的父文件夹 <code>C:\Users\tarou</code> 里面。</li>
+<li>接下来的 <code>Desktop</code> ，会进一步移动到 <code>C:\Users\tarou</code> 的下一层级，也就是子文件夹<code>C:\Users\tarou\Desktop</code> 里面。</li>
+<li>最后的 <code>myprogram</code> ，会继续移动到下一个子文件夹，也就是 <code>C:\Users\tarou\Desktop\myprogram</code> 里面。</li>
+</ul>
+<p>如果使用绝对路径直接移动，这条命令会变成这样：</p>
+<pre><code class="language-cmd">cd C:\Users\tarou\Desktop\myprogram
+</code></pre>
+<p><strong>macOS（或 Linux） 下的 cd 命令</strong></p>
+<p>macOS 文件路径的分割符是斜杠 <code>/</code> 。此外，绝对路径也从 <code>/</code> 开始。例如 <code>/Users/tarou/Desktop</code> 等。</p>
+<p>除了相对路径的分隔符与 Windows 的不同，macOS 的相对路径的规则，基本上与windows差不多，因此省略。</p>
+<p>我们来看看实际的例子。当前目录为 <code>/Users/tarou/Download</code> 时，要使用相对路径移动到 <code>/Users/tarou/Desktop/myprogram</code> ，请输入以下命令。</p>
+<pre><code class="language-cmd">cd ../Desktop/myprogram
+</code></pre>
+<p>如果使用绝对路径直接移动，则会变成这样。</p>
+<pre><code class="language-cmd">cd /Users/tarou/Desktop/myprogram
+</code></pre>
+<p>还有许多与 Windows 的细微差别，但由于数量众多，无法一一列举。总体而言，我认为比 Windows 更易于理解。</p>
+<h3 id="276-表示提示的字符-"><a class="header" href="#276-表示提示的字符-">2.7.6 表示提示的字符 "$"</a></h3>
+<p>在解释终端操作时，习惯在命令前加上表示提示符的字符 <code>$</code> 以进行强调，并区分输入和输出。例如， <code>go version</code> 的说明如下。</p>
+<pre><code class="language-cmd">$ go version
+go version go1.21.4 windows/amd64
+</code></pre>
+<p><code>$</code> 是表示提示符，后续的 <code>go version</code> 是输入的命令，下一行由于不是以 <code>$</code> 开头，因此是输出。 <code>$</code> 仅作为提示的示例。同时您的环境可能使用别的字符，并且请注意<code>$</code><strong>不是</strong>您输入的文本。</p>
+<h3 id="278-停止命令"><a class="header" href="#278-停止命令">2.7.8 停止命令</a></h3>
+<p>有时您可能想中断那些耗时较长的命令。在这种情况下，可以在终端中按“Ctrl+c”，可以中断程序的运行。</p>
+<h2 id="本章总结"><a class="header" href="#本章总结">本章总结</a></h2>
+<ul>
+<li>Go 是编程的必备工具。</li>
+<li>编写 Go 代码的文本编辑器，推荐使用 VSCode。但如果有偏好，用其他文本编辑器也可以。</li>
+<li>和终端交个朋友。</li>
+<li>正确搭建环境并学会终端的用法后，继续下一步吧。</li>
+</ul>
+<h2 id="注释"><a class="header" href="#注释">注释</a></h2>
+<ul>
+<li>[1] 严格来说是错的，还有其他工具可以解释 Go 语言。</li>
+<li>[2] 更确切地说，这东西应该叫 shell。</li>
+</ul>
+
+                        </div>
+                        <div class="sidetoc">
+                            <nav class="pagetoc"></nav>
+                        </div>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="01_intro.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="03_hello-world.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="01_intro.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="03_hello-world.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+        <script src="ace.js"></script>
+        <script src="editor.js"></script>
+        <script src="mode-rust.js"></script>
+        <script src="theme-dawn.js"></script>
+        <script src="theme-tomorrow_night.js"></script>
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="theme/pagetoc.js"></script>
+
+
+    </div>
+    </body>
+</html>

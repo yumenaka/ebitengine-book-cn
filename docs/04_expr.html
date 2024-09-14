@@ -1,0 +1,409 @@
+<!DOCTYPE HTML>
+<html lang="zh-Hans" class="rust" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>第四章 做算数（公式、变量和函数） - 从零开始的游戏编程：Go 语言与 Ebitengine</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="面向初学者，从零开始作游戏的 Go 语言与 Ebitengine 教程">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/pagetoc.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('rust')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="01_intro.html"><strong aria-hidden="true">1.</strong> 第一章 关于这本书</a></li><li class="chapter-item expanded "><a href="02_setup.html"><strong aria-hidden="true">2.</strong> 第二章 安装软件，配置环境</a></li><li class="chapter-item expanded "><a href="03_hello-world.html"><strong aria-hidden="true">3.</strong> 第三章 你好，世界！（开始开发，程序结构）</a></li><li class="chapter-item expanded "><a href="04_expr.html" class="active"><strong aria-hidden="true">4.</strong> 第四章 做算数（公式、变量和函数）</a></li><li class="chapter-item expanded "><a href="05_import.html"><strong aria-hidden="true">5.</strong> 第五章 显示随机数（包与导入）</a></li><li class="chapter-item expanded "><a href="06_if.html"><strong aria-hidden="true">6.</strong> 第六章 玩抽签（条件分支）</a></li><li class="chapter-item expanded "><a href="07_for.html"><strong aria-hidden="true">7.</strong> 第七章 做猜数字游戏（for循环）</a></li><li class="chapter-item expanded "><a href="08_window.html"><strong aria-hidden="true">8.</strong> 第八章 绘制窗口</a></li><li class="chapter-item expanded "><a href="09_frames.html"><strong aria-hidden="true">9.</strong> 第九章 移动角色（帧和相关概念）</a></li><li class="chapter-item expanded "><a href="10_float.html"><strong aria-hidden="true">10.</strong> 第十章 让角色跳得自然（浮点数和类型）</a></li><li class="chapter-item expanded "><a href="11_slice.html"><strong aria-hidden="true">11.</strong> 第十一章 加快动作（切片与循环）</a></li><li class="chapter-item expanded "><a href="12_flappy1.html"><strong aria-hidden="true">12.</strong> 第十二章 飞天地鼠游戏 （1）会动的墙</a></li><li class="chapter-item expanded "><a href="13_flappy2.html"><strong aria-hidden="true">13.</strong> 第十三章 飞天地鼠游戏 （2）碰撞判定</a></li><li class="chapter-item expanded "><a href="14_flappy3.html"><strong aria-hidden="true">14.</strong> 第十四章 飞天地鼠游戏 （3）画面切换</a></li><li class="chapter-item expanded "><a href="15_build.html"><strong aria-hidden="true">15.</strong> 第十五章 发布游戏让朋友玩（构建和分发）</a></li><li class="chapter-item expanded "><a href="16_struct.html"><strong aria-hidden="true">16.</strong> 第十六章 把数据放在一起（结构体）</a></li><li class="chapter-item expanded "><a href="17_funcdecl.html"><strong aria-hidden="true">17.</strong> 第十七章 把处理放在一起（函数声明）</a></li><li class="chapter-item expanded "><a href="18_pointer.html"><strong aria-hidden="true">18.</strong> 第十八章 指针（Pointer）</a></li><li class="chapter-item expanded "><a href="19_method.html"><strong aria-hidden="true">19.</strong> 第十九章 将函数绑定到类型（method）</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">从零开始的游戏编程：Go 语言与 Ebitengine</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/yumenaka/ebitengine-book-cn" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/yumenaka/ebitengine-book-cn/edit/main/src/04_expr.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="content-wrap">
+                            <h1 id="第四章-做算数公式变量和函数"><a class="header" href="#第四章-做算数公式变量和函数">第四章 做算数（公式、变量和函数）</a></h1>
+<p>这一章，将指挥计算机做计算，逐渐熟悉编程。</p>
+<h2 id="41-写程序的地方"><a class="header" href="#41-写程序的地方">4.1 写程序的地方</a></h2>
+<p>前回 <code>hello</code> 目录创建了第一个程序，之后既可以重复使用该目录，也可以新建一个别的目录。请按照您的喜好进行。如果要新建目录，请参考上一篇文章，在 VSCode 中打开并进行模块初始化。</p>
+<h2 id="42-示例程序的说明"><a class="header" href="#42-示例程序的说明">4.2 示例程序的说明</a></h2>
+<p>下面的程序， <code>package main</code> 和 <code>import "fmt"</code> 等等，在不需要说明时会被省略，但实际上代码还是需要写的，请不要删除。</p>
+<h2 id="43-显示数字"><a class="header" href="#43-显示数字">4.3 显示数字</a></h2>
+<p>要显示数字，请将 <code>()</code> 中的 <code>fmt.Println</code> 函数的内容设置为数字。</p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+	fmt.Println(42)
+}
+$ go run .
+42
+</code></pre>
+<h2 id="44-计算式"><a class="header" href="#44-计算式">4.4 计算式</a></h2>
+<p>在 Go 中，主要的算术字符如下所示。加法和减法大家很熟悉，但其他符号可能会让你感到惊讶。这些都是编程世界中常见的符号。此外，还有一个不太熟悉的“取余”计算，实际上在游戏中也经常使用。</p>
+<pre><code class="language-go">1 + 2 // 加法
+1 - 2 // 剑减法
+1 * 2 // 乘法
+1 / 2 // 除法
+1 % 2 // 割求余
+</code></pre>
+<p>这些计算，也有熟悉的优先顺序，乘法、除法和取余的优先级高于加法和减法。也可以使用括号 <code>()</code> 来改变优先顺序。</p>
+<pre><code class="language-go">func main() {
+	fmt.Println(1 + 2*3) // 7
+	fmt.Println((1 + 2) * 3) // 9
+}
+</code></pre>
+<p>Go 提供了一种根据优先级等规则自动调整代码格式与间距的格式化功能（gofmt）。虽然无法设置自己喜欢的风格，但由于“任何人都可以轻松格式化成相同的样式，因此大家都能更容易阅读”，我们应该接受这一点。</p>
+<h2 id="45-小数计算"><a class="header" href="#45-小数计算">4.5 小数计算</a></h2>
+<p>在 Go 中，整数和小数被明确区分，因此整数与整数的计算结果会去掉小数点后的部分，变为整数。例如 <code>1 / 2</code> 的结果是 <code>0</code> 。</p>
+<pre><code class="language-go">func main() {
+	fmt.Println(1 / 2)
+}
+$ go run .
+0
+</code></pre>
+<p>进行小数计算时，请明确指定为小数（也叫做浮点数），例如 <code>1.0</code> 。</p>
+<pre><code class="language-go">func main() {
+	fmt.Println(1.0 / 2.0)
+}
+$ go run .
+0.5
+</code></pre>
+<h3 id="面向有经验的人-浮动小数与字面量"><a class="header" href="#面向有经验的人-浮动小数与字面量">[面向有经验的人] 浮动小数与字面量</a></h3>
+<p>字面量（包括 Go 中的常量）是一种与普通数值类型略有不同的类型 <code>untyped</code> ，在类型转换方面比普通类型宽松一些。此外，浮动小数点常量在编译时以任意精度（实际上由于实现上的原因为 256 位）进行计算，因此基本不需要担心误差等问题。</p>
+<h2 id="46-变量"><a class="header" href="#46-变量">4.6 变量</a></h2>
+<p>使用变量可以为数据命名并保存起来（虽然是保存，但仅在程序运行期间可用，是临时的）。通过使用变量，可以多次使用相同的数据。以下是变量最简单的用法。</p>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+	level := 50
+	fmt.Println(level)
+}
+$ go run .
+50
+</code></pre>
+<p>成功地将值保存到名为 <code>level</code> 的变量中并显示出来。</p>
+<h3 id="声明与赋值"><a class="header" href="#声明与赋值">声明与赋值</a></h3>
+<p>记号 <code>:=</code> 是变量的声明和赋值同时进行的记号。声明是数据的“新建”，赋值是数据的“覆盖”，这样理解会更好。为了更深入地理解，我们来看一下将声明和赋值分开的写法。</p>
+<p>声明后赋值</p>
+<pre><code class="language-go">func main() {
+	// 先做声明 
+	var level int
+	// 然后代入数值
+	level = 50
+	fmt.Println(level)
+}
+</code></pre>
+<p>GO以 <code>var 参数名称 参数类型</code> 的形式声明变量，并以 <code>参数名 = 参数值</code> 的形式赋值。关于变量的类型稍后会解释，但 <code>int</code> 表示整数类型。</p>
+<p>变量的声明（新建）只需一次，但赋值（覆盖）可以多次进行。</p>
+<pre><code class="language-go">func main() {
+	var level int
+	// var level int ←无法用同一个名字再次声明
+
+	level = 50
+	fmt.Println(level)
+	level = 100
+	fmt.Println(level)
+}
+</code></pre>
+<h3 id="面向有经验的人-作用域"><a class="header" href="#面向有经验的人-作用域">[面向有经验的人] 作用域</a></h3>
+<p>Go 变量（或者说所有标识符）具有作用域（有效范围）。作用域由块（ <code>{}</code> ）分隔。在作用域内声明的变量仅在该作用域内有效，无法从作用域外访问。</p>
+<p>同名变量在严格意义上“在同一作用域内”不能再次声明，但在不同作用域中可以声明同名变量。在更小的作用域中声明同名变量会优先使用，因此原变量会被隐藏，在该作用域内无法访问。这被称为遮蔽。</p>
+<p>不过，在大多数情况下，变量的声明和赋值是同时进行的。声明和赋值同时进行时，可以省略变量的类型，这也是一个优点。即使同时进行，之后仍然可以多次赋值，这一点没有改变。</p>
+<pre><code class="language-go">func main() {
+	var level = 50 // 声明和赋值是同时进行，表示类型的 int 可以省略
+	fmt.Println(level)
+	level = 100 // 再次赋值
+	fmt.Println(level)
+}
+</code></pre>
+<p>此外，在函数内可以使用符号 <code>:=</code> 来省略 <code>var</code> ，使得声明和赋值更简洁，这也是最常用的语法。</p>
+<p>在这里回到开头的记法</p>
+<pre><code class="language-go">func main() {
+	level := 50 // 声明与赋值
+	fmt.Println(level)
+	level = 100 // 再次赋值
+	fmt.Println(level)
+}
+</code></pre>
+<h2 id="47-变量和计算式"><a class="header" href="#47-变量和计算式">4.7 变量和计算式</a></h2>
+<p>变量可以像普通数字一样混合在计算式中。</p>
+<pre><code class="language-go">func main() {
+	level := 50
+	waza := 100 // 盾甲龙兽
+	attack := 182
+	defense := 189
+
+	maxDamage := level*2/5 + 2
+	maxDamage = maxDamage*waza*attack/defense/50 + 2
+
+	fmt.Println("最大伤害", maxDamage) // 最大伤害 44
+}
+</code></pre>
+<p>此外，还有一种将计算和代入结合的省略形式。</p>
+<pre><code class="language-go">func main() {
+	hp := 100
+	hp += 20        // 与 hp = hp + 20 同义
+	fmt.Println(hp) // 120
+	hp -= 50        // 与 hp = hp - 50 同义
+	fmt.Println(hp) // 70
+
+	// *=, /=, %= 也是一样的规则
+}
+</code></pre>
+<ul>
+<li><code>hp = hp + 20</code> 等等在数学中，是不可能存在的式子，但在这里 <code>=</code> 仅仅是代入（覆盖）的符号，所以请把它当作不同的东西来看。如果实在无法适应，请在心中将 <code>=</code> 替换为 <code>⇐</code> 等等。</li>
+</ul>
+<h2 id="48-函数"><a class="header" href="#48-函数">4.8 函数</a></h2>
+<p>函数是某种处理的集合。例如 <code>fmt.Println</code> 函数是执行在屏幕上显示文本的处理的函数。</p>
+<p>函数可以接收 <code>()</code> 中的输入。这个输入称为参数。给函数提供输入称为传递参数（简称“传参”）。参数可以用逗号 <code>,</code> 分隔，同时传递多个。例如， <code>fmt.Println</code> 函数，就可以将多个参数用空格连接并显示在屏幕上。</p>
+<pre><code class="language-go">fmt.Println("哈哈", "呵呵")
+$ go run .
+哈哈 呵呵
+</code></pre>
+<p>函数不仅接受输入，还会输出计算或处理的结果。这被称为返回值。 <code>fmt.Println</code> 函数不返回返回值，因此我们引入另一个函数。 <code>max</code> 函数是一个返回参数中最大值的函数。</p>
+<pre><code class="language-go">func main() {
+	fmt.Println(max(3, 4, 5)) // 5
+}
+</code></pre>
+<p>这里的 <code>()</code> 有两层，可以简单地认为在 <code>max(3, 4, 5)</code> 的计算完成后，该部分将被替换为 <code>5</code> 。</p>
+<pre><code class="language-go">fmt.Println(max(3, 4, 5))
+// max(3, 4, 5)的计算完成之后、↓将会等同于下面的式子
+fmt.Println(5)
+</code></pre>
+<p>引数和返回值混在一起也是一样的。在这个程序中，我们来思考一下传递给 <code>fmt.Println</code> 函数多少个参数。</p>
+<pre><code class="language-go">func main() {
+	fmt.Println("最大値は", max(3, 4, 5), "です。最小値は", min(3, 4, 5), "です。")
+}
+</code></pre>
+<h2 id="本章总结"><a class="header" href="#本章总结">本章总结</a></h2>
+<ul>
+<li>虽然符号不一样，但在 Go 中也可以书写算式。</li>
+<li>算式可以设置优先级，通过括号来控制。</li>
+<li>使用变量可以命名数据，并临时保存数据。</li>
+<li>通过传递参数和接收返回值，可以使用函数（处理块）。</li>
+</ul>
+
+                        </div>
+                        <div class="sidetoc">
+                            <nav class="pagetoc"></nav>
+                        </div>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="03_hello-world.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="05_import.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="03_hello-world.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="05_import.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+        <script src="ace.js"></script>
+        <script src="editor.js"></script>
+        <script src="mode-rust.js"></script>
+        <script src="theme-dawn.js"></script>
+        <script src="theme-tomorrow_night.js"></script>
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="theme/pagetoc.js"></script>
+
+
+    </div>
+    </body>
+</html>

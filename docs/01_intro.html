@@ -1,0 +1,315 @@
+<!DOCTYPE HTML>
+<html lang="zh-Hans" class="rust" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>第一章 关于这本书 - 从零开始的游戏编程：Go 语言与 Ebitengine</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="面向初学者，从零开始作游戏的 Go 语言与 Ebitengine 教程">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/pagetoc.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('rust')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="01_intro.html" class="active"><strong aria-hidden="true">1.</strong> 第一章 关于这本书</a></li><li class="chapter-item expanded "><a href="02_setup.html"><strong aria-hidden="true">2.</strong> 第二章 安装软件，配置环境</a></li><li class="chapter-item expanded "><a href="03_hello-world.html"><strong aria-hidden="true">3.</strong> 第三章 你好，世界！（开始开发，程序结构）</a></li><li class="chapter-item expanded "><a href="04_expr.html"><strong aria-hidden="true">4.</strong> 第四章 做算数（公式、变量和函数）</a></li><li class="chapter-item expanded "><a href="05_import.html"><strong aria-hidden="true">5.</strong> 第五章 显示随机数（包与导入）</a></li><li class="chapter-item expanded "><a href="06_if.html"><strong aria-hidden="true">6.</strong> 第六章 玩抽签（条件分支）</a></li><li class="chapter-item expanded "><a href="07_for.html"><strong aria-hidden="true">7.</strong> 第七章 做猜数字游戏（for循环）</a></li><li class="chapter-item expanded "><a href="08_window.html"><strong aria-hidden="true">8.</strong> 第八章 绘制窗口</a></li><li class="chapter-item expanded "><a href="09_frames.html"><strong aria-hidden="true">9.</strong> 第九章 移动角色（帧和相关概念）</a></li><li class="chapter-item expanded "><a href="10_float.html"><strong aria-hidden="true">10.</strong> 第十章 让角色跳得自然（浮点数和类型）</a></li><li class="chapter-item expanded "><a href="11_slice.html"><strong aria-hidden="true">11.</strong> 第十一章 加快动作（切片与循环）</a></li><li class="chapter-item expanded "><a href="12_flappy1.html"><strong aria-hidden="true">12.</strong> 第十二章 飞天地鼠游戏 （1）会动的墙</a></li><li class="chapter-item expanded "><a href="13_flappy2.html"><strong aria-hidden="true">13.</strong> 第十三章 飞天地鼠游戏 （2）碰撞判定</a></li><li class="chapter-item expanded "><a href="14_flappy3.html"><strong aria-hidden="true">14.</strong> 第十四章 飞天地鼠游戏 （3）画面切换</a></li><li class="chapter-item expanded "><a href="15_build.html"><strong aria-hidden="true">15.</strong> 第十五章 发布游戏让朋友玩（构建和分发）</a></li><li class="chapter-item expanded "><a href="16_struct.html"><strong aria-hidden="true">16.</strong> 第十六章 把数据放在一起（结构体）</a></li><li class="chapter-item expanded "><a href="17_funcdecl.html"><strong aria-hidden="true">17.</strong> 第十七章 把处理放在一起（函数声明）</a></li><li class="chapter-item expanded "><a href="18_pointer.html"><strong aria-hidden="true">18.</strong> 第十八章 指针（Pointer）</a></li><li class="chapter-item expanded "><a href="19_method.html"><strong aria-hidden="true">19.</strong> 第十九章 将函数绑定到类型（method）</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">从零开始的游戏编程：Go 语言与 Ebitengine</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/yumenaka/ebitengine-book-cn" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/yumenaka/ebitengine-book-cn/edit/main/src/01_intro.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="content-wrap">
+                            <h1 id="第一章-关于这本书"><a class="header" href="#第一章-关于这本书">第一章 关于这本书</a></h1>
+<p><img src="intro.assets/01_game_for_everyone.png" alt="01_game_for_everyone.png" /></p>
+<h2 id="11-引言"><a class="header" href="#11-引言">1.1 引言</a></h2>
+<p>欢迎来到《从零开始的游戏编程：Go 语言与 Ebitengine》。</p>
+<p>本书旨在为完全没有编程经验的超初学者提供指导，以“连老妈都能理解”为目标，循序渐进讲解如何从零开始制作游戏。</p>
+<p>希望通过本书，让你体会到游戏编程的乐趣。在这本书中，我们将最快的路线，从编程基础走到游戏开发。</p>
+<p>· 极其易懂、细致解说如何配置编程环境<br />
+· 一边让画面动，一边学习编程<br />
+· 学习制作各种类型的游戏，都能用到的泛用技术</p>
+<p>以上就是我们的目标。如果读者里面有：</p>
+<p>· 环境构建太难搞，总是半途而废<br />
+· 黑窗口好无聊，啥时候才能有画面<br />
+· 我学的东西，真的对制作游戏有帮助吗</p>
+<p>如果你这样想，恭喜，这本书正好适合你。另外本书还推荐给那些“游戏引擎很卡，在我的破电脑上跑不起来”的人。</p>
+<p>笔者入门游戏编程，用的是名为 BASIC 的古老编程语言。尽管 BASIC 仍然是一种伟大的语言，但与现代游戏开发相距甚远。</p>
+<p>在现代，能够实现前面这些这些宏伟目标的东西，笔者认为除了本书中提到的 Go 语言和 Ebitengine，可以说别无他选。</p>
+<p>如果有人因此一辈子用 Go 和 Ebitengine 制作游戏，那将是无上的喜悦。但即使不是这样（也就是说，用其他引擎制作游戏或没去做游戏方面的编程），我也相信在这里学到的知识，一定会对你有所帮助。</p>
+<p>我虽然说了很多，但如果您能当作轻松的业余消遣来读，相信也一定会很有趣😉</p>
+<h2 id="12-这本书的使用方法"><a class="header" href="#12-这本书的使用方法">1.2 这本书的使用方法</a></h2>
+<p>这本书不仅可以在 PC 上阅读，也可以在手机上阅读。不过，实际编程需要用 Windows PC 或 Mac。</p>
+<p>虽然<a href="https://zenn.dev/eihigh/books/ebitengine-book/viewer/intro">（日文版）</a>没有 Zenn 的账户也可以阅读，但如果登录 Zenn 账户，则会有阅读进度记录等功能，因此推荐注册。</p>
+<p>动作确认是在 Windows 10 和 macOS Ventura 上进行的。如果有任何问题，请在以下社群中告知我们。</p>
+<h2 id="13-关于编程社群"><a class="header" href="#13-关于编程社群">1.3 关于编程社群</a></h2>
+<p>您可以在 <a href="https://discord.gg/3tVdM5H8cC">Ebitengine 官方 Discord 服务器</a>的 #questions-ja 频道中，直接向作者 @eihigh 询问。
+任何小问题都非常欢迎！</p>
+<p>此外，我们还不定期举办轻松的学习交流会“Ebitengine ぷちConf”，最近的一次在 8 月 30 日举行。<br />
+详情请<a href="https://gocon.connpass.com/event/322222/">点击这里</a>。欢迎初学者参加，请随时加入我们！</p>
+<h2 id="14-请您给予支持"><a class="header" href="#14-请您给予支持">1.4 请您给予支持</a></h2>
+<p>全编免费阅读，但如果您从<a href="https://zenn.dev/eihigh/books/ebitengine-book">（日文版）书籍目录画面</a>下方的“徽章（バッジ）”处给作者打赏，作者会非常高兴！</p>
+<h2 id="15-其他学习资料"><a class="header" href="#15-其他学习资料">1.5 其他学习资料</a></h2>
+<p>学习 Go 语言的资料，除了这本书之外还有很多选择。以下是其中的一部分，希望对您有所帮助。</p>
+<h3 id="go指南"><a class="header" href="#go指南"><a href="https://tour.go-zh.org/welcome/1">GO指南</a></a></h3>
+<p>A Tour of Go 是 Go 官方提供的学习内容（链接是由志愿者翻译的中文版）。
+它的特点，是可以使用后面提到的 Go Playground 的功能，一边在左侧阅读解说，一边在右侧编写并即时运行。
+虽然有些内容假设读者有其他语言的编程经验，但依然是快速掌握 Go 的绝佳选择。</p>
+<p><img src="intro.assets/02_go-tour.png" alt="A Tour of Go" /></p>
+<h3 id="go-playground"><a class="header" href="#go-playground">Go Playground</a></h3>
+<p>Go Playground 是 Go 官方提供的代码执行环境。可以在浏览器上编写并执行，或通过 Share 按钮发布 URL，共享编写的代码片段。</p>
+<p>不过由于 Go Playground 无法响应用户输入，因此不适合做游戏。适合快速检查语法或共享代码片段。
+<img src="intro.assets/03_Go_Playground.png" alt="Go Playground " /></p>
+<h3 id="go语言编程-完全入门日语资料"><a class="header" href="#go语言编程-完全入门日语资料">Go语言编程 完全入门（日语资料）</a></h3>
+<p><a href="https://docs.google.com/presentation/d/1RVx8oeIMAWxbB7ZP2IcgZXnbZokjCmTUca-AbIpORGk/edit#slide=id.g4f417182ce_0_0">《Go语言编程 完全入门》</a>是由致力于 Go 普及的 tenntenn 先生编写的学习内容。
+内容面向初学者，并且附有实际动手学习的实践环节，非常易于理解，推荐阅读。<br />
+<img src="intro.assets/04_Go%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E5%AE%8C%E5%85%A8%E5%85%A5%E9%97%A8.png" alt="《Go语言编程 完全入门》" /></p>
+<h2 id="16-学习时的注意事项"><a class="header" href="#16-学习时的注意事项">1.6 学习时的注意事项</a></h2>
+<p>因为 Go 始终在不断发展，某些教程可能因为信息过时而导致“照着做却不成功！”的情况发生。这本书也不例外，所以请尽量参考最新信息。</p>
+<h2 id="17-编程是什么游戏编程是什么"><a class="header" href="#17-编程是什么游戏编程是什么">1.7 编程是什么，游戏编程是什么</a></h2>
+<p>程序究竟是什么？我将尝试以老妈也能理解的方式解释。</p>
+<p>程序是指示计算机执行操作的工具。例如，编写指示计算机“按顺序显示 1 到 10 的数字”的程序，计算机就会按顺序显示 1 到 10 的数字。</p>
+<p>个人电脑、智能手机、游戏机等，所有计算机都由程序控制。如果没有程序，计算机就只是一个空壳。</p>
+<p>游戏编程，就是在编写作为游戏运行的程序。将图像显示在屏幕上、发出声音、对输入作出反应、移动角色等，这些都由程序控制与运行。</p>
+<p>此外，游戏编程的范围，不仅限于我们手头的电脑、手机和游戏机上运行的程序——</p>
+<p>互联网某处的“游戏服务器”、为游戏开发者提供的“辅助工具”、以及被各种游戏使用、支撑开发的“游戏引擎”等等，游戏编程涉及多个领域，在这里我们不扩展讨论了。</p>
+<p>不过，现代游戏中这些内容都是不可或缺的，因此有意将游戏编程作为职业的人，建议您保持好奇心并积极学习。</p>
+<p>在这个连载中，我们将从零开始学习游戏编程。请务必体验一下从无到有，写出一款游戏的感觉。</p>
+<h2 id="18-go-语言与-ebitengine-概述"><a class="header" href="#18-go-语言与-ebitengine-概述">1.8 Go 语言与 Ebitengine 概述</a></h2>
+<p>在本连载中，我将简要介绍将要使用的技术。对技术话题感兴趣的读者可以阅读一下。</p>
+<p>Go 语言是 2009 年正式发布的相对年轻的编程语言。具有语法简单、环境搭建轻松、像脚本语言一样容易执行这样的“易用性”，与可以快速编译与执行速度快这样的“高性能”等特点。</p>
+<p>这种语言，还因由 C 语言的发源地<a href="https://zh.wikipedia.org/wiki/%E8%B4%9D%E5%B0%94%E5%AE%9E%E9%AA%8C%E5%AE%A4">贝尔实验室</a>的资深程序员开发而闻名，Go 语言一方面保留了 C 语言的特征，但在吸取 C 语言的经验和教训的基础上，去除了复杂性，是一种现代化的编程语言。</p>
+<p>Go 主要用于 Web 与云服务领域，但 Go 当然也可以制作游戏。在这里，我们将使用 Go 加 Ebitengine 这个库（库：为了让大家分享，而编写的通用游戏组件）来制作游戏。</p>
+<p>Ebitengine（エビテンジン）是由日本人星一（Hajime Hoshi）开发的一个用 Go 开发游戏的库。</p>
+<p>它支撑了许多著名的作品，如<a href="https://store.steampowered.com/app/1783360/_/">《梅格与怪物》</a>、<a href="https://store.steampowered.com/app/1687550/_/">《熊先生的餐厅》</a>，以及备受期待的新作<a href="https://store.steampowered.com/app/2492120/SAEKO_Giantess_Dating_Sim/">《SAEKO: Giantess Dating Sim》</a>。
+游戏特点与 Go 的特性有很多共同之处，比如简单易用，运行速度快。</p>
+<p>Ebitengine 的另一个值得大书特书的特点，就是其支持平台范围广了。</p>
+<p>它不仅支持 Windows、macOS、Linux 等桌面环境，还支持使用WebGL在 Web 浏览器上运行 ，以及发布成为 iOS 和 Android 上的智能手机应用，甚至还能移植到 Nintendo Switch 和 Xbox 这些主机上。</p>
+<p>它让用 Go 语言编写的游戏，可以轻松移植到各种平台。</p>
+<p>Ebitengine 官方网站上发布了<a href="https://ebiten-zh.vercel.app/examples/">大量游戏示例</a>，在浏览器上展示了游戏的的效果，代码也可以直接复制粘贴运行。如果您有编程经验，可能只需浏览一遍示例就能掌握用法。请务必查看。</p>
+<p><img src="intro.assets/05_examples.png" alt="官方游戏示例" /></p>
+<p>Ebitengine 是专注于 2D 游戏的引擎。虽然不支持 3D（因此可以保持简易），但也有像 <a href="https://github.com/SolarLune/tetra3d">Tetra3D</a> 这样基于 Ebitengine 的黑科技 3D 引擎，如果感兴趣的话可以去看看。</p>
+<h2 id="19-许可证"><a class="header" href="#19-许可证">1.9 许可证</a></h2>
+<p>Go gopher（GO吉祥物地鼠）图片，采用创意共享 4.0 署名许可。阅读本文，以获取更多详细信息：<a href="https://blog.golang.org/gopher">https://blog.golang.org/gopher </a></p>
+<p>本文用了 Egon Elbre 氏提供的 gopher 图像（ <a href="https://github.com/egonelbre/gophers">https://github.com/egonelbre/gophers</a> ），该图像以 CC0 1.0 Universal 许可提供。</p>
+<p>本书的原始图像可以在个人学习范围内自由使用。</p>
+<h2 id="110-关于中文翻译"><a class="header" href="#110-关于中文翻译">1.10 关于中文翻译</a></h2>
+<p>本书在<a href="https://zenn.dev/eihigh">原作者eihigh</a>的许可下翻译，译文同样限定在个人学习范围内自由使用（也就是非商用）。<br />
+为了便于中文读者理解，译文中添加了一些段落，替换了部分截图，并不完全与原文一致。</p>
+
+                        </div>
+                        <div class="sidetoc">
+                            <nav class="pagetoc"></nav>
+                        </div>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+                            <a rel="next prefetch" href="02_setup.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+                    <a rel="next prefetch" href="02_setup.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+        <script src="ace.js"></script>
+        <script src="editor.js"></script>
+        <script src="mode-rust.js"></script>
+        <script src="theme-dawn.js"></script>
+        <script src="theme-tomorrow_night.js"></script>
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="theme/pagetoc.js"></script>
+
+
+    </div>
+    </body>
+</html>

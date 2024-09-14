@@ -1,0 +1,449 @@
+<!DOCTYPE HTML>
+<html lang="zh-Hans" class="rust" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>第十二章 飞天地鼠游戏 （1）会动的墙 - 从零开始的游戏编程：Go 语言与 Ebitengine</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="面向初学者，从零开始作游戏的 Go 语言与 Ebitengine 教程">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/pagetoc.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('rust')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="01_intro.html"><strong aria-hidden="true">1.</strong> 第一章 关于这本书</a></li><li class="chapter-item expanded "><a href="02_setup.html"><strong aria-hidden="true">2.</strong> 第二章 安装软件，配置环境</a></li><li class="chapter-item expanded "><a href="03_hello-world.html"><strong aria-hidden="true">3.</strong> 第三章 你好，世界！（开始开发，程序结构）</a></li><li class="chapter-item expanded "><a href="04_expr.html"><strong aria-hidden="true">4.</strong> 第四章 做算数（公式、变量和函数）</a></li><li class="chapter-item expanded "><a href="05_import.html"><strong aria-hidden="true">5.</strong> 第五章 显示随机数（包与导入）</a></li><li class="chapter-item expanded "><a href="06_if.html"><strong aria-hidden="true">6.</strong> 第六章 玩抽签（条件分支）</a></li><li class="chapter-item expanded "><a href="07_for.html"><strong aria-hidden="true">7.</strong> 第七章 做猜数字游戏（for循环）</a></li><li class="chapter-item expanded "><a href="08_window.html"><strong aria-hidden="true">8.</strong> 第八章 绘制窗口</a></li><li class="chapter-item expanded "><a href="09_frames.html"><strong aria-hidden="true">9.</strong> 第九章 移动角色（帧和相关概念）</a></li><li class="chapter-item expanded "><a href="10_float.html"><strong aria-hidden="true">10.</strong> 第十章 让角色跳得自然（浮点数和类型）</a></li><li class="chapter-item expanded "><a href="11_slice.html"><strong aria-hidden="true">11.</strong> 第十一章 加快动作（切片与循环）</a></li><li class="chapter-item expanded "><a href="12_flappy1.html" class="active"><strong aria-hidden="true">12.</strong> 第十二章 飞天地鼠游戏 （1）会动的墙</a></li><li class="chapter-item expanded "><a href="13_flappy2.html"><strong aria-hidden="true">13.</strong> 第十三章 飞天地鼠游戏 （2）碰撞判定</a></li><li class="chapter-item expanded "><a href="14_flappy3.html"><strong aria-hidden="true">14.</strong> 第十四章 飞天地鼠游戏 （3）画面切换</a></li><li class="chapter-item expanded "><a href="15_build.html"><strong aria-hidden="true">15.</strong> 第十五章 发布游戏让朋友玩（构建和分发）</a></li><li class="chapter-item expanded "><a href="16_struct.html"><strong aria-hidden="true">16.</strong> 第十六章 把数据放在一起（结构体）</a></li><li class="chapter-item expanded "><a href="17_funcdecl.html"><strong aria-hidden="true">17.</strong> 第十七章 把处理放在一起（函数声明）</a></li><li class="chapter-item expanded "><a href="18_pointer.html"><strong aria-hidden="true">18.</strong> 第十八章 指针（Pointer）</a></li><li class="chapter-item expanded "><a href="19_method.html"><strong aria-hidden="true">19.</strong> 第十九章 将函数绑定到类型（method）</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">从零开始的游戏编程：Go 语言与 Ebitengine</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/yumenaka/ebitengine-book-cn" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/yumenaka/ebitengine-book-cn/edit/main/src/12_flappy1.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="content-wrap">
+                            <h1 id="第十二章-飞天地鼠游戏-1会动的墙"><a class="header" href="#第十二章-飞天地鼠游戏-1会动的墙">第十二章 飞天地鼠游戏 （1）会动的墙</a></h1>
+<p>前回まで我们学习了角色移动、管理数据等很多内容。这次我们终于要开始制作游戏了。</p>
+<h2 id="制作飞天地鼠游戏"><a class="header" href="#制作飞天地鼠游戏">制作飞天地鼠游戏</a></h2>
+<p>这次制作的是 Ebitengine 的示例游戏中也包含的，flappy xxx 游戏。游戏的内容是</p>
+<ul>
+<li>点击后，gopher 君会跳跃。</li>
+<li>右侧的有缺口的墙壁不断逼近，所以要巧妙地穿过洞。</li>
+<li>尽量长时间不碰壁地生存下去。</li>
+</ul>
+<p>就是这么简单。让我们开始制作吧。</p>
+<h2 id="做跳跃的-gopher"><a class="header" href="#做跳跃的-gopher">做跳跃的 gopher</a></h2>
+<p>首先，我们来创建玩家角色。这与之前写的程序几乎相同，但为了便于后续调整，我们将 X 坐标和跳跃力设置为变量。从现在开始，程序中的数字尽量使用变量。</p>
+<pre><code class="language-go">package main
+
+import (
+	"github.com/eihigh/miniten"
+)
+
+var (
+	x    = 200.0
+	y    = 150.0
+	vy   = 0.0  // Velocity of y (Y方向速度) 的略称
+	g    = 0.1  // Gravity (重力加速度) 的略称
+	jump = -4.0 // 跳跃力
+)
+
+func main() {
+	miniten.Run(draw)
+}
+
+func draw() {
+	if miniten.IsClicked() {
+		vy = jump
+	}
+	vy += g // 当前速度 = 速度+加速度
+	y += vy // 当前位置 = 位置+速度
+	miniten.DrawImage("gopher.png", int(x), int(y))
+}
+</code></pre>
+<h2 id="迫近的墙壁"><a class="header" href="#迫近的墙壁">迫近的墙壁</a></h2>
+<p>接下来我们将创建墙壁。作为墙壁的图像，我们准备了这个 <code>wall.png</code> ，请像 gopher 君时一样右键点击“另存为图像”，并将其放置在与程序相同的目录中。</p>
+<p><img src="12_flappy1.assets/wall.png" alt="wall.png" /></p>
+<p>让我们编写一个不断逼近的墙壁程序。重点是“每隔一定时间添加墙壁”。</p>
+<p>来自前一个程序的更改部分为绿色。</p>
+<p>在 Go 中，由多个英语单词组成的名称通常使用大写字母进行分隔。这被称为驼峰命名法。例如 <code>wallXs</code> 是 <code>wall</code> 和 <code>xs</code> 的合成。</p>
+<pre><code class="language-diff-go">package main
+
+import (
+	"github.com/eihigh/miniten"
+)
+
+var (
+	x    = 200.0
+	y    = 150.0
+	vy   = 0.0  // Velocity of y (Y方向速度) 的略称
+	g    = 0.1  // Gravity (重力加速度) 的略称
+	jump = -4.0 // 跳跃力
+
+	frames     = 0       // 经过的帧总数
+	interval   = 120     // 墙的追加间隔
+	wallStartX = 640     // 墙的初始化x坐标
+	wallXs     = []int{} // 墙的x坐标
+	wallWidth  = 20      // 墙的宽度
+	wallHeight = 360     // 墙的高度
+)
+
+func main() {
+	miniten.Run(draw)
+}
+
+func draw() {
+	if miniten.IsClicked() {
+		vy = jump
+	}
+	vy += g // 当前速度 = 速度+加速度
+	y += vy // 当前位置 = 位置+速度
+	miniten.DrawImage("gopher.png", int(x), int(y))
+
+	// 壁追加処理ここから
+	frames += 1
+	if frames%interval == 0 {
+		wallXs = append(wallXs, wallStartX)
+	}
+	// 壁追加処理ここまで
+
+	for i := range wallXs {
+		wallXs[i] -= 2 // 往左动
+	}
+	for _, wallX := range wallXs {
+		miniten.DrawImage("wall.png", wallX, 0)
+	}
+}
+</code></pre>
+<p>起动后大约 2 秒钟，如果能看到墙壁从右向左逼近就可以了。</p>
+<p><img src="12_flappy1.assets/%E8%BF%AB%E3%82%8A%E3%81%8F%E3%82%8B%E5%A3%81.png" alt="迫りくる壁" /></p>
+<p><code>frames%interval == 0</code> 的部分是关键。 <code>%</code> 是求余数的符号。余数的特点是会产生如下的周期性。</p>
+<pre><code>原始数字:		0 1 2 3 | 4 5 6 7 | 8 9 10 11 | 12 ...
+除4的余数:	0 1 2 3 | 0 1 2 3 | 0 1  2  3 |  0 ...
+</code></pre>
+<p>这个性质非常适合“定期做某事”。 <code>frames%120 == 0</code> 意味着“每 120 帧做某事”。</p>
+<p>draw 函数被调用的频率会因您使用的显示器而有所不同，因此请根据需要调整间隔和速度。</p>
+<h2 id="打孔"><a class="header" href="#打孔">打孔</a></h2>
+<p>这次制作的墙壁从上到下完全封闭。我们来打个洞。打洞的方法有几种，这里我们就这样做。</p>
+<ul>
+<li>
+<p>上面的墙和下面的墙，分开考虑。</p>
+</li>
+<li>
+<p>穴的上端 Y 坐标（ <code>holeY</code> ）随机确定。</p>
+</li>
+<li>
+<p>上面的墙，需要比 <code>holeY</code> 高。</p>
+</li>
+<li>
+<p>上面的墙壁的底部，与孔的顶部对齐。</p>
+</li>
+<li>
+<p>上面的墙的顶部是 <code>holeY - wallHeight</code> 。</p>
+</li>
+<li>
+<p>下面的墙壁，将从 <code>holeY</code> 向下移动一个孔的位置开始绘制。</p>
+<ul>
+<li>下的墙的顶部坐标是 <code>holeY + holeHeight</code> 。</li>
+</ul>
+</li>
+</ul>
+<p><img src="12_flappy1.assets/hole.png" alt="img" /></p>
+<pre><code class="language-diff-go">package main
+
+import (
+	"math/rand/v2"
+
+	"github.com/eihigh/miniten"
+)
+
+var (
+	x    = 200.0
+	y    = 150.0
+	vy   = 0.0  // Velocity of y (速度のy成分) の略
+	g    = 0.1  // Gravity (重力加速度) の略
+	jump = -4.0 // ジャンプ力
+
+	frames     = 0       // 经过的帧总数
+	interval   = 120     // 墙的追加间隔
+	wallStartX = 640     // 墙的初始化x坐标
+	wallXs     = []int{} // 墙的x坐标
+	wallWidth  = 20      // 墙的宽度
+	wallHeight = 360     // 墙的高度
+	holeYs     = []int{} // 洞的 Y 坐标
+	holeYMax   = 150     // 洞的 Y 坐标的最大值
+	holeHeight = 170     // 洞的大小（高度）
+)
+
+func main() {
+	miniten.Run(draw)
+}
+
+func draw() {
+	if miniten.IsClicked() {
+		vy = jump
+	}
+	vy += g // 当前速度 = 速度+加速度
+	y += vy // 当前位置 = 位置+速度
+	miniten.DrawImage("gopher.png", int(x), int(y))
+
+	//  墙壁相关的处理
+	frames += 1
+	if frames%interval == 0 {
+		wallXs = append(wallXs, wallStartX)
+		holeYs = append(holeYs, rand.N(holeYMax))
+	}
+	// 墙壁相关的处理结束
+
+	for i := range wallXs {
+		wallXs[i] -= 2 //  往左动
+	}
+	for i := range wallXs {
+		// 描绘上方的墙壁
+		wallX := wallXs[i]
+		holeY := holeYs[i]
+		miniten.DrawImage("wall.png", wallX, holeY-wallHeight)
+
+		// 描绘下方的墙壁
+		miniten.DrawImage("wall.png", wallX, holeY+holeHeight)
+	}
+}
+</code></pre>
+<h2 id="显示背景"><a class="header" href="#显示背景">显示背景</a></h2>
+<p>另外，我准备了一张表示天空的图片 <code>sky.png</code> 来营造氛围，也让它显示出来吧。</p>
+<p><img src="12_flappy1.assets/sky.png" alt="sky.png" /></p>
+<pre><code class="language-diff-go">func draw() {
+	miniten.DrawImage("sky.png", 0, 0)
+	if miniten.IsClicked() {
+		vy = jump
+	}
+	vy += g // 当前速度 = 速度+加速度
+	y += vy // 当前位置 = 位置+速度
+	miniten.DrawImage("gopher.png", int(x), int(y))
+// 以下略
+</code></pre>
+<p>最终，如果出现这样的墙壁与洞穴，程序就完成了！</p>
+<p><img src="12_flappy1.assets/%E7%A9%B4%E3%82%92%E9%96%8B%E3%81%91%E3%81%9F%E5%A3%81.jpeg" alt="穴を開けた壁" /></p>
+<h2 id="本章总结"><a class="header" href="#本章总结">本章总结</a></h2>
+<p>这次我们创建了玩家和逼近的墙，基本上完成了游戏的外观。变量的数量比以前多，但大部分是用于平衡游戏调整的固定数，所以不用担心。下次我们将制作碰撞检测。</p>
+
+                        </div>
+                        <div class="sidetoc">
+                            <nav class="pagetoc"></nav>
+                        </div>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="11_slice.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="13_flappy2.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="11_slice.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="13_flappy2.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+        <script src="ace.js"></script>
+        <script src="editor.js"></script>
+        <script src="mode-rust.js"></script>
+        <script src="theme-dawn.js"></script>
+        <script src="theme-tomorrow_night.js"></script>
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="theme/pagetoc.js"></script>
+
+
+    </div>
+    </body>
+</html>

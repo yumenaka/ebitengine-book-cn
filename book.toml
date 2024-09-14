@@ -1,0 +1,22 @@
+[book]
+authors = ["eihigh"]
+language = "zh-Hans"
+multilingual = false
+src = "src"
+title = "从零开始的游戏编程：Go 语言与 Ebitengine"
+description = "面向初学者，从零开始作游戏的 Go 语言与 Ebitengine 教程"
+
+[output.html]
+default-theme = "rust"
+site-url = "/ebitengine-book-cn/"
+git-repository-url = "https://github.com/yumenaka/ebitengine-book-cn"
+edit-url-template = "https://github.com/yumenaka/ebitengine-book-cn/edit/main/{path}"
+additional-css = ["theme/pagetoc.css"]
+additional-js = ["theme/pagetoc.js"]
+
+[output.html.playground]
+editable = true
+
+[build]
+build-dir = "./docs/"
+create-missing = false
