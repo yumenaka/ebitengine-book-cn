@@ -9,7 +9,7 @@
 ## 编译
 
 
-在编程世界中，创造某种成果物被广泛称为编译/build。成果物的种类有很多，但本书所讨论的编译是“制作可以作为游戏运行的文件”。让我们在这一页学习编译的方法，旨在分发成果物并让人们来玩。
+在编程世界中，创造某种成果物被广泛称为编译（build）。成果物的种类有很多，但本书所讨论的编译是“制作可以作为游戏运行的文件”。让我们在这一页学习编译的方法，旨在分发成果物并让人们来玩。
 
 
 Go 的编译是不可或缺的，实际上到目前为止多次执行的 `go run .` 命令，在后台已经将“编译和执行成果物”这两个步骤合并在一起。要单独进行编译并生成成果物，可以使用 `go build` 命令。
@@ -22,7 +22,7 @@ $ go build
 然后目录中应该生成了可执行文件。在 Windows 中，文件会带有 `.exe` 扩展名，但在 macOS 或 Linux 中则没有扩展名。请通过资源管理器或其他方式打开生成的文件，双击运行，确认游戏是否如以前一样正常运行。
 
 ### 余谈：编译与链接
-GGo 的编译由两个主要步骤组成：将程序翻译成机器语言的编译/compile，以及将其汇总为可执行文件的链接/link。然而，由于链接步骤的存在感较弱，以及为了区分不需要编译的语言，加上多年的惯例，整个编译过程常常被称为编译。
+GGo 的编译由两个主要步骤组成：将程序翻译成机器语言的编译（compile），以及将其汇总为可执行文件的链接（link）。然而，由于链接步骤的存在感较弱，以及为了区分不需要编译的语言，加上多年的惯例，整个编译过程常常被称为编译。
 
 这下成果物终于完成了，接下来只要分发就可以了……本来想这么说，但实际上并不是这样。
 
@@ -31,7 +31,7 @@ GGo 的编译由两个主要步骤组成：将程序翻译成机器语言的编�
 请尝试将此可执行文件移动到桌面等其他位置后再运行。此时，图像应该不会显示。这是因为可执行文件正在读取同一目录中的图像文件，而在其他位置找不到这些文件，因此无法显示。
 
 
-作为对策，将图像文件与可执行文件一起移动就可以正常运行，但 Go 有更智能的方法。那就是嵌入/embed。嵌入是在编译时将所需文件作为可执行文件的一部分嵌入，这样只需携带一个可执行文件就能实现的梦幻功能。
+作为对策，将图像文件与可执行文件一起移动就可以正常运行，但 Go 有更智能的方法。那就是嵌入（embed）。嵌入是在编译时将所需文件作为可执行文件的一部分嵌入，这样只需携带一个可执行文件就能实现的梦幻功能。
 
 
 早速前回制作的弹跳 gopher 游戏进行嵌入尝试。要点如下：
@@ -46,10 +46,10 @@ GGo 的编译由两个主要步骤组成：将程序翻译成机器语言的编�
   - DrawImage 函数取 `名前, X, Y` 个参数，但 DrawImageFS 取 `fsys, 名前, X, Y` 个参数
   - 数量虽然很多，但努力将其全部替换
 
-<details data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b" open=""><summary data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b" data-immersive-translate-paragraph="1">その他詳しい話<font class="notranslate immersive-translate-target-wrapper" data-immersive-translate-translation-element-mark="1" lang="zh-CN"><font class="notranslate" data-immersive-translate-translation-element-mark="1">&nbsp;</font><font class="notranslate immersive-translate-target-translation-theme-none immersive-translate-target-translation-inline-wrapper-theme-none immersive-translate-target-translation-inline-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-none-inner" data-immersive-translate-translation-element-mark="1">其他详细信息</font></font></font></summary><div class="details-content" data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b">
-<p data-line="39" class="code-line" data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b" data-immersive-translate-paragraph="1">embedのパターン指定方法は少しクセがあるので、詳しくは<a href="https://pkg.go.dev/embed" target="_blank" rel="nofollow noopener noreferrer" data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b">公式ドキュメント</a>（英語）を参照してください。<font class="notranslate immersive-translate-target-wrapper" data-immersive-translate-translation-element-mark="1" lang="zh-CN"><br><font class="notranslate immersive-translate-target-translation-theme-none immersive-translate-target-translation-block-wrapper-theme-none immersive-translate-target-translation-block-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-none-inner" data-immersive-translate-translation-element-mark="1">embed 的模式指定方法有些特殊，详细信息请参阅官方文档（英文）。</font></font></font></p>
-<p data-line="41" class="code-line" data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b" data-immersive-translate-paragraph="1"><code data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b">//go:embed</code> のように、<code data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b">//</code> の後にスペースを開けず <code data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b">A:B</code> のように書いて特殊な指示を行うコメントを<strong data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b">ディレクティブ</strong>/directiveと呼びます。Goには他にも <code data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b">//go:generate</code> などのディレクティブがあります。<font class="notranslate immersive-translate-target-wrapper" data-immersive-translate-translation-element-mark="1" lang="zh-CN"><br><font class="notranslate immersive-translate-target-translation-theme-none immersive-translate-target-translation-block-wrapper-theme-none immersive-translate-target-translation-block-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-none-inner" data-immersive-translate-translation-element-mark="1"> <code data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b">//go:embed</code> 的方式， <code data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b">//</code> 之后不留空格，像 <code data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b">A:B</code> 这样书写的特殊指令注释称为指令/directive。Go 还有其他指令，如 {{3 }} 等。</font></font></font></p>
-</div></details>
+### 其他详细信息
+embed 模式的指定方法有些特殊，详细信息请参阅[官方文档（英文）](https://pkg.go.dev/embed)。
+ `//go:embed `的方式， // 之后不接空格，然后 A:B 这样书写格式的特殊注释称为**编译指令(directive)**。Go 还有其他编译指令，如`//go:generate`。
+
 
 ```diff-go
 package main

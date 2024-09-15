@@ -2878,17 +2878,17 @@ func drawGameover() {
 <p>前几章顺利完成了一款游戏。既然制作了有趣的游戏，就希望其他人也能来玩。因此这次将介绍游戏的分发和游玩方法。</p>
 <p>近年来，通过网络分发游戏并让人们玩耍已变得越来越普遍。Ebitengine 在网络分发方面也非常方便，因此请尽情将您的力作向世界发布吧！</p>
 <h2 id="编译"><a class="header" href="#编译">编译</a></h2>
-<p>在编程世界中，创造某种成果物被广泛称为编译/build。成果物的种类有很多，但本书所讨论的编译是“制作可以作为游戏运行的文件”。让我们在这一页学习编译的方法，旨在分发成果物并让人们来玩。</p>
+<p>在编程世界中，创造某种成果物被广泛称为编译（build）。成果物的种类有很多，但本书所讨论的编译是“制作可以作为游戏运行的文件”。让我们在这一页学习编译的方法，旨在分发成果物并让人们来玩。</p>
 <p>Go 的编译是不可或缺的，实际上到目前为止多次执行的 <code>go run .</code> 命令，在后台已经将“编译和执行成果物”这两个步骤合并在一起。要单独进行编译并生成成果物，可以使用 <code>go build</code> 命令。</p>
 <pre><code>$ go build
 </code></pre>
 <p>然后目录中应该生成了可执行文件。在 Windows 中，文件会带有 <code>.exe</code> 扩展名，但在 macOS 或 Linux 中则没有扩展名。请通过资源管理器或其他方式打开生成的文件，双击运行，确认游戏是否如以前一样正常运行。</p>
 <h3 id="余谈编译与链接"><a class="header" href="#余谈编译与链接">余谈：编译与链接</a></h3>
-<p>GGo 的编译由两个主要步骤组成：将程序翻译成机器语言的编译/compile，以及将其汇总为可执行文件的链接/link。然而，由于链接步骤的存在感较弱，以及为了区分不需要编译的语言，加上多年的惯例，整个编译过程常常被称为编译。</p>
+<p>GGo 的编译由两个主要步骤组成：将程序翻译成机器语言的编译（compile），以及将其汇总为可执行文件的链接（link）。然而，由于链接步骤的存在感较弱，以及为了区分不需要编译的语言，加上多年的惯例，整个编译过程常常被称为编译。</p>
 <p>这下成果物终于完成了，接下来只要分发就可以了……本来想这么说，但实际上并不是这样。</p>
 <h2 id="嵌入资源"><a class="header" href="#嵌入资源">嵌入资源</a></h2>
 <p>请尝试将此可执行文件移动到桌面等其他位置后再运行。此时，图像应该不会显示。这是因为可执行文件正在读取同一目录中的图像文件，而在其他位置找不到这些文件，因此无法显示。</p>
-<p>作为对策，将图像文件与可执行文件一起移动就可以正常运行，但 Go 有更智能的方法。那就是嵌入/embed。嵌入是在编译时将所需文件作为可执行文件的一部分嵌入，这样只需携带一个可执行文件就能实现的梦幻功能。</p>
+<p>作为对策，将图像文件与可执行文件一起移动就可以正常运行，但 Go 有更智能的方法。那就是嵌入（embed）。嵌入是在编译时将所需文件作为可执行文件的一部分嵌入，这样只需携带一个可执行文件就能实现的梦幻功能。</p>
 <p>早速前回制作的弹跳 gopher 游戏进行嵌入尝试。要点如下：</p>
 <ul>
 <li><code>import "embed"</code> 导入 <code>embed</code> 包</li>
@@ -2910,10 +2910,9 @@ func drawGameover() {
 </ul>
 </li>
 </ul>
-<details data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b" open=""><summary data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b" data-immersive-translate-paragraph="1">その他詳しい話<font class="notranslate immersive-translate-target-wrapper" data-immersive-translate-translation-element-mark="1" lang="zh-CN"><font class="notranslate" data-immersive-translate-translation-element-mark="1">&nbsp;</font><font class="notranslate immersive-translate-target-translation-theme-none immersive-translate-target-translation-inline-wrapper-theme-none immersive-translate-target-translation-inline-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-none-inner" data-immersive-translate-translation-element-mark="1">其他详细信息</font></font></font></summary><div class="details-content" data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b">
-<p data-line="39" class="code-line" data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b" data-immersive-translate-paragraph="1">embedのパターン指定方法は少しクセがあるので、詳しくは<a href="https://pkg.go.dev/embed" target="_blank" rel="nofollow noopener noreferrer" data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b">公式ドキュメント</a>（英語）を参照してください。<font class="notranslate immersive-translate-target-wrapper" data-immersive-translate-translation-element-mark="1" lang="zh-CN"><br><font class="notranslate immersive-translate-target-translation-theme-none immersive-translate-target-translation-block-wrapper-theme-none immersive-translate-target-translation-block-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-none-inner" data-immersive-translate-translation-element-mark="1">embed 的模式指定方法有些特殊，详细信息请参阅官方文档（英文）。</font></font></font></p>
-<p data-line="41" class="code-line" data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b" data-immersive-translate-paragraph="1"><code data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b">//go:embed</code> のように、<code data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b">//</code> の後にスペースを開けず <code data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b">A:B</code> のように書いて特殊な指示を行うコメントを<strong data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b">ディレクティブ</strong>/directiveと呼びます。Goには他にも <code data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b">//go:generate</code> などのディレクティブがあります。<font class="notranslate immersive-translate-target-wrapper" data-immersive-translate-translation-element-mark="1" lang="zh-CN"><br><font class="notranslate immersive-translate-target-translation-theme-none immersive-translate-target-translation-block-wrapper-theme-none immersive-translate-target-translation-block-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-none-inner" data-immersive-translate-translation-element-mark="1"> <code data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b">//go:embed</code> 的方式， <code data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b">//</code> 之后不留空格，像 <code data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b">A:B</code> 这样书写的特殊指令注释称为指令/directive。Go 还有其他指令，如 {{3 }} 等。</font></font></font></p>
-</div></details>
+<h3 id="其他详细信息"><a class="header" href="#其他详细信息">其他详细信息</a></h3>
+<p>embed 模式的指定方法有些特殊，详细信息请参阅<a href="https://pkg.go.dev/embed">官方文档（英文）</a>。
+<code>//go:embed </code>的方式， // 之后不接空格，然后 A:B 这样书写格式的特殊注释称为<strong>编译指令(directive)</strong>。Go 还有其他编译指令，如<code>//go:generate</code>。</p>
 <pre><code class="language-diff-go">package main
 
 import (
@@ -3066,7 +3065,7 @@ var p2 position
 <h3 id="扩展解说"><a class="header" href="#扩展解说">扩展解说</a></h3>
 <p>实际上不仅限于结构体， int 等各种类型都可以作为基础进行类型声明，但这是声明方法的高级用法，因此省略。</p>
 <h2 id="结构体的值的表示"><a class="header" href="#结构体的值的表示">结构体的值的表示</a></h2>
-<p>结构体也可以像数组和切片一样使用<strong>复合字面量</strong>通过 <code>型名{フィールドの値, フィールドの値...}</code> 表示值。</p>
+<p>结构体也可以像数组和切片一样使用<strong>复合字面量</strong>通过 <code>类型名称{字段的值, 字段的值...}</code> 表示值。</p>
 <pre><code class="language-go">// position 型が宣言済みとする
 
 func main() {
@@ -3074,7 +3073,7 @@ func main() {
 	fmt.Println(p) // {3 4}
 }
 </code></pre>
-<p>此外，还可以使用 <code>{フィールド名: 値, フィールド名: 値 ...}</code> 这种语法。用法是</p>
+<p>此外，还可以使用 <code>{字段名称: 字段的值, 字段名称: 字段的值 ...}</code> 这种语法。用法是</p>
 <pre><code class="language-go">func main() {
 	p := position{x: 3, y: 4}
 	fmt.Println(p) // {3 4}
@@ -3353,40 +3352,40 @@ func drawGameover() {
 <p>函数是某种处理的集合，可以传递参数（输入）并返回返回值（输出）。</p>
 <p>此外，通过将长处理切分为函数，我们也改善了程序的可读性。这次我们将重新学习函数的声明方法。</p>
 <h2 id="参数的用法"><a class="header" href="#参数的用法">参数的用法</a></h2>
-<p>使用参数时，函数声明为 <code>func 関数名(引数, 引数, ...) { ... }</code> 的形式。</p>
+<p>使用参数时，函数声明为 <code>func 函数名(参数, 参数, ...) { ... }</code> 的形式。</p>
 <p>引数可以像普通变量一样使用。</p>
 <pre><code class="language-go">func printMax(a int, b int) {
-	fmt.Println("最大値は", max(a, b))
+	fmt.Println("最大值是", max(a, b))
 }
 </code></pre>
-<p>顺便提一下，在参数列表和返回值列表中（实际上变量声明和结构体字段也是如此），如果相同类型连续出现，可以省略最后一个。</p>
-<pre><code class="language-go">func printMax(a, b, c int) { // a int, b int, c int の省略形
+<p>顺便提一下，在参数列表和返回值列表中（实际上变量声明和结构体字段也是如此），如果相同类型连续出现，可以省略最后一个参数类型。</p>
+<pre><code class="language-go">func printMax(a, b, c int) { // a int, b int, c int 的简略写法
 </code></pre>
 <h2 id="返回值的用法与-return"><a class="header" href="#返回值的用法与-return">返回值的用法与 return</a></h2>
-<p>返回值的函数同样以 <code>func 関数名(引数, 引数, ...) (返り値, 返り値, ...) { ... }</code> 的形式声明。</p>
+<p>返回值的函数同样以 <code>func 函数(参数, 参数, ...) (返回值, 返回值, ...) { ... }</code> 的形式声明。</p>
 <pre><code class="language-go">func minMax(a, b int) (minVal, maxVal int) {
 	return min(a, b), max(a, b)
 }
-// ※関数 min, max と名前が被らない minVal, maxVal を返り値に命名しています
+// ※ 为了避免与函数 min, max 重名，这里将参数命名为 minVal, maxVal 
 </code></pre>
 <p>新出现了 <code>return</code> （返回）关键字。 <code>return</code> 是结束函数处理并返回返回值的关键字。</p>
 <p><code>return</code> 会在此处结束函数的处理，因此可以进行这样的操作。我们称这种在函数开头进行条件分支并提前结束处理的方式为早期返回/early return，这是一种常被推荐的技术，以保持程序的整洁。</p>
 <pre><code class="language-go">func minMax(a, b int) (minVal, maxVal int) {
 	if a &lt; b {
-		return a, b // 条件を満たしたら return
+		return a, b // 满足条件的时候 return
 	}
-	// ↑の条件を満たさなかったときだけ、↓に来る
+	// 只有上面↑的条件没有满足的时候、才会执行下面↓的语句
 	return b, a
 }
 </code></pre>
 <p>此外， <code>return</code> 也可以作为没有返回值的函数，仅用于结束处理。</p>
 <pre><code class="language-go">func fukubiki() {
 	if rand.N(2) == 1 {
-		fmt.Println("当たりです")
+		fmt.Println("中奖了")
 		return
 	}
-	fmt.Println("ハズレです")
-	// return ← 返り値なしのため、ここには書かなくても良い
+	fmt.Println("没中奖")
+	// return ← 因为没有返回值，所以这一句可以省略
 }
 </code></pre>
 <p>返回值为 None 的函数可以在不使用 <code>return</code> 的情况下结束。另一方面，返回值的函数必须使用 <code>return</code> 返回返回值并结束。</p>
@@ -3395,14 +3394,14 @@ func drawGameover() {
 <p>首先可以不为返回值命名，仅指定类型。</p>
 <pre><code class="language-go">func minMax(a, b int) (int, int) {
 </code></pre>
-<p>如果没有名称且返回值只有一个，可以省略 <code>()</code> 。</p>
+<p>如果返回值没有起名，且只有一个返回值，可以省略包裹返回值的 <code>()</code> 。</p>
 <pre><code class="language-go">func add(a, b int) int {
 </code></pre>
-<p>最后，正如您所知，返回值为空时无需写任何内容。</p>
+<p>最后，正如您所知，返回值为空时，无需写任何返回值相关内容。</p>
 <pre><code class="language-go">func fukubiki() {
 </code></pre>
-<p>!此外，还有方法的声明、带类型参数的函数、带类型参数的类型的方法，但这些将在后面提到。</p>
-<p>模式有很多，但一开始并不需要完全记住所有。相反，可以<strong>先模糊记忆写出来试试，如果出现错误再修正</strong>。这样编程会更加顺利。</p>
+<p>!此外，还有方法的声明、带类型参数的函数、带类型参数的函数方法，这些将在后面介绍。</p>
+<p>模式有很多，但一开始并不需要完全记住所有语法。相反，可以<strong>先记个大概，然后写出来试试，如果出错误再修正</strong>。这样编程会更加顺利。</p>
 <h2 id="函数的使用场合"><a class="header" href="#函数的使用场合">函数的使用场合</a></h2>
 <p>正如已经使用过的那样，除了将长时间的处理切分以便于查看外，当同样的处理需要重复多次时，声明函数并重新使用也是很方便的。</p>
 <pre><code class="language-go">func drawComplexObjects() {
@@ -3564,16 +3563,16 @@ func hitTestRects(aLeft, aTop, aRight, aBottom, bLeft, bTop, bRight, bBottom int
 </code></pre>
 <p>怎么样，似乎又稍微看到了些希望呢？</p>
 <h2 id="什么时候如何将其汇总为函数"><a class="header" href="#什么时候如何将其汇总为函数">什么时候、如何将其汇总为函数？</a></h2>
-<p>这次我们可以这样将其汇总为函数，但何时以及如何将其汇总为函数是一个相当困难的问题。</p>
-<p>例如这次总结了游戏画面和游戏结束画面的墙壁绘制处理，但如果出现了“只在游戏结束画面”中想要改变碰到的墙壁外观的需求，那该怎么办呢？在这种情况下，使用通用函数处理会有些困难，因此最好不要进行汇总。像这样，是否应该将函数进行汇总会因时而异。</p>
-<p>“多一点复制总比多一点依赖要好。”这是一个 Go 的谚语。这意味着，稍微复制一些程序总比有依赖关系（A 需要 B 的关系，函数调用也是一种依赖关系）要好。“稍微”这个词确实有些模糊，但总之，认为一切都应该统一并不是正确的观点，保持这样的想法是有必要的。</p>
-<p>个人的推荐是“如果同样的处理出现三次，就进行共通化”的规则。考虑到两次时“果然不汇总可能更好”的可能性，到了第三次时判断“这确实可以共通化”，我认为这样可以保持相当的平衡。基于这一点，刚才的重构就不太合理了，但这次请您谅解，因为是为了学习。</p>
+<p>这次我们可以这样将其汇总为函数，但<strong>何时、怎么抽取函数</strong>是一个相当困难的问题。</p>
+<p>例如这次，汇总了游戏画面和游戏结束画面的墙壁绘制处理，但如果出现了**“在游戏结束画面时想要改变碰到的墙壁外观”**这个需求，那该怎么办呢？在这种情况下，使用通用函数处理会有些困难，因此最好不要进行汇总。像这样，是否应该将处理汇总为函数，答案将会因时而异。</p>
+<p>“多一点复制，总比多一点依赖更好。”这是一个 Go 谚语。这意味着，复制一些程序总比有依赖关系（A 需要 B 的关系，函数调用也是一种依赖关系）要好。“多一点”这个说法有些含混，不过这种规则本来就很难整齐划一，不过分拘泥于规则也很重要。</p>
+<p>个人推荐“如果同样的处理出现了3次，就进行共通化”。出现 2次的时候，会有“不写在一起更好”的可能性，到了第3次时判断“这部分确实可以共通化”。我认为这样做可以保持相当的平衡。基于这一点，刚才的重构就显得不太合理了。但请您谅解，这么做是为了学习。</p>
 <h2 id="本章总结-15"><a class="header" href="#本章总结-15">本章总结</a></h2>
-<p>我们学习了如何使用函数来整理处理。函数可以接收参数并返回值，并且可以在 <code>return</code> 处结束处理。使用函数可以提高程序的可读性。然而，是否应该将其整理成函数会因情况而异，因此我们要记住，通用化并不总是正确的。</p>
+<p>我们学习了如何使用函数来汇总处理。函数可以接收参数并返回值，并且在 <code>return</code> 处结束处理。使用函数，可以提高程序的可读性。然而是否应该将共同部分整理成函数，会因情况而异。因此我们要记住，共通化并不总是正确的做法。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第十八章-指针pointer"><a class="header" href="#第十八章-指针pointer">第十八章 指针（Pointer）</a></h1>
-<p>这次，我们将讨论编程初学者的“鬼门”，指针。我认为比起 C 语言，遇到困难的人并不多，但仍然会有不少人感到困难，因此我会仔细进行解说。</p>
+<p>这次，我们将讨论<strong>编程初学者的“鬼门”，指针</strong>。我认为比起 C 语言，觉得 Go 指针难的人并不多。但仍然会有不少人害怕它，因此我会仔细地解说。</p>
 <h2 id="指针"><a class="header" href="#指针">指针</a></h2>
-<p><strong>指针/pointer</strong> 是一个表示“指示某物”的词，表示变量等存在的“位置”。如下所示使用。</p>
+<p><strong>指针/pointer</strong> 是一个用来**“指出某物位置”**的词，储存变量等的“位置”。用法如下所示。</p>
 <pre><code class="language-go">package main
 
 import "fmt"
@@ -3595,7 +3594,7 @@ $ go run .
 </code></pre>
 <p>新出现的 <code>&amp;</code> 和 <code>*</code> 是进行指针相关操作的符号。可能会让人感到困惑，我们来一步步看看。</p>
 <h2 id="计算机的内部结构"><a class="header" href="#计算机的内部结构">计算机的内部结构</a></h2>
-<p>计算机的核心是进行计算的 **CPU（英特尔的那种）**和用于存储数据的内存（8GB 或 16GB 等）。它们通常被比作人类的大脑和桌面上的工作区域。大脑越聪明，计算越快；桌面越大，工作空间越宽裕。</p>
+<p>计算机的核心是进行计算的 **CPU（英特尔整天做广告的那玩意）**和用于存储数据的内存（8GB 或 16GB 等）。它们通常被比作人类的大脑和桌面上的工作区域。大脑越聪明，计算越快；桌面越大，工作空间越宽裕。</p>
 <p>这张桌子上的所有数据都井然有序地排列着，每个数据都有一个表示位置的数字。这个数字就是地址/address。最初是表示“住所”的词，有时也被翻译为“番地”。</p>
 <p>下图是这样的内存中变量 <code>x</code> <code>y</code> <code>vy</code> 被保存的样子。</p>
 <p>!954、958、974 等地址仅仅是为了说明“存在地址这个数字”而临时指定的值，因此与实际地址的分配方式有很大不同。请注意。</p>
@@ -3628,7 +3627,7 @@ func main() {
 <p>在 Go 中，可以将地址赋值给<strong>指针类型</strong>。指针类型以 <code>*int</code> 的形式写作 <code>*型名</code> 。</p>
 <p>麻烦的是， <code>&amp;</code> 获取的地址结果的类型不是 <code>&amp;int</code> 而是 <code>*int</code> 。不过这是历史原因造成的，只能记住。个人来说，我希望指针类型叫 <code>&amp;int</code> 。</p>
 <h2 id="零值nil"><a class="header" href="#零值nil">零值，nil</a></h2>
-<p>指针类型的零值是 **nil（尼尔）**这个特殊值。nil 表示不指向任何地方的无效值。
+<p>指针类型的零值是 **nil（空）**这个特殊值。nil 表示不指向任何地方的无效值。
 nil 指向的地方在 <code>*</code> 中使用时会崩溃，所以请小心使用。</p>
 <pre><code class="language-go">func main() {
 	var p *int
@@ -3669,8 +3668,8 @@ fmt.Println(pp.x) // 30
 <p>最后一个已经提到过了，接下来我将对前两个进行解说。</p>
 <h3 id="使用场景-1避免大量数据的复制"><a class="header" href="#使用场景-1避免大量数据的复制">使用场景 1：避免大量数据的复制</a></h3>
 <p>当将参数传递给函数时，该参数会被复制。如果该参数非常庞大，复制将耗费时间（复制庞大数据对计算机来说是重负担）。</p>
-<p>指针只是一个数字，因此只需复制指针，就可以相对快速地在函数中通过指针使用该巨大数据。</p>
-<p><img src="18_pointer.assets/%E5%A4%A7%E3%81%8D%E3%81%AA%E3%83%86%E3%82%99%E3%83%BC%E3%82%BF%E3%81%A8%E3%83%9B%E3%82%9A%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC.png" alt="大きなデータとポインター" /></p>
+<p>指针只是一个数字，因此只需复制指针，就可以相对快速地在函数中通过指针使用该数据。</p>
+<p><img src="18_pointer.assets/bigdata_and_pointer.png" alt="大きなデータとポインター" /></p>
 <h3 id="使用场景-2要求更改原始内容"><a class="header" href="#使用场景-2要求更改原始内容">使用场景 2：要求更改原始内容</a></h3>
 <p>这也是由于参数被复制而引起的事情，但在函数内部对参数这个副本进行的任何修改都不会影响原始变量。</p>
 <p>使用指针时，复制的指针也会指向原始变量，因此即使在函数内部也可以修改原始变量。</p>
@@ -3869,8 +3868,9 @@ func hitTestRects(aLeft, aTop, aRight, aBottom, bLeft, bTop, bRight, bBottom int
 <p>计算机的核心与其深度相关，想要正确使用即使是熟练者也会感到困难，但如果掌握基本方针，大多数情况下应该能够编写出合格的程序。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第十九章-将函数绑定到类型method"><a class="header" href="#第十九章-将函数绑定到类型method">第十九章 将函数绑定到类型（method）</a></h1>
 <p>次我们将学习与类型相关的函数的处理。尽管功能简单，但它有可能大幅改善程序的编写体验。</p>
-<h2 id="将函数绑定到类型上"><a class="header" href="#将函数绑定到类型上">将函数绑定到类型上</a></h2>
-<p>在函数声明时，如果在函数名之前添加 <code>(引数名 型)</code> 这一部分，就可以将该函数与类型关联。与类型关联的函数也称为方法/method，可以像 <code>変数名.メソッド名</code> 这一字段一样使用。先试试看吧。</p>
+<h2 id="将函数与类型绑定在一起"><a class="header" href="#将函数与类型绑定在一起">将函数与类型绑定在一起</a></h2>
+<p>函数声明时，如果在函数名之前添加 <code>(参数名 数据类型)</code> 这样的部分，就可以将该函数与类型关联。与类型关联的函数也称为方法/method，可以像 <code>变量名.方法名</code> 这样如同一个字段一样使用。</p>
+<p>先试试看吧。</p>
 <pre><code class="language-go">// 型宣言
 type user struct {
 	name string
@@ -3898,10 +3898,11 @@ func main() {
 	u.println()
 }
 </code></pre>
-<p>如您所见，仅通过在函数声明中更改 <code>(u *user)</code> 的位置，就可以将函数绑定到类型 <code>*user</code> ，并使其在 <code>変数名.メソッド名</code> 中可用。</p>
-<p>函数名之前的 <code>(u *user)</code> 这样的参数有时被特别称为接收器/receiver。</p>
+<p>如您所见，仅通过在函数声明中更改 <code>(u *user)</code> 的位置，就可以将函数绑定到类型 <code>*user</code> ，并使其 <code>变量名.方法</code> 的语法可用。</p>
+<p>函数名前的 <code>(u *user)</code> 这样的参数，有时被特别称为接收器/receiver。</p>
 <h3 id="函数的优点"><a class="header" href="#函数的优点">函数的优点</a></h3>
-<p>函数的优点在于，只要类型不同，即使名称重复也没关系。用专业术语来说，就是名称空间/namespace 被区分开了。</p>
+<p>函数的优点在于，只要类型不同，即使名称重复也没关系。</p>
+<p>用专业术语来说，就是名称空间/namespace 被区分开了。</p>
 <pre><code class="language-go">func (u *user) println() {
 	fmt.Println("名前:", u.name, "年齢:", u.age)
 }
@@ -3918,10 +3919,10 @@ func main() {
 	p.println() // X座標: 10 Y座標: 20
 }
 </code></pre>
-<p>由于不必担心名称重复，因此方法名可以相对简短，没问题。</p>
-<p>方法也是更重要的功能“接口”的基础，不过这部分稍后再说。现在只需记住“更容易命名，方便~”就可以了。</p>
+<p>由于不必担心重名，因此方法名可以相对简短，没问题。</p>
+<p>方法也是更重要的功能“接口”的基础，不过这部分稍后再说。现在只需记住“命名更容易，好方便啊~”就可以了。</p>
 <h3 id="与指针的关系"><a class="header" href="#与指针的关系">与指针的关系</a></h3>
-<p>调用方法时，无论是指针还是非指针，都可以完全相同地使用 <code>変数名.メソッド名</code> 。</p>
+<p>调用方法时，无论是指针还是非指针，都可以完全相同地使用 <code>变量名.方法</code> 。</p>
 <pre><code class="language-go">func (u *user) println() {
 	fmt.Println("名前:", u.name, "年齢:", u.age)
 }

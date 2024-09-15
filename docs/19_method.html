@@ -183,8 +183,9 @@
                         <div class="content-wrap">
                             <h1 id="第十九章-将函数绑定到类型method"><a class="header" href="#第十九章-将函数绑定到类型method">第十九章 将函数绑定到类型（method）</a></h1>
 <p>次我们将学习与类型相关的函数的处理。尽管功能简单，但它有可能大幅改善程序的编写体验。</p>
-<h2 id="将函数绑定到类型上"><a class="header" href="#将函数绑定到类型上">将函数绑定到类型上</a></h2>
-<p>在函数声明时，如果在函数名之前添加 <code>(引数名 型)</code> 这一部分，就可以将该函数与类型关联。与类型关联的函数也称为方法/method，可以像 <code>変数名.メソッド名</code> 这一字段一样使用。先试试看吧。</p>
+<h2 id="将函数与类型绑定在一起"><a class="header" href="#将函数与类型绑定在一起">将函数与类型绑定在一起</a></h2>
+<p>函数声明时，如果在函数名之前添加 <code>(参数名 数据类型)</code> 这样的部分，就可以将该函数与类型关联。与类型关联的函数也称为方法/method，可以像 <code>变量名.方法名</code> 这样如同一个字段一样使用。</p>
+<p>先试试看吧。</p>
 <pre><code class="language-go">// 型宣言
 type user struct {
 	name string
@@ -212,10 +213,11 @@ func main() {
 	u.println()
 }
 </code></pre>
-<p>如您所见，仅通过在函数声明中更改 <code>(u *user)</code> 的位置，就可以将函数绑定到类型 <code>*user</code> ，并使其在 <code>変数名.メソッド名</code> 中可用。</p>
-<p>函数名之前的 <code>(u *user)</code> 这样的参数有时被特别称为接收器/receiver。</p>
+<p>如您所见，仅通过在函数声明中更改 <code>(u *user)</code> 的位置，就可以将函数绑定到类型 <code>*user</code> ，并使其 <code>变量名.方法</code> 的语法可用。</p>
+<p>函数名前的 <code>(u *user)</code> 这样的参数，有时被特别称为接收器/receiver。</p>
 <h3 id="函数的优点"><a class="header" href="#函数的优点">函数的优点</a></h3>
-<p>函数的优点在于，只要类型不同，即使名称重复也没关系。用专业术语来说，就是名称空间/namespace 被区分开了。</p>
+<p>函数的优点在于，只要类型不同，即使名称重复也没关系。</p>
+<p>用专业术语来说，就是名称空间/namespace 被区分开了。</p>
 <pre><code class="language-go">func (u *user) println() {
 	fmt.Println("名前:", u.name, "年齢:", u.age)
 }
@@ -232,10 +234,10 @@ func main() {
 	p.println() // X座標: 10 Y座標: 20
 }
 </code></pre>
-<p>由于不必担心名称重复，因此方法名可以相对简短，没问题。</p>
-<p>方法也是更重要的功能“接口”的基础，不过这部分稍后再说。现在只需记住“更容易命名，方便~”就可以了。</p>
+<p>由于不必担心重名，因此方法名可以相对简短，没问题。</p>
+<p>方法也是更重要的功能“接口”的基础，不过这部分稍后再说。现在只需记住“命名更容易，好方便啊~”就可以了。</p>
 <h3 id="与指针的关系"><a class="header" href="#与指针的关系">与指针的关系</a></h3>
-<p>调用方法时，无论是指针还是非指针，都可以完全相同地使用 <code>変数名.メソッド名</code> 。</p>
+<p>调用方法时，无论是指针还是非指针，都可以完全相同地使用 <code>变量名.方法</code> 。</p>
 <pre><code class="language-go">func (u *user) println() {
 	fmt.Println("名前:", u.name, "年齢:", u.age)
 }

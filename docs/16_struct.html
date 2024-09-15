@@ -229,7 +229,7 @@ var p2 position
 <h3 id="扩展解说"><a class="header" href="#扩展解说">扩展解说</a></h3>
 <p>实际上不仅限于结构体， int 等各种类型都可以作为基础进行类型声明，但这是声明方法的高级用法，因此省略。</p>
 <h2 id="结构体的值的表示"><a class="header" href="#结构体的值的表示">结构体的值的表示</a></h2>
-<p>结构体也可以像数组和切片一样使用<strong>复合字面量</strong>通过 <code>型名{フィールドの値, フィールドの値...}</code> 表示值。</p>
+<p>结构体也可以像数组和切片一样使用<strong>复合字面量</strong>通过 <code>类型名称{字段的值, 字段的值...}</code> 表示值。</p>
 <pre><code class="language-go">// position 型が宣言済みとする
 
 func main() {
@@ -237,7 +237,7 @@ func main() {
 	fmt.Println(p) // {3 4}
 }
 </code></pre>
-<p>此外，还可以使用 <code>{フィールド名: 値, フィールド名: 値 ...}</code> 这种语法。用法是</p>
+<p>此外，还可以使用 <code>{字段名称: 字段的值, 字段名称: 字段的值 ...}</code> 这种语法。用法是</p>
 <pre><code class="language-go">func main() {
 	p := position{x: 3, y: 4}
 	fmt.Println(p) // {3 4}
