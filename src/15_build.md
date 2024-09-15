@@ -1,7 +1,7 @@
 # 第十五章 发布游戏让朋友玩（编译和分发）
 
 
-前回まで无事完成了一款游戏。既然制作了有趣的游戏，就希望其他人也能来玩。因此这次将介绍游戏的分发和游玩方法。
+前几章顺利完成了一款游戏。既然制作了有趣的游戏，就希望其他人也能来玩。因此这次将介绍游戏的分发和游玩方法。
 
 
 近年来，通过网络分发游戏并让人们玩耍已变得越来越普遍。Ebitengine 在网络分发方面也非常方便，因此请尽情将您的力作向世界发布吧！
@@ -21,10 +21,8 @@ $ go build
 
 然后目录中应该生成了可执行文件。在 Windows 中，文件会带有 `.exe` 扩展名，但在 macOS 或 Linux 中则没有扩展名。请通过资源管理器或其他方式打开生成的文件，双击运行，确认游戏是否如以前一样正常运行。
 
-<details data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b" open=""><summary data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b" data-immersive-translate-paragraph="1">余談：ビルドとコンパイル<font class="notranslate immersive-translate-target-wrapper" data-immersive-translate-translation-element-mark="1" lang="zh-CN"><font class="notranslate" data-immersive-translate-translation-element-mark="1">&nbsp;</font><font class="notranslate immersive-translate-target-translation-theme-none immersive-translate-target-translation-inline-wrapper-theme-none immersive-translate-target-translation-inline-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-none-inner" data-immersive-translate-translation-element-mark="1">余谈：编译与编译</font></font></font></summary><div class="details-content" data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b">
-<p data-line="16" class="code-line" data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b" data-immersive-translate-paragraph="1">Goのビルドは、プログラムを機械語に翻訳する<strong data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b">コンパイル</strong>/compileと、それを実行可能ファイルにまとめる<strong data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b">リンク</strong>/linkの大きく2つのステップから成り立っています。ですがリンクのステップの存在感が薄いのと、コンパイル不要な言語と区別する意図、あとは長年の慣習により、ビルド全体のことをコンパイルと呼ぶことも多いです。<font class="notranslate immersive-translate-target-wrapper" data-immersive-translate-translation-element-mark="1" lang="zh-CN"><br><font class="notranslate immersive-translate-target-translation-theme-none immersive-translate-target-translation-block-wrapper-theme-none immersive-translate-target-translation-block-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-none-inner" data-immersive-translate-translation-element-mark="1">Go 的编译由两个主要步骤组成：将程序翻译成机器语言的编译/compile，以及将其汇总为可执行文件的链接/link。然而，由于链接步骤的存在感较弱，以及为了区分不需要编译的语言，加上多年的惯例，整个编译过程常常被称为编译。</font></font></font></p>
-</div></details>
-
+### 余谈：编译与链接
+GGo 的编译由两个主要步骤组成：将程序翻译成机器语言的编译/compile，以及将其汇总为可执行文件的链接/link。然而，由于链接步骤的存在感较弱，以及为了区分不需要编译的语言，加上多年的惯例，整个编译过程常常被称为编译。
 
 这下成果物终于完成了，接下来只要分发就可以了……本来想这么说，但实际上并不是这样。
 

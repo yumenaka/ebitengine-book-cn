@@ -736,11 +736,11 @@ func main() {
 </code></pre>
 <h3 id="面向有经验的人-作用域"><a class="header" href="#面向有经验的人-作用域">[面向有经验的人] 作用域</a></h3>
 <p>Go 变量（或者说所有标识符）有作用域（有效范围）。作用域由块（ <code>{}</code> 包起来的部分）分隔。在作用域内声明的变量，仅在该作用域内有效，无法从作用域外访问。</p>
-<p><strong>禁止重复声明变量</strong>，严格意义上来说是“在同一作用域内”不能再次声明同一变量。</p>
-<p>但在不同作用域中，可以声明同名变量。重名的时候，更小的作用域中声明的同名变量，会优先生效。因此范围更广的变量会被隐藏，在该作用域内无法访问。这被称为<strong>变量遮蔽</strong>。</p>
+<p><strong>不能重复声明变量</strong>，严格意义上来说是“在同一作用域内”不能再次声明同一变量。</p>
+<p>但在不同作用域中，可以声明同名的变量。重名的时候，更窄的作用域中声明的同名变量，会优先生效。因此范围更广的变量会被隐藏，在该作用域内无法访问。这被称为<strong>变量遮蔽</strong>。</p>
 <p>编程中，<strong>变量遮蔽</strong>（英语：variable shadowing，或称变量隐藏）指的是：当新变量与旧有变量同名，此名称暂时不再可用于访问旧有变量。</p>
-<p>不过，在大多数情况下，变量的声明和赋值会同时进行。声明和赋值同时进行时，可以省略变量类型，写起来更省事。</p>
-<p>无论用哪一种语法，变量总是可以多次赋值，这一点不会变。</p>
+<p>不过，在大多数情况下，变量的声明和赋值会同时完成。同时做声明和赋值的时候，可以省略变量类型，写起来更省事。</p>
+<p>无论用哪种语法，变量总是可以多次赋值，这一点不会变。</p>
 <pre><code class="language-go">func main() {
 	var level = 50 // 声明和赋值同时进行，此时，表示类型的 int 可以省略不写
 	fmt.Println(level)
@@ -748,8 +748,8 @@ func main() {
 	fmt.Println(level)
 }
 </code></pre>
-<p>此外，在函数内部，可以使用符号 <code>:=</code> 来省略 <code>var</code> 这个关键字，使得声明和赋值的语句更简洁，这是最常用的语法。</p>
-<p>刚刚的程序，可以用简洁的等效记法：</p>
+<p>此外，在函数内部，可以使用符号 <code>:=</code> 来省略 <code>var</code> 这个关键字，使声明和赋值的语句更简洁，这是最常用的语法。</p>
+<p>刚刚的程序，声明和赋值语句的等效写法：</p>
 <pre><code class="language-go">func main() {
 	level := 50 // 声明与赋值
 	fmt.Println(level)
@@ -758,7 +758,7 @@ func main() {
 }
 </code></pre>
 <h2 id="47-变量和计算式"><a class="header" href="#47-变量和计算式">4.7 变量和计算式</a></h2>
-<p>变量可以像普通数字一样，混合用在算式中、参与计算。</p>
+<p>变量可以像普通数字一样，混用在算式中、参与计算。</p>
 <pre><code class="language-go">func main() {
 	level := 50
 	waza := 100 // 盾甲龙兽
@@ -771,7 +771,7 @@ func main() {
 	fmt.Println("最大伤害", maxDamage) // 最大伤害 44
 }
 </code></pre>
-<p>此外，还有一种同时做“计算”与“赋值”两件事的省略形式：</p>
+<p>此外，还有一种同时“计算”与“赋值”的省略写法：</p>
 <pre><code class="language-go">func main() {
 	hp := 100
 	hp += 20        // 与 hp = hp + 20 的意义相同
@@ -783,12 +783,12 @@ func main() {
 }
 </code></pre>
 <ul>
-<li><code>hp = hp + 20</code> 这个等式，在数学中根本就不成立。但编程领域的 <code>=</code> 号，其实是表示代入（覆盖）的符号。请把这里的等号，当作和数学里的等号不同的符号来看。如果实在无法适应，请在心中将 <code>=</code> 替换为 <code>⇐</code>（表示数据流动方向的箭头） 吧。</li>
+<li><code>hp = hp + 20</code> 这个等式，在数学中不成立。但编程领域的 <code>=</code> 号，其实是表示代入（覆盖）的符号。请把这里的等号，当作和数学里的等号不同的符号来看。如果实在无法适应，请在心中将 <code>=</code> 替换为 <code>⇐</code>（表示数据流动方向的箭头） 。</li>
 </ul>
 <h2 id="48-函数"><a class="header" href="#48-函数">4.8 函数</a></h2>
-<p>函数是某些处理的集合。例如 <code>fmt.Println</code> 函数，是执行在屏幕上显示文本的处理的函数。</p>
-<p>函数可以接收 <code>()</code> 中的输入。这个输入称为参数。给函数提供输入，称为传递参数（简称“传参”）。</p>
-<p>同时传递多个参数，这是需要用逗号 <code>,</code> 分隔。例如 <code>fmt.Println</code> 函数，就可以将多个参数用空格连接，并把这些内容显示到屏幕上。</p>
+<p><strong>函数</strong>是处理的集合。例如 <code>fmt.Println</code> 函数，是“<strong>执行在屏幕上显示文本的处理</strong>”的函数。</p>
+<p>函数可以使用 <code>()</code> 接收输入。这些输入称为参数。给函数提供输入，称为传递参数（简称“传参”）。</p>
+<p>同时传递多个参数，需要用逗号 <code>,</code> 分隔。例如 <code>fmt.Println</code> 函数，就可以把多个参数用空格连接，并把这些内容显示到屏幕上。</p>
 <pre><code class="language-go">fmt.Println("哈哈", "呵呵")
 $ go run .
 哈哈 呵呵
@@ -819,7 +819,7 @@ fmt.Println(5)
 <li>通过传递参数和接收返回值，可以调用函数（将一些处理，整合在一起处理块）。</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第五章-显示随机数包与导入"><a class="header" href="#第五章-显示随机数包与导入">第五章 显示随机数（包与导入）</a></h1>
-<p>这次，我们将通过一个显示随机数的程序，学习使用 Go 丰富多彩的功能，必须掌握的“<strong>包与导入</strong>”两个概念。</p>
+<p>这次，我们将通过一个显示随机数的程序，学习为了使用 Go 丰富多彩的功能、必须掌握的“<strong>包与导入</strong>”两个概念。</p>
 <h2 id="51-显示随机数"><a class="header" href="#51-显示随机数">5.1 显示随机数</a></h2>
 <p>以下的程序，可以显示从 0 到 5 的随机数。</p>
 <pre><code class="language-go">package main
@@ -841,36 +841,39 @@ $ go run .
 </code></pre>
 <p>重点：在 Go 等语言中，数列通常从 0 开始。例如， <code>rand.N(3)</code> 会随机返回 0、1、2 这三种数字中的一个。这种计数方式在日常生活中不太常见，但在编程中实际上更为方便。</p>
 <h3 id="面向有经验的人--随机种子"><a class="header" href="#面向有经验的人--随机种子">[面向有经验的人]  随机种子</a></h3>
-<p>Go 的 math/rand/v2 包的全局函数生成的随机数，每次都是不重复的（随机化）。这是因为这样在安全性上更为可取。</p>
-<p>但在游戏中，固定随机数种子值，以实现“可再现性”是常见的做法。例如，可以通过仅保存种子值，而不是所有数值来重现世界。比如在《我的世界》中，通过相同的种子值，可以让玩家游玩同一世界，甚至像著名的《ドルアーガの塔》，也有将随机种子融入游戏设计中的美谈。</p>
-<p>在 Go 中生成固定种子的随机值的方法，是将种子值传递给 rand.NewPCG 函数或 rand.NewChaCha8 函数，以创建随机数生成器。</p>
+<p>Go 的 math/rand/v2 包的全局函数生成的随机数，每次都不一样（随机化）。这是因为这样在安全性上更为可取。</p>
+<p>但在游戏中，固定随机数的种子值，以实现“可再现性”是常见的做法。例如，可以通过仅保存种子值，而不是所有数值来重现世界。比如在《我的世界》中，通过相同的种子值，可以让玩家游玩同一世界，甚至像著名的《德鲁亚加之塔》，也有将随机种子融入游戏设计中的美谈。</p>
+<p>在 Go 中生成种子固定随机值的方法，是将种子值传递给 <a href="https://pkg.go.dev/math/rand/v2#NewPCG">rand.NewPCG 函数</a>或 <a href="https://pkg.go.dev/math/rand/v2#NewChaCha8">rand.NewChaCha8 函数</a>，以创建随机数生成器。</p>
 <h2 id="52-包和导入语句"><a class="header" href="#52-包和导入语句">5.2 包和导入语句</a></h2>
 <p>包是将 Go 程序捆绑在一起的单位。此外，通过导入，可以引入其他包的功能。</p>
-<p>这个程序导入了 <code>fmt</code> 包和 <code>math/rand/v2</code> 包。 <code>math/rand/v2</code> 包是处理随机数和随机数的包。</p>
+<p>下面这个程序，导入了 <code>fmt</code> 包和 <code>math/rand/v2</code> 包。 <code>math/rand/v2</code> 包是处理随机数和随机数的包。</p>
 <pre><code class="language-go">import (
     "fmt"
     "math/rand/v2"
 )
 </code></pre>
-<p>两个包 <code>()</code> 被括起来。在语法上，上面的代码，与下面这两行导入语句的意思相同。</p>
+<p>上面的两个包被 <code>()</code> 起来。在语法上，上面的代码，与下面这两行导入语句的意思相同。</p>
 <pre><code class="language-go">import "fmt"
 import "math/rand/v2"
 </code></pre>
 <h2 id="53-导入路径和包名"><a class="header" href="#53-导入路径和包名">5.3 导入路径和包名</a></h2>
-<p>导入语句中写的字符串称为导入路径。导入路径是指示包的位置的东西。 <code>"fmt"</code> 和 <code>"math/rand/v2"</code> 就是其中的例子。
-在程序中使用包的功能，需要在包名后加上点 <code>.</code> ，并像 <code>fmt.</code> 和 <code>rand.</code> 这样写。
-有像 <code>fmt</code> 这样，导入路径和包名相同的例子。但也有像 <code>math/rand/v2</code> 和 <code>rand</code> 那样稍微不同的时候。这方面没有严格的规范，所以让我们随意一点吧。</p>
+<p>导入语句中写的字符串，被称为导入路径。</p>
+<p>导入路径是指示包的位置的东西。 <code>"fmt"</code> 和 <code>"math/rand/v2"</code> 就是其中的例子。
+在程序中使用包的功能，需要在包名后加上点 <code>.</code> ，像 <code>fmt.</code> 和 <code>rand.</code> 这样写。
+有像 <code>fmt</code> 这样，导入路径（最后一个单词）和包名相同的例子。但也有像 <code>math/rand/v2</code> 和 <code>rand</code> 那样，包名与路径稍微不同的时候。</p>
+<p>这方面没有严格的规范，所以让我们随意一点吧。</p>
 <h2 id="54-查看文档"><a class="header" href="#54-查看文档">5.4 查看文档</a></h2>
-<p>全世界上所有公开 Go 包的文档都汇集在 <a href="https://pkg.go.dev">pkg.go.dev</a> 这个网站上。对于使用 Go 进行编程来说，这是必不可少的工具，因此如果未来想要寻找未知的包，请务必参考。
-不过，这些包的说明基本上都是用英文写的，因此建议使用浏览器的扩展功能翻译阅读。</p>
+<p>全世界的公开 Go 包的文档都汇集在 <a href="https://pkg.go.dev">pkg.go.dev</a> 这个网站上。对于使用 Go 编程的人来说，这是必不可少的工具。因此如果未来想找未知的包，请务必参考。
+不过，这些包的说明，大多数是用英文写的。因此建议使用浏览器的扩展功能翻译阅读。</p>
 <p><img src="05_import.assets/rand.png" alt="image-00060912213702716" />
-<a href="https://pkg.go.dev/math/rand/v2#N">rand.N 函数的文档</a>。根据不同情况，可能会附带示例程序。</p>
+上图是 <a href="https://pkg.go.dev/math/rand/v2#N">rand.N 函数的文档</a>。有的包，可能会附带示例程序。</p>
 <h3 id="面向有经验的人-导入路径和包名模块的详细信息"><a class="header" href="#面向有经验的人-导入路径和包名模块的详细信息">[面向有经验的人] 导入路径和包名、模块的详细信息</a></h3>
-<p>如果导入路径以 <code>github.com/</code> 等域名开头，则该包将从互联网上获取。否则，该包是 Go 的标准包，将从 GOROOT（Go 的安装位置，可以用 <code>go env GOROOT</code> 这个命令确认）的 src 目录下获取。</p>
+<p>如果导入路径以 <code>github.com/</code> 等域名开头，那么这个包将从互联网上获取。</p>
+<p>如果不是，该包是 Go 的标准包，将从 GOROOT（Go 的安装位置，可以用 <code>go env GOROOT</code> 这个命令确认）的 src 目录下获取。</p>
 <p>导入路径以斜杠分隔的最后一个元素通常是包名，但这个规则并不是绝对的。</p>
 <ul>
-<li>以 <code>/v2</code> 结尾的包表示版本 2。主版本变化,意味着不兼容旧版本，因此在 Go 中建议通过**更改导入路径（这里就是加了一个/v2）**来区分版本。</li>
-<li>也可以像 <code>github.com/mattn/go-sqlite3</code> （此包的包名是 <code>sqlite3</code> ）一样包名与路径不一致的情况。根据作者的需要，自定义导入路径和包名。</li>
+<li>以 <code>/v2</code> 结尾的包表示版本 2。主版本变化，意味着新版本不兼容旧版本，因此 Go 建议通过**更改导入路径（这里就是加了一个/v2）**来区分版本。</li>
+<li>也有像 <code>github.com/mattn/go-sqlite3</code> （此包的包名是 <code>sqlite3</code> ）这样，包名与路径不一致的情况。根据作者的需要，可以自定义导入路径和包名。</li>
 </ul>
 <h2 id="本章总结-3"><a class="header" href="#本章总结-3">本章总结</a></h2>
 <ul>
@@ -879,7 +882,8 @@ import "math/rand/v2"
 <li>使用<strong>包名</strong>（ <code>rand</code> 等）调用包的功能。</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第六章-玩抽签条件分支"><a class="header" href="#第六章-玩抽签条件分支">第六章 玩抽签（条件分支）</a></h1>
-<p><strong>条件分支</strong>说的是“如果△△，那么〇〇”的这样的逻辑。根据前提条件，决定走哪一条处理流程。从这里开始，将会越来越有“编程”的味道。这次我们将通过制作抽签游戏，学习<strong>条件分支</strong>的用法。</p>
+<p><strong>条件分支</strong>，说的是“如果△△，那么〇〇”的这样的逻辑判断以后，再根据前提条件，决定走哪一条处理流程。</p>
+<p>从这里开始，将会越来越有“编程”的味道。这次我们将通过制作抽签游戏，学习<strong>条件分支</strong>的用法。</p>
 <h2 id="51-if-语句"><a class="header" href="#51-if-语句">5.1 if 语句</a></h2>
 <p>首先，我们来写一个简单的程序，随机决定是中奖还是没中奖。</p>
 <pre><code class="language-go">package main
@@ -917,7 +921,7 @@ $ go run .
 </ul>
 <p>结果是，“如果 <code>rand.N(2)</code> 的返回值等于 1，则显示为中奖，如果为 0，则显示为未中奖。最后始终显示抽奖结束。”</p>
 <h3 id="else-if"><a class="header" href="#else-if">else if</a></h3>
-<p>判断完一个条件后，如果判断还不足够，并希望确认另一个条件成立不成立，则应该使用 <code>else if</code> 。</p>
+<p>判断完一个条件，如果信息量还不足够，并希望确认另一个条件成立不成立，此时应该使用 <code>else if</code> 。</p>
 <pre><code class="language-go">package main
 
 import (
@@ -947,14 +951,17 @@ $ go run .
 <li>如果第二个条件也没有满足，则执行最后的 <code>{}</code> 的内容，并显示 <code>１等大奖！！！</code> 。</li>
 </ul>
 <h3 id="布尔值"><a class="header" href="#布尔值">布尔值</a></h3>
-<p><code>if △△</code> 的“△△”中所填的内容称为<strong>布尔值</strong>（英文为布尔/boolean，简称布尔/bool）。<strong>布尔值</strong>是只有<strong>真/true</strong> 或<strong>假/false</strong> 两个选择的特殊值。普通数字可以是 0, 1, 2, 3...等无限多，但<strong>布尔值</strong>只有“真”和“假”这两种。</p>
-<p><code>if △△ { 〇〇 } else { ×× }</code> 是指“如果△△的真布尔值为真，则执行〇〇；如果为假，则执行××”。</p>
-<p>然后， <code>==</code> 是一个求真值的符号，如果左右的值相等则为 <code>true</code> ，如果不相等则为 <code>false</code> 。求真值的符号还有其他的，如 <code>&gt;</code> （大于）、 <code>&amp;&amp;</code> （且）、 <code>||</code> （或者）等多种。这些可以组合在一起进行各种判断，但我们会在需要的时候再讨论这些。</p>
+<p><code>if △△</code> 的“△△”中，对应的内容称为<strong>布尔值</strong>（英文为布尔/boolean，简称布尔/bool）。<strong>布尔值</strong>是只有<strong>真/true</strong> 或<strong>假/false</strong> 两个选项的特殊值。</p>
+<p>普通数字可以是 0, 1, 2, 3...等无限多，但<strong>布尔值</strong>只有“真”和“假”这两种。</p>
+<p><code>if △△ { 〇〇 } else { ×× }</code> 这个语句，指**“如果△△的真布尔值为真，则执行〇〇；如果为假，则执行××”**。</p>
+<p>然后， <code>==</code> 是一个求真值的符号，如果左右的值相等，整个式子则为 <code>true</code> ，如果不相等整个式子为 <code>false</code> 。</p>
+<p>还有其他的求真值的符号，如 <code>&gt;</code> （大于）、 <code>&amp;&amp;</code> （且）、 <code>||</code> （或者）等多种。这些可以组合在一起进行判断。我们会在需要的时候再讨论这些。</p>
 <h3 id="面向有经验的人-go-不能使用其他类型代替布尔值"><a class="header" href="#面向有经验的人-go-不能使用其他类型代替布尔值">[面向有经验的人] Go 不能使用其他类型代替布尔值</a></h3>
-<p>Go 不能将用“<strong>布尔值</strong>”以外的类型用作布尔值。例如，在 C 语言中，0 被代表假，其他值被视为真，但在 Go 中，0 不能用来代替真布尔值。必须使用逻辑运算符将其转换为真偽值。</p>
+<p>Go 不能将用“<strong>布尔值</strong>”以外的类型代替布尔值。例如，在 C 语言中，0 代表假，其他值被视为真。</p>
+<p>但在 Go 中，0 不能用来代替布尔值。必须使用逻辑运算符将其转换为布尔值。</p>
 <h2 id="52-switch语句"><a class="header" href="#52-switch语句">5.2 switch语句</a></h2>
-<p>控制条件分支，除了 <code>if</code> 以外，也可以使用 <code>switch</code> 语句。 <code>switch</code> 在需要判断多个条件时非常方便。</p>
-<p><code>switch</code> 有几种语法，但基本模式是“根据 switch 后面的值与哪个 case 相等进行分支”。</p>
+<p>控制条件分支，除了 <code>if</code> 语句以外，也可以使用 <code>switch</code> 语句。 <code>switch</code> 在需要判断多个条件时非常方便。</p>
+<p><code>switch</code> 有几种语法，最基本的模式是“根据 switch 后面的值与哪个 case 相等，进行分支判断”。</p>
 <pre><code class="language-go">package main
 
 import (
@@ -984,11 +991,12 @@ $ go run .
 $ go run .
 是0
 </code></pre>
-<p>当 <code>switch</code> 后面的值与 <code>case</code> 匹配时，将执行 <code>case</code> 的内容。如果与任何 <code>case</code> 不匹配，将执行 <code>default</code> 。</p>
+<p>当 <code>switch</code> 后面的值与某个 <code>case</code> 匹配时，将执行 <code>case</code> 的内容。</p>
+<p>如果与任何 <code>case</code> 都不匹配，将执行 <code>default</code> 。</p>
 <h3 id="面向有经验的人-go-的-switch-不需要-break-语句"><a class="header" href="#面向有经验的人-go-的-switch-不需要-break-语句">[面向有经验的人] go 的 switch 不需要 break 语句</a></h3>
-<p>与 C 语言等不同，go在每个 case 的末尾不需要写 <code>break</code> ，而是默认可以直接跳出 <code>switch</code> 语句，不进入下一个 <code>case</code> 。</p>
+<p>与 C 语言等不同，Go在每个 case 的末尾不需要写 <code>break</code> ，而是默认可以直接跳出 <code>switch</code> 语句，不进入下一个 <code>case</code> 。</p>
 <h3 id="用-case-合并分支"><a class="header" href="#用-case-合并分支">用 case 合并分支</a></h3>
-<p>在 Go 中，可以通过在 <code>case</code> 后面用逗号分隔列出多个值来合并 case。</p>
+<p>在 Go 中，可以通过在 <code>case</code> 后面用逗号分隔，列出多个值来合并 case。</p>
 <pre><code class="language-go">package main
 
 import (
@@ -1015,21 +1023,21 @@ $ go run .
 其他数字
 </code></pre>
 <h3 id="用-switch-来代替-else-if"><a class="header" href="#用-switch-来代替-else-if">用 switch 来代替 else if</a></h3>
-<p>さ此外，Go 语言还有一种特有的语法，即在 case 后面写条件而不是值。</p>
+<p>此外，Go 语言还有一种特有的语法，即在 case 后面写条件而不是值。</p>
 <pre><code class="language-go">func main() {
-	switch { // この構文では、switchの後ろに値を書かない
+	switch { // 这种写法里面，switch后面没有值
 	case rand.N(2) == 0:
-		fmt.Println("ハズレ")
+		fmt.Println("没中")
 	case rand.N(2) == 0:
-		fmt.Println("３等当たり！")
+		fmt.Println("３等奖！")
 	case rand.N(2) == 0:
-		fmt.Println("２等当たり！")
+		fmt.Println("２等奖！")
 	default:
-		fmt.Println("１等当たり！")
+		fmt.Println("１等大奖！")
 	}
 }
 </code></pre>
-<p>上述内容用 else if 替换后，将变成这样的程序。两者的意思相同。请使用您喜欢的方式。</p>
+<p>上述内容用 else if 重写，会变成这样的程序。两者的意思相同。请使用您喜欢的方式。</p>
 <pre><code class="language-go">package main
 
 import (
@@ -1039,19 +1047,19 @@ import (
 
 func main() {
 	if rand.N(2) == 0 {
-		fmt.Println("ハズレ")
+		fmt.Println("没中")
 	} else if rand.N(2) == 0 {
-		fmt.Println("３等当たり！")
+		fmt.Println("３等奖！")
 	} else if rand.N(2) == 0 {
-		fmt.Println("２等当たり！")
+		fmt.Println("２等奖！")
 	} else {
-		fmt.Println("１等当たり！")
+		fmt.Println("１等大奖！")
 	}
 }
 </code></pre>
 <h2 id="53-制作抽签程序"><a class="header" href="#53-制作抽签程序">5.3 制作抽签程序</a></h2>
-<p>那么，利用这些知识，我们来制作一个抽签游戏吧。</p>
-<p>从 0 到 4 的 5 个值中抽取一个，并将其与运势对应。</p>
+<p>那么，利用这些知识，让我们做一个抽签游戏吧。</p>
+<p>从 0 到 4 的 5 个值中抽取一个，将其与运势对应。</p>
 <div class="table-wrapper"><table><thead><tr><th>数字</th><th>运势</th></tr></thead><tbody>
 <tr><td>4</td><td>大吉</td></tr>
 <tr><td>3</td><td>吉</td></tr>
@@ -1060,7 +1068,7 @@ func main() {
 <tr><td>0</td><td>大凶</td></tr>
 </tbody></table>
 </div>
-<p>那么，程序会变成什么样呢？以下是答案示例。</p>
+<p>那么，程序会变成什么样呢？以下是示例答案：</p>
 <pre><code class="language-go">package main
 
 import (
@@ -1084,7 +1092,7 @@ func main() {
 }
 </code></pre>
 <h3 id="改变概率"><a class="header" href="#改变概率">改变概率</a></h3>
-<p>这样的话，从大吉到大凶的出现概率都是一样的，但这就不太像抽签了。我们来根据运势改变出现的概率。方法有很多，但这次我们简单地将一个运势对应多个数字。</p>
+<p>上面的程序，从大吉到大凶，出现概率都是一样的，但这不太像抽签。我们来根据运势，改变出现的概率。做法有很多，这次我们简单地将一个运势，对应多个数字。</p>
 <div class="table-wrapper"><table><thead><tr><th>数字</th><th>运势</th></tr></thead><tbody>
 <tr><td>9</td><td>大吉</td></tr>
 <tr><td>8, 7, 6</td><td>吉</td></tr>
@@ -1093,7 +1101,7 @@ func main() {
 <tr><td>0</td><td>大凶</td></tr>
 </tbody></table>
 </div>
-<p>通过这样做，比如吉的出现概率，将会是大吉的三倍。那么，这将会是什么样的程序呢？</p>
+<p>这样做，“吉”的出现概率将会是“大吉”的3倍。那么，写成程序会是怎样呢？</p>
 <pre><code class="language-go">package main
 
 import (
@@ -1120,21 +1128,21 @@ func main() {
 <h2 id="本章总结-4"><a class="header" href="#本章总结-4">本章总结</a></h2>
 <ul>
 <li>if △△ { 〇〇 } else { ×× }` 这个句子的意思，是“如果△△的布尔值为真，则执行〇〇；如果为假，则执行××。”</li>
-<li><code>switch</code> 在需要区分多个条件时非常方便。根据 <code>switch</code> 后面的值与哪个 <code>case</code> 相等，选择执行的分支。</li>
+<li><code>switch</code> 在需要区分多个条件时非常方便。根据 <code>switch</code> 后面的值与哪个 <code>case</code> 相等，选择执行对应的分支。</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第七章-做猜数字游戏for循环"><a class="header" href="#第七章-做猜数字游戏for循环">第七章 做猜数字游戏（for循环）</a></h1>
-<p>上次我们学习了条件分支，踏进编程的门槛了。这次我们将学习如何重复处理同一件事。</p>
+<p>上次我们学习了条件分支，踏进编程门槛了。这次我们将学习如何重复处理同一件事。</p>
 <h2 id="71-重复"><a class="header" href="#71-重复">7.1 重复</a></h2>
-<p>使用 <code>for</code> 可以编写重复（循环）处理。Go 的 for 语句有以下三种形式，其他语言中的 <code>while</code> 和 <code>foreach</code> 的功能，也集中在 <code>for</code> 中。</p>
-<p>记住最重要的第一和第二点就可以了，第三点，目前 只需在脑海的角落里留个印象即可。</p>
+<p>使用 <code>for</code> 可以编写重复（循环）处理。Go 的 for 语句有以下三种形式。</p>
+<p>其他语言中的 <code>while</code> 和 <code>foreach</code> 的功能，也集中在 <code>for</code> 中。</p>
+<p>最重要的，是记住的第一和第二条。第三点，目前只需在脑海的角落里留个印象。</p>
 <ul>
 <li><code>for 条件 { ... }</code> - 满足条件的情况下循环处理。相当于其他语言的 <code>while</code> 。</li>
 <li><code>for range 値 { ... }</code> - 按顺序提取数组或切片等并循环。相当于其他语言中的 <code>foreach</code> 。</li>
-<li><code>for 初期化; 条件; 後処理 { ... }</code> - 初期化、条件、後処理を指定して繰り返す。</li>
-<li><code>for 初始化; 循环条件; 循环后处理 { ... }</code> - 指定初始化、条件和循环后语句，以执行循环。</li>
+<li><code>for 初始化; 循环条件; 循环后处理 { ... }</code> - 按“初期化、条件、循环后处理”的流程进行处理。</li>
 </ul>
 <h3 id="711--只有一个条件语句的-for-语句"><a class="header" href="#711--只有一个条件语句的-for-语句">7.1.1  只有一个条件语句的 for 语句</a></h3>
-<p>首先介绍的是在满足条件时重复的 for 文。相当于其他语言中的 <code>while</code> 。</p>
+<p>首先介绍的，是在满足条件时重复的 for 语句。相当于其他语言中的 <code>while</code> 。</p>
 <pre><code class="language-go">package main
 
 import (
@@ -1155,8 +1163,11 @@ func main() {
 循环
 结束
 </code></pre>
-<p>如果 <code>rand.N(2)</code> 的返回值为 1，则执行 <code>{}</code> 的内容。执行后再次执行 <code>rand.N(2)</code> ，检查返回值是否为 1，如果是，则执行 <code>{}</code> 的内容。这样循环重复。如果不再满足条件，则退出 <code>{}</code> 并显示 <code>结束</code> 。运气好的话会重复很多次，但也可能不是这样。这样，在满足条件的情况下，重复执行 <code>{}</code> 的内容的语句就是 <code>for</code> 语句。</p>
-<p>条件可以省略。在这种情况下，将始终被视为满足条件，形成所谓的“无限循环”。以下代码会输出大量文本，请准备好随时按“Ctrl+C”强制结束程序。</p>
+<p>如果 <code>rand.N(2)</code> 的返回值为 1，则执行 <code>{}</code> 的内容。</p>
+<p>执行后再次执行 <code>rand.N(2)</code> ，检查返回值是否为 1，如果是，则执行 <code>{}</code> 的内容。</p>
+<p>这样循环重复。如果不再满足条件，则退出 <code>{}</code> 并显示 <code>结束</code> 。运气好的话，此语句会循环很多次，但也可能直接结束。</p>
+<p>这样在满足条件的情况下，重复执行 <code>{}</code> 里面的内容的语句就是 <code>for</code> 语句。</p>
+<p>条件可以省略不写。在这种情况下，将始终被视为满足条件，形成所谓的“无限循环”。以下代码会输出大量文本，请准备好随时按“Ctrl+C”强制结束程序。</p>
 <pre><code class="language-go">package main
 
 import "fmt"
@@ -1168,7 +1179,9 @@ func main() {
 }
 </code></pre>
 <h3 id="712-用-range-指定循环范围"><a class="header" href="#712-用-range-指定循环范围">7.1.2 用 range 指定循环范围</a></h3>
-<p>接下来介绍的是使用 <code>range</code> （范围）的 for 循环。虽然 <code>range</code> 中还有各种不同的用法，但这些将在后面介绍，在本页面中暂时介绍“指定次数重复”的用法。请查看代码。</p>
+<p>接下来介绍的是使用 <code>range</code> （范围）的 for 循环。</p>
+<p><code>range</code> 中还有不同的用法，这些将在后面介绍。本章节中首先介绍的是**“指定次数重复”的 range 用法**。</p>
+<p>请看代码：</p>
 <pre><code class="language-go">package main
 
 import "fmt"
@@ -1178,6 +1191,18 @@ func main() {
         fmt.Println("循环")
     }
     fmt.Println("结束")
+}	
+</code></pre>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+	var i = 0
+	for i = range 5 { // range 前面用等号的例子
+		fmt.Println(i)
+	}
+  fmt.Println("循环结束后会执行这里")
 }
 </code></pre>
 <pre><code class="language-bash">$ go run .
@@ -1188,8 +1213,8 @@ func main() {
 循环
 结束
 </code></pre>
-<p>通过在 <code>range</code> 后面写上重复的次数，就可以重复执行 <code>{}</code> 中的处理。
-此外，您还可以将“重复了多少次”放入变量中使用。这可以通过在 <code>range</code> 前面写 <code>:=</code> 或 <code>=</code> 来实现。</p>
+<p>通过在 <code>range</code> 后面写上重复次数，就可以重复执行 <code>{}</code> 中的处理。
+此外，您还可以将“重复几次”放入变量中使用。这可以通过在 <code>range</code> 前面写 <code>:=</code> 或 <code>=</code> 语句来实现。</p>
 <pre><code class="language-go">package main
 
 import "fmt"
@@ -1209,10 +1234,10 @@ func main() {
 4
 循环结束后会执行这里
 </code></pre>
-<p>请注意，此处 i 的起始值是 0 。
-变量名可以随意，但表示循环次数的值通常使用字母 <code>i</code> 。这个习惯，据说源自编程语言“APL”中使用的希腊字母 ι（伊奥塔）。</p>
+<p>请注意，此处 i 的起始值是 0 。</p>
+<p>变量名可以随意起，但表示循环次数的值，通常会使用字母 <code>i</code> 。这个习惯，据说源自编程语言“APL”中使用的希腊字母 ι（伊奥塔）。</p>
 <h3 id="713-初期化循环条件循环后处理的用法"><a class="header" href="#713-初期化循环条件循环后处理的用法">7.1.3 初期化・循环条件・循环后处理的用法</a></h3>
-<p>最后介绍的是最经典的 for 循环用法。很多人可能在 C 语言中熟悉了这种写法。我们来写一段代码，像在 <code>range</code> 中那样重复执行 5 次。</p>
+<p>最后介绍的，是最经典的 for 循环用法。很多人可能在 C 语言中熟悉了这种写法。我们来写一段代码，像在 <code>range</code> 中那样重复执行 5 次。</p>
 <pre><code class="language-go">package main
 
 import "fmt"
@@ -1231,19 +1256,21 @@ func main() {
 4
 </code></pre>
 <p>以 <code>初期化语句; 循环条件; 循环后处理</code> 的形式，用英文分号 <code>;</code> 分隔三个表达式。</p>
-<p>这种情况下，这个for语句的意思就是：</p>
+<p>这种情况下，这个 for 语句的意思是：</p>
 <ul>
 <li>将变量 <code>i</code> 初始化为 0，</li>
 <li><code>i</code> 小于 5 的时候重复循环</li>
 <li>每次循环将 <code>i</code> 加 1（ <code>++</code> 是表示将 i 加 1 的符号）</li>
 </ul>
-<p>如您所见，同样的功能，使用 <code>range</code> 可以更写得更短，因此感觉不会有人故意写得这么啰嗦。</p>
-<p>但是，实际上用 <code>range</code> 指定次数循环的功能，是最近才加入的，在此之前我们一直使用这种经典写法。为了阅读老代码，了解这一点是有必要的。</p>
+<p>如您所见，同样的功能，使用 <code>range</code> 可以更写得更短，感觉不会有人故意写得这么啰嗦。</p>
+<p>但是，这个用 <code>range</code> 指定次数循环的功能，是最近才加入的。在此之前我们一直使用这种经典写法。为了阅读老代码，有必要了解这个语法。</p>
 <h2 id="72-循环控制"><a class="header" href="#72-循环控制">7.2 循环控制</a></h2>
-<p>循环可以在中途停止或跳过。</p>
-<p>读到这里，编程用的关键词变多了呢。虽然你可能感到有些吃力，但其实不需要一次记住。只需在多写几次，在实践中逐渐记住即可！</p>
+<p>for 循环，可以在中途停止或跳过。</p>
+<p>读到这里，感觉编程用的关键词变多了呢。</p>
+<p>虽然可能会让你感到有些吃力，但这些关键词，并不需要一记住。</p>
+<p>只需要在实践中多写几次，逐渐掌握即可！</p>
 <h3 id="721-break-中断"><a class="header" href="#721-break-中断">7.2.1 break 中断</a></h3>
-<p>使用关键词 <code>break</code> ，可以在循环中途停止。</p>
+<p>使用关键词 <code>break</code> ，可以在中途停止循环。</p>
 <pre><code class="language-go">package main
 
 import "fmt"
@@ -1263,9 +1290,9 @@ func main() {
 1
 循环后执行次语句
 </code></pre>
-<p>本来 <code>range </code> 指定执行5 次重复的循环，在满足 <code>if i == 2</code> 的条件时，执行了 <code>break</code> ，并在途中中断。</p>
+<p>可以看到，<code>range </code> 指定执行5 次重复的循环，满足 <code>if i == 2</code> 这个条件时执行了 <code>break</code> ，在途中被中断。</p>
 <h3 id="722-continue-继续"><a class="header" href="#722-continue-继续">7.2.2 continue 继续</a></h3>
-<p>使用 <code>continue</code> 可以跳过本次循环的其余部分，继续进行以后的循环。</p>
+<p>使用 <code>continue</code> 语句，可以跳过本次循环的其余部分，继续下一次循环。</p>
 <pre><code class="language-go">package main
 
 import "fmt"
@@ -1276,7 +1303,7 @@ func main() {
             fmt.Println("跳过此次循环")
             continue
         }
-        fmt.Println(i) // 如果上面的continue执行了，这个语句这次将不会执行
+        fmt.Println(i) // 如果上面的continue执行了，这次将不会执行这一句
     }
 }
 </code></pre>
@@ -1287,9 +1314,10 @@ func main() {
 3
 4
 </code></pre>
-<p>循环本身虽然没有中断，但 <code>continue</code> 时应该执行的 <code>fmt.Println(i)</code> 却在该循环中被跳过了，您能理解发生了什么吗？</p>
+<p>循环本身虽然被没有中断，但 <code>continue</code> 时，本该执行的 <code>fmt.Println(i)</code> 却在该次循环中被跳过。</p>
+<p>您能理解发生了什么吗？</p>
 <h3 id="面向有经验的人-多重循环和带标签的-breakcontinue"><a class="header" href="#面向有经验的人-多重循环和带标签的-breakcontinue">[面向有经验的人] 多重循环和带标签的 break、continue</a></h3>
-<p>break 和 continue 通常只能中断或跳过最内层的循环。如果在多重嵌套的情况下想要中断或继续外层循环，则需要与标签结合使用。</p>
+<p>break 和 continue ，通常只能中断或跳过最内层的循环。在多重嵌套的情况下，如果想要中断或继续外层循环，就需要与标签结合使用循环语句。</p>
 <pre><code class="language-go">package main
 
 import "fmt"
@@ -1299,17 +1327,19 @@ loop: // "loop"标签
     for i := range 3 {
         for j := range 3 {
             if i == 2 {
-                break loop // 指定标签的 break 语句
+                break loop // 指定标签，跳出特定循环的 break 语句
             }
         }
     }
 }
 </code></pre>
-<p>行头中写入 <code>loop:</code> ，可以为接下来的句子（在这种情况下是 <code>for i := ...</code> ）添加标签。虽然额外的缩进，可能会让你感到不适，但请适应。</p>
-<p>学习 break 和 continue 等关键字时，作者本人也曾经觉得非常吃力。但是在不断查阅资料与使用的过程中，逐渐就适应了，所以不要着急，慢慢进行吧。</p>
+<p>行头中写的 <code>loop:</code> ，可以为接下来的句子（在这种情况下是 <code>for i := ...</code> ）添加标签。虽然 <code>loop:</code> 的额外缩进，可能会让你感到不适，但请适应。</p>
+<p>学习 break 和 continue 等关键字时，作者本人也曾经觉得非常吃力。但在不断查阅资料与使用的过程中，逐渐就习惯了，所以不要着急，逐步推进吧。</p>
 <h2 id="73-输入"><a class="header" href="#73-输入">7.3 输入</a></h2>
-<p>赶快用所学的知识，来制作一个猜数字游戏吧……虽然我想这么说，但如果程序无法接收玩家的输入，就没法制作游戏。接受来自终端的输入，只在本章用一次，所以我我说的会比较简略。</p>
-<p>在终端接收输入时，可以使用 <code>fmt.Scanln</code> 。将变量的指针作为参数传给 <code>fmt.Scanln</code> ， <code>fmt.Scanln</code> 会将用户输入的值赋给该变量。至于指针是什么，稍后会解释。</p>
+<p>赶快用所学的知识，做一个猜数字游戏吧……</p>
+<p>虽然我想这么说，但如果程序无法接收玩家输入，就没法做游戏。接受来自终端的输入的函数，只在本章用一次，所以我的介绍会比较简略。</p>
+<p>在终端接收输入，可以使用 <code>fmt.Scanln</code> 。将变量的指针作为参数传给 <code>fmt.Scanln</code> ， <code>fmt.Scanln</code> 就会将用户输入的值，赋值给该变量。</p>
+<p>至于指针是什么，稍后会解释。</p>
 <pre><code class="language-go">package main
 
 import "fmt"
@@ -1317,7 +1347,7 @@ import "fmt"
 func main() {
     fmt.Println("请输入数字")
     input := 0
-    fmt.Scanln(&amp;input) //加个 &amp; 将 input的指针传给fmt.Scanln
+    fmt.Scanln(&amp;input) //加个 &amp; ，将 input的指针传给fmt.Scanln
     fmt.Println("你输入的值是", input)
 }
 </code></pre>
@@ -1326,8 +1356,10 @@ func main() {
 （在这里输入数值，然后按回车键结束）
 你输入的值是 42
 </code></pre>
-<h2 id="74-制作数字猜谜游戏"><a class="header" href="#74-制作数字猜谜游戏">7.4 制作数字猜谜游戏</a></h2>
-<p>这下准备好了。我们来制作一个猜数字游戏。生成一个随机的秘密值，玩家需要猜出这个值。如果猜错了，就继续猜，直到猜对为止。同时，作为提示，会显示“答案你比猜的数更大”或“答案你比猜的数更小”。</p>
+<h2 id="74-制作猜数字游戏"><a class="header" href="#74-制作猜数字游戏">7.4 制作猜数字游戏</a></h2>
+<p>前提知识准备好了。接下来我们制作一个猜数字游戏吧。</p>
+<p>用程序生成一个随机的秘密值，玩家需要猜出这个值。如果猜错了，就继续猜，直到猜对为止。</p>
+<p>同时作为提示，程序会显示“答案你比猜的数更大”或“答案你比猜的数更小”。</p>
 <pre><code class="language-go">package main
 
 import (
@@ -1379,21 +1411,25 @@ func main() {
 答对了！
 游戏结束
 </code></pre>
-<p>综合运用学到的知识，我们已经能够制作猜数字游戏了。能够结合 if 和 for 制作出这样的东西，已经可以称得上是一名合格的程序员了。</p>
-<p>如果有余裕的话，可以设定回答数量的限制，或者统计并显示回答数量，尝试各种玩法会比较好。</p>
-<p>此外，这次制作的是一个非常简单的数字猜测游戏，但不要小看这个数字猜测游戏。稍后将要说明的“数组・切片”结合起来，可以变成真正的推理游戏，类似“Hit and Blow”的东西。真正的游戏所需的精髓，你已经掌握不少了。</p>
+<p>综合运用学到的知识，我们已经能够制作猜数字游戏了。</p>
+<p>能够使用 if 和 for 做东西，已经可以称得上是合格的程序员了。</p>
+<p>如果心有余力，可以设定猜测次数限制，或统计玩家猜了几次，尝试各种玩法。</p>
+<p>此外，这次做的是一个非常简单的数字猜测游戏，但不要小看这个猜数字游戏。</p>
+<p>结合接下来将要说明的“数组・切片”结功能，这个游戏可以变成真正的推理游戏，就像“Hit and Blow”那样。</p>
+<p>真正的游戏所需的精髓，你已经掌握不少了。</p>
 <h2 id="本章总结-5"><a class="header" href="#本章总结-5">本章总结</a></h2>
 <ul>
 <li>使用 <code>for</code> 可以编写循环处理。</li>
 <li><code>for 条件 { ... }</code> 在条件满足的情况下重复循环。</li>
-<li><code>for range 回数 { ... }</code> 指定循环固定的次数。</li>
-<li><code>break</code> , <code>continue</code> 可以控制循环的流程。</li>
+<li><code>for range 回数 { ... }</code> 固定次数的循环。</li>
+<li><code>break</code> , <code>continue</code> 可以控制循环流程。</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第八章-绘制窗口"><a class="header" href="#第八章-绘制窗口">第八章 绘制窗口</a></h1>
-<p>在终端运行的纯文字程序也差不多让人厌了。这次终于要显示图形了。</p>
+<p>在终端里运行的纯文字程序，也差不多让人厌了。这次终于要显示画面了。</p>
 <h2 id="81-掌握-ebitengine-以前"><a class="header" href="#81-掌握-ebitengine-以前">8.1 掌握 Ebitengine 以前</a></h2>
-<p>因此，我想立即使用 <a href="https://ebitengine.org/ja/">Ebitengine……</a></p>
-<p>但我还没有教完使用 Ebitengine 所需的前提知识。因此，我们先使用作者精心制作的（精简版Ebitengine） <a href="https://pkg.go.dev/github.com/eihigh/miniten">miniten 包</a>，学习制作一款游戏。</p>
+<p>接下来，我想立即使用 <a href="https://ebitengine.org/ja/">Ebitengine……</a></p>
+<p>可是，我还没有教完使用 Ebitengine 所需的前提知识。
+于是，我们先使用作者精心制作的 <a href="https://pkg.go.dev/github.com/eihigh/miniten">miniten 包</a> （精简版Ebitengine），学习制作一款游戏。</p>
 <p>这是一个弹出窗口，并显示“Hello, World!”的程序。</p>
 <pre><code class="language-go">package main
 
@@ -1407,23 +1443,28 @@ func draw() {
 	miniten.Println("Hello, World!")
 }
 </code></pre>
-<p>那么我们就马上来执行一下吧。</p>
+<p>那么，我们马上来运行它吧。</p>
 <pre><code>$ go run .
 main.go:3:8: no required module provides package github.com/eihigh/miniten; to add it:
         go get github.com/eihigh/miniten
 </code></pre>
-<p>哦...出错了。当使用像 miniten 这样的外部新包时，如果该信息未记录在 <code>go.mod</code> 文件中，就会出现错误。请执行 <code>go mod tidy</code> 命令，以更新 <code>go.mod</code> 文件。</p>
+<p>哦...出错了。</p>
+<p>当使用像 miniten 这样的新的外部包时，如果该包信息未记录在 <code>go.mod</code> 文件中，就会出现错误。</p>
+<p>请执行 <code>go mod tidy</code> 命令，以更新 <code>go.mod</code> 文件。</p>
 <pre><code>$ go mod tidy
-...应该会看到一些log文字...
+...应该会看到一些log...
 </code></pre>
-<p>稍等一下，顺利结束后，再次执行吧。第一次运行，可能会多花一点时间。</p>
+<p>稍等一下，等命令执行完后，再次运行程序吧。</p>
+<p>第一次运行，可能会多花一点时间。</p>
 <pre><code>$ go run .
 </code></pre>
-<p>窗口左上角显示“Hello, World!”就可以了！🎉</p>
+<p>如下图，看到窗口左上角显示“Hello, World!”就可以了！🎉</p>
 <p><img src="https://res.cloudinary.com/zenn/image/fetch/s--w-Avkzr4--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_1200/https://storage.googleapis.com/zenn-user-upload/deployed-images/505053baedfa2e8dfefc1b6f.png%3Fsha%3D4cc9f198d824fb1e04a82beabcdc431c19a026e4" alt="miniten.png" /></p>
-<p>有其他语言经验的人，Go 从互联网上的下载第三方包的步骤，可能简单到令人感动。作者第一次看到的时候，确实也很感动。</p>
+<p>有其他语言经验的人，Go 从互联网上的下载第三方包的步骤，可能简单到令人感动。</p>
+<p>作者第一次看到的时候，确实也很感动。</p>
 <h2 id="82-绘制图形"><a class="header" href="#82-绘制图形">8.2 绘制图形</a></h2>
-<p>那么就按照这个节奏，画矩形和圆吧。稍后会解释为什么，但绘制必须在 <code>draw</code> 函数内进行。</p>
+<p>那么就按照现在的节奏，继续学习画矩形和圆吧。</p>
+<p>绘制必须在 <code>draw</code> 函数里面进行（稍后会解释理由）。</p>
 <pre><code class="language-go">func main() {
 	miniten.Run(draw)
 }
@@ -1435,27 +1476,30 @@ func draw() {
 }
 </code></pre>
 <p><img src="08_window.assets/3aab663ffcd486d5168f637d.png" alt="shapes" /></p>
-<p>miniten 可以绘制的图形，只有矩形和圆形。其他图形和换颜色，要等到真正入门 Ebitengine 后再进行。</p>
+<p>miniten 可以绘制的图形，只有矩形和圆形。</p>
+<p>花其他形状或换颜色，要等到真正入门 Ebitengine 后再学习。</p>
 <h2 id="83-座标"><a class="header" href="#83-座标">8.3 座标</a></h2>
-<p>这里所说的坐标，是“描述窗口内某个点”的值，由表示横向距离的“X”，和纵向距离的“Y”的组合表示。</p>
+<p>这里所说的坐标，是“代表窗口内某点”的值。</p>
+<p>由表示横向距离的“X”，和纵向距离的“Y”的成对表示。</p>
 <ul>
-<li>窗口左上角是起点坐标，此处的X 为 <code>0</code> ，Y 为 <code>0</code> 。</li>
-<li>从左上角向右移动，X 会增加；向下移动，Y 会增加。</li>
-<li>刚才绘制的矩形，左上角的坐标是 <code>(0, 50)</code> ，也就是横向是窗口最左边，纵向是从窗口顶边下移 50 的位置。</li>
-<li>刚才绘制的矩形，宽度和高度分别为 <code>100</code> ，因此矩形右下角的坐标为 <code>(0+100, 50+100) = (100, 150)</code> 。</li>
+<li>窗口左上角是起点，此处的X 为 <code>0</code> ，Y 为 <code>0</code> 。</li>
+<li>从左上角向右移动，X 增加；向下移动，Y 增加。</li>
+<li>刚才绘制的矩形，左上角坐标是 <code>(0, 50)</code> ，也就是横向在窗口最左边，纵向是在窗口顶部下移 50 的位置。</li>
+<li>刚才绘制的矩形，宽度和高度分别为 <code>100</code> ，因此矩形右下角的坐标是 <code>(0+100, 50+100) = (100, 150)</code> 。</li>
 </ul>
 <p>学校里学习的坐标轴，往上走时 Y 值通常会增加。</p>
-<p>但游戏窗口的坐标，则是往下时 Y 值增加，与学校里常见的相反。</p>
-<p>就是这么规定的，只能习惯。</p>
+<p>但游戏窗口的坐标，往下走的时候 Y 值增加，与学校里常见的相反。</p>
+<p>就是这么规定的，请习惯。</p>
 <h2 id="84-绘制图像"><a class="header" href="#84-绘制图像">8.4 绘制图像</a></h2>
-<p>在 miniten 中可以绘制的图形只有这些，这确实有些无聊。不过请放心，您可以绘制喜欢的图像！</p>
-<p>首先需要准备图像文件。什么图片都可以，但是为了懒得准备图像的你，这里准备了 Go 的吉祥物 gopher 君的图像。</p>
+<p>在 miniten 中，可以绘制的图形只有圆和矩形，可能会让你感到有些无聊。</p>
+<p>不过请放心，在这里。您也可以加载使用喜欢的图片！</p>
+<p>首先需要准备图像文件。什么图都可以，但是为了懒得准备图像的你，这里也准备了 Go 吉祥物 gopher 君的图片。</p>
 <p><img src="08_window.assets/gopher.png" alt="gopher.png" /></p>
-<pre><code class="language-text">该设计采用创意共享 4.0 署名许可。
+<pre><code class="language-text">该设计，采用创意共享 4.0 署名许可。
 阅读本文以获取更多详细信息：https://blog.golang.org/gopher
 </code></pre>
 <p>请右键点击这个 gopher 君，选择“另存为图片”。并将保存的图片文件，移动到<strong>与程序相同的目录</strong>中。</p>
-<p>这是绘制图像的程序。请根据你保存的图像文件名，调整 <code>"gopher.png"</code> 部分。同时也不要忘记添加正确的扩展名。</p>
+<p>这是绘制图像的程序。请根据你保存的图像文件名，调整 <code>"gopher.png"</code> 的文件名部分。同时也不要忘记添加正确的扩展名。</p>
 <pre><code class="language-go">func main() {
 	miniten.Run(draw)
 }
@@ -1464,19 +1508,20 @@ func draw() {
 	miniten.DrawImage("gopher.png", 0, 0) // 图片文件名、左上角图标
 }
 </code></pre>
-<p>图像如果显示在左上角，成功！🎉</p>
+<p>如果图片显示在左上角，那就成功了！🎉</p>
 <p>![gopher on miniten](08_window.assets/gopher on miniten.png)</p>
-<p>如果显示不正常，请检查一下图片文件名是否正确、是否忘记加扩展名，以及是否放在与程序相同的目录中。</p>
+<p>如果无法正常显示，请检查一下图片文件名是否正确、是否忘记加扩展名，以及是否放在与程序相同的目录中。</p>
 <h2 id="本章总结-6"><a class="header" href="#本章总结-6">本章总结</a></h2>
 <ul>
-<li>在 miniten 中，绘制处理写在 draw 函数内。</li>
-<li>绘制图像时，请将图像文件准备在同一目录中。不要忘记扩展名。</li>
-<li>表示窗口某一点的位置的数字，被称为坐标。</li>
+<li>在 miniten 中，绘图的处理，需要写在 draw 函数里面。</li>
+<li>绘制图像时，请将图像文件放在同一目录。同时不要忘记确认扩展名。</li>
+<li>表示窗口某点位置的数字，被称为坐标。</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第九章-移动角色帧和相关概念"><a class="header" href="#第九章-移动角色帧和相关概念">第九章 移动角色（帧和相关概念）</a></h1>
-<p>这次我们将学习游戏编程中不可或缺的“帧”这个概念，以及全局变量。</p>
+<p>这次我们将学习游戏编程不可或缺的“帧”，顺便也要介绍“全局变量”。</p>
 <h2 id="91-让-gopher-君跳起来"><a class="header" href="#91-让-gopher-君跳起来">9.1 让 gopher 君跳起来</a></h2>
-<p>我想让 gopher 君（关于 gopher 君的图片，请参见上一章）跳跃，写了一个“在鼠标点击时 gopher 君向上，松开时向下移动”的程序。如果你觉得这个行为不太像跳跃，请期待下一章。</p>
+<p>我想让 gopher 君（关于 gopher 君的图片来源，请参见上一章）跳起来，写了一个“在鼠标点击时 gopher 君向上，松开时向下移动”的程序。</p>
+<p>如果你觉得这个行为不太像跳跃，请期待下一章。</p>
 <pre><code class="language-go">package main
 
 import "github.com/eihigh/miniten"
@@ -1496,7 +1541,7 @@ func draw() {
 	miniten.DrawImage("gopher.png", 0, y)
 }
 </code></pre>
-<p>顺便提一下，以下的程序， gopher 君无法运动。</p>
+<p>顺便提一下，下面的程序， gopher 君无法运动。</p>
 <pre><code class="language-go">package main
 
 import "github.com/eihigh/miniten"
@@ -1517,14 +1562,19 @@ func draw() {
 </code></pre>
 <p>要了解两者的区别，首先需要理解什么是“帧”。</p>
 <h2 id="92-随处可见的视频其实是翻页漫画"><a class="header" href="#92-随处可见的视频其实是翻页漫画">9.2 随处可见的视频，其实是翻页漫画</a></h2>
-<p>所有的视频，都是高速切换的静止图像的集合。就像小时候闲着没事，在笔记本角落绘制的漫画，快速翻页时看起来像在动。视频与翻页漫画的原理完全相同。每一张静止图像称为帧，单位时间内的帧数称为帧率。帧率的单位是 FPS（每秒帧数）。帧率越高，视频看起来越流畅。</p>
-<p>游戏画面看起来在动，是一样的原理。令人惊讶的是，大多数游戏**每次切换帧时，都会从零开始重新绘制屏幕上的所有内容。**如果“帧率”是 60FPS，那么每帧的绘制时间仅为 1/60 秒 = 0.016  秒。如果无法在时间内完成，就会导致画面闪烁，动作卡顿，这就是所谓的“掉帧”。</p>
-<p>游戏图形这个学问，就是如何在这个帧的限制时间内，尽可能多地进行多绘制的斗争。大家在玩游戏时也请务必思考一下。</p>
+<p>所有的视频，都是高速切换的静止图像的集合。</p>
+<p>小时候闲着没事，在笔记本角落绘制的范爷漫画，快速翻页时看起来像在运动。</p>
+<p>所谓的视频，原理与翻页漫画完全相同。视频中，一张张静止图像被称为帧，单位时间内的帧的数量称为帧率。帧率的单位是 FPS（每秒帧数）。帧率越高，视频看起来越流畅。</p>
+<p>游戏画面看起来在动，原理也是一样的。令人惊讶的是，大多数游戏**每次切换帧时，都会从零开始重新绘制屏幕上的所有内容。**如果“帧率”是 60FPS，那么每帧的绘制时间仅为 1/60 秒 = 0.016  秒。如果无法在时间内完成绘制，就会导致画面闪烁，动作卡顿，这就是所谓的“掉帧”。</p>
+<p>游戏图形学，基本上就是研究如何在帧的限制时间内，尽可能多绘制的学问。大家在玩游戏时，可以联想一下这个知识。</p>
 <h2 id="93-draw绘图函数"><a class="header" href="#93-draw绘图函数">9.3 draw（绘图）函数</a></h2>
 <p><img src="05_import.assets/fps_image.png" alt="FPSの図" /></p>
-<p>miniten 的话，draw 函数会在每一帧被调用一次。每次切换新帧时，游戏引擎会准备一个全新的空白帧，并调用 draw 函数进行绘制。然后，在切换到下一帧时，前一帧会被丢弃，新的帧会被准备好。就这么循环往复。</p>
-<p>draw 函数，负责<strong>在限制时间内完成帧的绘制</strong>，因此 draw 函数中的处理不应耗时过长。这会导致处理掉帧和帧率下降。</p>
-<p>要感受帧的速度，可以在 draw 函数中执行 <code>fmt</code> 的 <code>fmt.Println</code> 。这个程序会在每一帧中在终端显示“帧”。应该可以看到“帧”以相当快的速度不断显示。</p>
+<p>miniten 里面，draw 函数在每一帧会被调用一次。</p>
+<p>每次切换新的帧时，游戏引擎会准备一个全新的空白帧，并调用 draw 函数进行绘制。</p>
+<p>然后，在切换到下一帧时，前一帧的内容会被丢弃，新的帧画面会被渲染，就这么循环往复。</p>
+<p>draw 函数，负责<strong>在限制时间内完成帧的绘制</strong>，因此写在 draw 函数中的处理不应耗时过长。这会导致掉帧和帧率下降。</p>
+<p>要感受帧的速度，可以在 draw 函数中执行 <code>fmt</code> 的 <code>fmt.Println</code> 。这个程序，会在每一帧中在终端显示“帧”。</p>
+<p>下面的程序。可以看到“帧”以相当快的速度不断显示。</p>
 <pre><code class="language-go">package main
 
 import (
@@ -1549,8 +1599,9 @@ func draw() {
 帧
 帧
 </code></pre>
-<p><code>miniten.Run(draw)</code> 会在窗口关闭前逐帧调用 draw 函数。当窗口关闭时， <code>miniten.Run(draw)</code> 将结束，draw 函数不再被调用。</p>
-<p>与draw函数相反，main 函数每次程序启动时只执行一次。例如，以下程序在启动时会显示“启动”，关闭窗口并结束 <code>miniten.Run(draw)</code> 时会显示“结束”。</p>
+<p><code>miniten.Run(draw)</code> 会在窗口关闭前逐帧调用 draw 函数。当窗口关闭时， <code>miniten.Run(draw)</code> 被结束，draw 函数不再被调用。</p>
+<p>与draw函数相反，main 函数每次程序启动时只执行一次。</p>
+<p>以下程序在启动时会显示一次“启动”，关闭窗口，并结束 <code>miniten.Run(draw)</code> 时会显示一次“结束”。</p>
 <pre><code class="language-go">package main
 
 import (
@@ -1568,12 +1619,12 @@ func main() {
 func draw() {
 }
 </code></pre>
-<p>超高速的帧绘制，是游戏编程的重要特征。其他领域的程序员，意外地有很多人并不知道这一点，所以请务必记住。</p>
+<p>超高速地绘制帧，是游戏编程的重要特征。其他领域的程序员，意外地有很多人并不知道这一点，所以请务必记住。</p>
 <h2 id="94-全局变量"><a class="header" href="#94-全局变量">9.4 全局变量</a></h2>
 <p>还有一个没有解释的内容，就是在函数外部声明的<strong>全局变量</strong>。</p>
 <p>和函数中的变量（与全局变量相对，叫<strong>局部变量</strong>）一样，全局变量的声明和赋值，可以同时进行。</p>
 <p>不过，由于语法上的限制，全局变量无法使用 <code>:=</code> 符号，需要使用 <code>var</code> 关键字声明。</p>
-<p>全局变量的声明・赋值・使用</p>
+<p>全局变量的声明・赋值・使用规则：</p>
 <pre><code class="language-go">package main
 
 import "fmt"
@@ -1586,7 +1637,8 @@ func main() {
 </code></pre>
 <p>局部变量在作用域（如函数等）结束时会消失。</p>
 <p>全局变量从程序启动到结束，会一直存在。</p>
-<p>以下的程序，在程序启动时将 <code>x</code> 赋值为 0，并在每一帧中加 1。由于 <code>x</code> 不会消失，因此会持续加 1。通过逐渐将 gopher 君的绘制坐标向右移，gopher 君看起来就像在向右移动。</p>
+<p>以下的程序，在程序启动时将 <code>x</code> 赋值为 0，并在每一帧中加 1。由于 <code>x</code> 不会消失，因此会持续加 1。</p>
+<p>结果就是程序绘制的 gopher 君的整体坐标向右移，看起来gopher 君就像正在向右移动。</p>
 <pre><code class="language-go">package main
 
 import "github.com/eihigh/miniten"
@@ -1602,7 +1654,8 @@ func draw() {
 	miniten.DrawImage("gopher.png", x, 0)
 }
 </code></pre>
-<p>相反，以下的程序中， <code>x</code> 在函数内部声明，因此每个帧里的 <code>x</code> 会消失。然后另一个帧， <code>x</code> 会从 0 重新开始。这种情况下，gopher 君无法移动。</p>
+<p>相反，以下的程序中， <code>x</code> 在函数内部声明，因此每个帧里的 <code>x</code> 会消失。</p>
+<p>然后进入另一帧的时候， <code>x</code> 会从 0 重新开始。这种情况下，gopher 君无法移动。</p>
 <pre><code class="language-go">package main
 
 import "github.com/eihigh/miniten"
@@ -1620,21 +1673,24 @@ func draw() {
 </code></pre>
 <h3 id="补充内容draw-函数的调用频率"><a class="header" href="#补充内容draw-函数的调用频率">补充内容：draw 函数的调用频率</a></h3>
 <p>在 miniten 中调用 draw 函数（以及在 Ebitengine 中的 Draw 函数）的频率，实际上是由你使用的显示器决定。</p>
-<p>显示器每秒更新屏幕的次数称为刷新率，单位是 Hz（赫兹）。大多数显示器的刷新率为 60Hz，也就是说每秒更新 60 次屏幕，近年来所谓的游戏显示器，也有达到 120Hz 或 144Hz 等高刷新率的产品。</p>
-<p>游戏生成帧的速度，如果与显示器更新屏幕的频率不同，会导致前后帧的内容，混在一起显示在屏幕上，这被称为画面撕裂。为了防止撕裂，有一种叫做“垂直同步”的技术，会根据屏幕的刷新率生成帧。miniten（以及Ebitengine）默认启用垂直同步，因此会根据刷新率生成帧。因此，如果使用高刷新率的显示器，draw 函数也会被更频繁地调用。</p>
-<p>这个做法，在防止撕裂方面很有用，但由于显示器的处理速度不同，会导致额外的问题。上述的gopher 君，在高刷新率下移动的速度会更快。</p>
-<p>但是这样一来，会导致制作游戏变困难，因此 Ebitengine 中有一个固定地每秒调用 60 次的 Update 函数，它和 Draw 函数不一样，不依赖于屏幕刷新率。具体细节将在后面的文章中提到，正是因为这个设计，使得游戏的制作变得更容易，同时也防止了撕裂现象。</p>
+<p>显示器每秒更新屏幕的次数称为刷新率，单位是 Hz（赫兹）。大多数显示器的刷新率为 60Hz，也就是说每秒更新 60 次屏幕，近年来所谓的电竞显示器，也有达到 120Hz 或 144Hz 等的高刷新率产品。</p>
+<p>游戏生成帧的速度，如果与显示器更新频率不同，会导致前后帧的内容，混在一起显示在屏幕上，这被称为画面撕裂。</p>
+<p>为了防止撕裂，有一种叫做“垂直同步”的技术，会根据屏幕的刷新率生成帧。miniten（以及Ebitengine）默认启用垂直同步，因此会根据刷新率生成帧。因此，如果使用高刷新率显示器，draw 函数也会被更频繁地调用。</p>
+<p>这个做法，在防止撕裂方面很有用，但由于显示器的处理速度不同，会导致额外的问题。上述的gopher 君，在高刷新率屏幕里下移动的速度会更快。</p>
+<p>这样一来，会导致做游戏变困难。因此， Ebitengine 中有一个固定每秒调用 60 次的 Update 函数，它和 Draw 函数不一样，不依赖于屏幕刷新率。</p>
+<p>具体细节将在后面的文章中提到，正是因为这个设计，使得游戏的制作更容易，同时也防止了画面撕裂现象。</p>
 <h2 id="本章总结-7"><a class="header" href="#本章总结-7">本章总结</a></h2>
 <ul>
-<li>帧是构成视频的一张张静止图像。</li>
-<li>帧率 (FPS) 是指每秒显示多少帧。</li>
+<li>帧是构成视频的一张又一张静止图像。</li>
+<li>帧率 (FPS) ，指每秒可以显示多少帧。</li>
 <li>draw 函数在每一帧中被调用。</li>
-<li>全局变量在程序启动到结束期间一直存在。</li>
+<li>全局变量，在程序启动到结束的期间内，一直有效。</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第十章-让角色跳得自然浮点数和类型"><a class="header" href="#第十章-让角色跳得自然浮点数和类型">第十章 让角色跳得自然（浮点数和类型）</a></h1>
 <p>上次我们学习了如何接收输入。这次我们将学习如何让角色跳得更自然。</p>
 <h2 id="101-让角色跳跃起来"><a class="header" href="#101-让角色跳跃起来">10.1 让角色跳跃起来</a></h2>
-<p>以下是一个使角色（自然）跳跃的程序示例。执行时，点击时 gopher 君会向上跳跃，松开时会向下落。</p>
+<p>以下是一个使角色（自然）跳跃的程序示例。</p>
+<p>执行时，点击时 gopher 君会向上跳，松开时会向下落。</p>
 <pre><code class="language-go">package main
 
 import "github.com/eihigh/miniten"
@@ -1660,25 +1716,30 @@ func draw() {
 </code></pre>
 <h2 id="102-速度与加速度"><a class="header" href="#102-速度与加速度">10.2 速度与加速度</a></h2>
 <p>物体下落时，物体会朝着地面加速。在游戏中，加速通常通过<strong>每帧逐渐增加速度</strong>来表现。</p>
-<p>上一章，是通过每帧增加或减少一个固定值 (3) 来表示恒定速度，但这次可以通过每帧将逐渐增加的速度 <code>vy</code> 加到位置 <code>y</code> 上，从而实现加速度。</p>
+<p>上一章，是通过每帧增加或减少一个固定值 (3) 来表示恒速运动，</p>
+<p>这次，通过每帧逐渐增加的速度 <code>vy</code> 反映到位置 <code>y</code> 上，从而实现加速度效果。</p>
 <h3 id="跳跃"><a class="header" href="#跳跃">跳跃</a></h3>
-<p>此程序通过在点击期间将速度设置为 <code>-3</code> （向上  3）来表现跳跃。实际上，现实中的跳跃在离开地面前的瞬间速度才会达到向上的最高速，之后由于重力作用速度会向下减少，但为了简单起见，这里在点击期间一直给予向上的固定速度。虽然是为了容易做，但这在游戏中看起来像是“按得越久跳得越高”，类似超级马里奥的桃月，因此这实际上是一个意外好用的技术。</p>
+<p>此程序通过在点击期间将速度设置为 <code>-3</code> （向上  3）来表现跳跃。</p>
+<p>现实中的跳跃在离开地面前的瞬间，速度会达到向上的最高速，之后由于重力的作用，向上速度会逐渐减少。</p>
+<p>但为了简单起见，这里在点击期间一直给予向上的固定速度。虽然是为了容易做，但这在游戏中的表现，看起来像是**“按得越久跳得越高”**，手感类似超级马里奥的跳跃，是一个意外好用的技巧。</p>
 <h2 id="103-数据类型与类型转换"><a class="header" href="#103-数据类型与类型转换">10.3 数据类型与类型转换</a></h2>
-<p>此处用到的另一个新知识是<strong>类型转换</strong>。 <code>int(y)</code> 的部分就是它。</p>
+<p>此处用到的另一个新知识是<strong>类型转换</strong>。 就是<code>int(y)</code> 的部分。</p>
 <h3 id="1031-浮点数"><a class="header" href="#1031-浮点数">10.3.1 浮点数</a></h3>
-<p>变量 <code>y</code> <code>vy</code> <code>g</code> 在声明时赋值为 <code>0.0</code> 等带小数点的数值，因此这些变量的类型为 <code>float64</code> 的<strong>浮点数</strong>/floating-point number 类型。浮点数与整数类型不同，可以表示小数点以下的数值。</p>
+<p>变量 <code>y</code> <code>vy</code> <code>g</code> 在声明时赋值为类似 <code>0.0</code> 的带小数点的数值，因此这些变量的类型是 <code>float64</code> 的<strong>浮点数</strong>/floating-point number 类型。浮点数与整数类型不同，可以表示小数点以下的数值。</p>
 <pre><code class="language-go">var i = 0   // int 类型的数字
 var f = 0.0 // float64 类型的数字
 </code></pre>
-<p>浮点数这个独特的名字，实际上是在提醒人们注意误差问题（例如，3D 游戏中的墙体穿透 bug ，很多问题都可以归因于浮点数），所以可以理解为故意用这样一个严肃的名字来代替“实数”。</p>
-<pre><code class="language-text">为什么使用“浮动小数点数”而不是“小数”? 
+<p>浮点数这个独特的名字，实际上是在提醒人们注意误差问题（比如3D 游戏中的墙穿墙 bug ，很多问题都可以来自于浮点数），所以故意用这样一个严肃的名字来代替“实数”。</p>
+<pre><code class="language-text">为什么用“浮动小数点数”而不是“小数”? 
 
 这是因为在计算机中表示小数的方法是“移动小数点”。例如 0.5 是将 5 下移 1 位， 0.05 是将 5 下移 2 位。
 
-这种方法，可以表示包含小数点的非常广泛的数值，但因为无法存储无限的位数，小数总是伴随着误差。例如 0.1 + 0.2 会变成 0.30000000000000004 。至少应该避免等值比较 == ，如果误差成为问题，则需要采取如用整数计算等对策。
+这种方法，可以表示包含小数点的非常广泛的数值，但因为计算机只能存储存有限位数，小数计算总是伴随着误差。例如 0.1 + 0.2 会变成 0.30000000000000004 。
+编程中，浮点数应该避免使用等值比较（ == ）运算符。
+如果浮点数误差成为问题，则需要采取如用取整后计算等对策。
 </code></pre>
 <h3 id="1032-类型转换"><a class="header" href="#1032-类型转换">10.3.2 类型转换</a></h3>
-<p>在 Go 中，不同类型之间的计算和赋值基本上是被禁止的。 <code>miniten.DrawImage</code> 函数接受 <code>int</code> 类型的坐标，因此不能直接传递 <code>float64</code> 类型的 <code>y</code> 。</p>
+<p>在 Go 中，不同类型之间的计算和赋值基本上被禁止。 <code>miniten.DrawImage</code> 函数接受 <code>int</code> 类型的坐标，所以不能直接传递 <code>float64</code> 类型的 <code>y</code> 。</p>
 <p>不同类型的赋值，需要像 <code>int(y)</code> 这样，以 <code>类型名称(变量名)</code> 的形式进行转换。 <code>float64</code> 类型到 <code>int</code> 类型的转换，会将小数点以下部分舍去，变为整数。</p>
 <pre><code class="language-go">a := 1
 b := 2.5
@@ -1687,7 +1748,7 @@ c := a + int(b)     // 可以这么做（c 等于3）
 d := float64(a) + b // 可以这么做（d 会变成 3.5）
 </code></pre>
 <pre><code class="language-text">vy = -3 难道不是不同类型（浮点数 与 整数）之间的计算吗？
-结论是，Go 对包含原始值（字面量）如 10 的常量计算，会在类型上进行隐含的特殊处理，因此可以在没有类型转换的情况下也能计算。
+答案是，Go 对原始值（字面量）之间的计算，会在类型上进行隐含的特殊处理，可以在没有显式类型转换的情况下，完成转换与计算。
 </code></pre>
 <h3 id="1033-数据类型"><a class="header" href="#1033-数据类型">10.3.3 数据类型</a></h3>
 <p>int 和 float64 等，所有变量都有称为<strong>类型/type</strong> 的数据类型。类型一旦声明后就无法再更改。类型作为“约束”起作用，大多数情况下，禁止不同类型之间的计算和赋值。这样可以防止“计算结果不明确”或“结果出错”。</p>
@@ -1698,13 +1759,13 @@ var s string  // 字符串
 var b bool    // 布尔值
 var e error   // 错误类型
 </code></pre>
-<p>类型对应以下的“字面值”（指在程序中直接出现，且无法更改的值）。</p>
+<p>各种类型，对应以下的“字面量”（指在程序中直接出现，且无法更改的值）。</p>
 <pre><code class="language-go">i := 1       // 整数
 f := 1.0     // 64bit浮点数
 s := "Hello" // 字符串
 b := true    // 布尔值
 </code></pre>
-<p>您可以基于这些类型，自己声明新的类型。这种用法，用到的时候再说吧。</p>
+<p>您可以基于这些类型，自己声明新类型。这种用法，用到的时候再说吧。</p>
 <h3 id="1034-其他类型"><a class="header" href="#1034-其他类型">10.3.4 其他类型</a></h3>
 <p>Go 还具有许多其他类型。</p>
 <p>首先，整数和浮点数，有不同大小的细分类型。不同的类型，有的占用空间小，有的误差小，是编程高手用的高级类型。</p>
@@ -1716,7 +1777,7 @@ b := true    // 布尔值
 <tr><td>float32</td><td>32bit</td><td>32bit浮点数</td></tr>
 </tbody></table>
 </div>
-<p>此外，还有表示大于等于 0 的整数的无符号整数类型 <code>uint</code> 。它也有不同大小的细分类型。</p>
+<p>此外，还有表示大于等于 0 的无符号整数类型 <code>uint</code> 。它也有不同大小，属于细分类型。</p>
 <div class="table-wrapper"><table><thead><tr><th>类型名</th><th>大小</th><th>用途</th></tr></thead><tbody>
 <tr><td>uint8</td><td>8bit</td><td>0 ～ 255 的整数</td></tr>
 <tr><td>uint16</td><td>16bit</td><td>0 ～ 65535 的整数</td></tr>
@@ -1725,7 +1786,7 @@ b := true    // 布尔值
 </tbody></table>
 </div>
 <p>此外， <code>int</code> 和 <code>uint</code> 的大小在 32 位环境下为 32 位，在 64 位环境下为 64 位。现代计算机几乎都是 64 位环境。</p>
-<p>其他类型大致总结如下。复数类型太小众，没人见过有人在用。在游戏中似乎有用，但实际上并没有……。</p>
+<p>其他类型大致总结如下。复数类型很小众，没人见过有人在用。在游戏中似乎有用，但实际上并没有……。</p>
 <div class="table-wrapper"><table><thead><tr><th>型名</th><th>用途</th></tr></thead><tbody>
 <tr><td>byte</td><td><code>uint8</code> 的别名。用于表示字节数据。</td></tr>
 <tr><td>rune</td><td><code>int32</code> 的别名。用于表示 Unicode 的代码点。</td></tr>
@@ -1736,21 +1797,22 @@ b := true    // 布尔值
 </tbody></table>
 </div>
 <h3 id="1035-默认值"><a class="header" href="#1035-默认值">10.3.5 默认值</a></h3>
-<p>Go 的变量如果在声明时不初始化，将会被赋予默认值。默认值根据类型的不同而有所不同，具体如下：</p>
+<p>Go 的变量，如果在声明时没有初始化，将会被赋予默认值。</p>
+<p>根据类型的不同，默认值也不一样，具体如下：</p>
 <pre><code class="language-go">var i int     // 0
 var f float64 // 0.0
 var s string  // ""
 var b bool    // false
 </code></pre>
-<p>我记得作者经常搞不清布尔值的默认值到底是哪一个？是 false。</p>
+<p>作者经常搞不清布尔值的默认值到底是什么？是 false。</p>
 <h2 id="本章总结-8"><a class="header" href="#本章总结-8">本章总结</a></h2>
 <ul>
 <li>要使角色自然地跳跃，需要用到速度和加速度。</li>
 <li>浮动小数点数可以表示小数点以下的数值。</li>
-<li>不同类型之间的计算和赋值基本上是被禁止的。需要进行类型转换。</li>
+<li>不同类型之间的计算和赋值基本上被禁止。需要进行显式的类型转换。</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第十一章-加快动作切片与循环"><a class="header" href="#第十一章-加快动作切片与循环">第十一章 加快动作（切片与循环）</a></h1>
-<p>上次我们学习了如何让角色流畅地移动。然而，游戏中除了玩家角色，还需要许多敌人和物体。因此，我们需要一种管理多个对象的方法。</p>
+<p>上次我们学习了如何让角色自然地移动。然而，游戏中除了玩家角色，还需要许多敌人和物体。因此，我们需要一种管理多个对象的方法。</p>
 <h2 id="111-数组"><a class="header" href="#111-数组">11.1 数组</a></h2>
 <p>当我想移动很多东西时</p>
 <pre><code class="language-go">var x0 int
@@ -2813,7 +2875,7 @@ func drawGameover() {
 <p>通过画面迁移，我们整理了整个程序的流程，学习了构建游戏的流程。这种画面迁移，或者广义上的状态迁移（例如 isJustClicked），是程序中较难适当管理的内容之一。当能够编写画面迁移时，我认为可以作为一名合格的程序员而自豪了。</p>
 <p>如前所述，虽然程序本身仍然有很多可以改进的空间，但是本章的地鼠游戏，将在这里告一段落。从下次开始，我们将挑战不同的事物。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第十五章-发布游戏让朋友玩编译和分发"><a class="header" href="#第十五章-发布游戏让朋友玩编译和分发">第十五章 发布游戏让朋友玩（编译和分发）</a></h1>
-<p>前回まで无事完成了一款游戏。既然制作了有趣的游戏，就希望其他人也能来玩。因此这次将介绍游戏的分发和游玩方法。</p>
+<p>前几章顺利完成了一款游戏。既然制作了有趣的游戏，就希望其他人也能来玩。因此这次将介绍游戏的分发和游玩方法。</p>
 <p>近年来，通过网络分发游戏并让人们玩耍已变得越来越普遍。Ebitengine 在网络分发方面也非常方便，因此请尽情将您的力作向世界发布吧！</p>
 <h2 id="编译"><a class="header" href="#编译">编译</a></h2>
 <p>在编程世界中，创造某种成果物被广泛称为编译/build。成果物的种类有很多，但本书所讨论的编译是“制作可以作为游戏运行的文件”。让我们在这一页学习编译的方法，旨在分发成果物并让人们来玩。</p>
@@ -2821,9 +2883,8 @@ func drawGameover() {
 <pre><code>$ go build
 </code></pre>
 <p>然后目录中应该生成了可执行文件。在 Windows 中，文件会带有 <code>.exe</code> 扩展名，但在 macOS 或 Linux 中则没有扩展名。请通过资源管理器或其他方式打开生成的文件，双击运行，确认游戏是否如以前一样正常运行。</p>
-<details data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b" open=""><summary data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b" data-immersive-translate-paragraph="1">余談：ビルドとコンパイル<font class="notranslate immersive-translate-target-wrapper" data-immersive-translate-translation-element-mark="1" lang="zh-CN"><font class="notranslate" data-immersive-translate-translation-element-mark="1">&nbsp;</font><font class="notranslate immersive-translate-target-translation-theme-none immersive-translate-target-translation-inline-wrapper-theme-none immersive-translate-target-translation-inline-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-none-inner" data-immersive-translate-translation-element-mark="1">余谈：编译与编译</font></font></font></summary><div class="details-content" data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b">
-<p data-line="16" class="code-line" data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b" data-immersive-translate-paragraph="1">Goのビルドは、プログラムを機械語に翻訳する<strong data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b">コンパイル</strong>/compileと、それを実行可能ファイルにまとめる<strong data-immersive-translate-walked="f0a2d52a-57f4-4349-8947-47c5a352bb2b">リンク</strong>/linkの大きく2つのステップから成り立っています。ですがリンクのステップの存在感が薄いのと、コンパイル不要な言語と区別する意図、あとは長年の慣習により、ビルド全体のことをコンパイルと呼ぶことも多いです。<font class="notranslate immersive-translate-target-wrapper" data-immersive-translate-translation-element-mark="1" lang="zh-CN"><br><font class="notranslate immersive-translate-target-translation-theme-none immersive-translate-target-translation-block-wrapper-theme-none immersive-translate-target-translation-block-wrapper" data-immersive-translate-translation-element-mark="1"><font class="notranslate immersive-translate-target-inner immersive-translate-target-translation-theme-none-inner" data-immersive-translate-translation-element-mark="1">Go 的编译由两个主要步骤组成：将程序翻译成机器语言的编译/compile，以及将其汇总为可执行文件的链接/link。然而，由于链接步骤的存在感较弱，以及为了区分不需要编译的语言，加上多年的惯例，整个编译过程常常被称为编译。</font></font></font></p>
-</div></details>
+<h3 id="余谈编译与链接"><a class="header" href="#余谈编译与链接">余谈：编译与链接</a></h3>
+<p>GGo 的编译由两个主要步骤组成：将程序翻译成机器语言的编译/compile，以及将其汇总为可执行文件的链接/link。然而，由于链接步骤的存在感较弱，以及为了区分不需要编译的语言，加上多年的惯例，整个编译过程常常被称为编译。</p>
 <p>这下成果物终于完成了，接下来只要分发就可以了……本来想这么说，但实际上并不是这样。</p>
 <h2 id="嵌入资源"><a class="header" href="#嵌入资源">嵌入资源</a></h2>
 <p>请尝试将此可执行文件移动到桌面等其他位置后再运行。此时，图像应该不会显示。这是因为可执行文件正在读取同一目录中的图像文件，而在其他位置找不到这些文件，因此无法显示。</p>
@@ -3511,7 +3572,7 @@ func hitTestRects(aLeft, aTop, aRight, aBottom, bLeft, bTop, bRight, bBottom int
 <p>我们学习了如何使用函数来整理处理。函数可以接收参数并返回值，并且可以在 <code>return</code> 处结束处理。使用函数可以提高程序的可读性。然而，是否应该将其整理成函数会因情况而异，因此我们要记住，通用化并不总是正确的。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第十八章-指针pointer"><a class="header" href="#第十八章-指针pointer">第十八章 指针（Pointer）</a></h1>
 <p>这次，我们将讨论编程初学者的“鬼门”，指针。我认为比起 C 语言，遇到困难的人并不多，但仍然会有不少人感到困难，因此我会仔细进行解说。</p>
-<h2 id="ポインター-指针"><a class="header" href="#ポインター-指针">ポインター 指针</a></h2>
+<h2 id="指针"><a class="header" href="#指针">指针</a></h2>
 <p><strong>指针/pointer</strong> 是一个表示“指示某物”的词，表示变量等存在的“位置”。如下所示使用。</p>
 <pre><code class="language-go">package main
 

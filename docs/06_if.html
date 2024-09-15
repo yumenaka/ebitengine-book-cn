@@ -182,7 +182,8 @@
                     <main>
                         <div class="content-wrap">
                             <h1 id="第六章-玩抽签条件分支"><a class="header" href="#第六章-玩抽签条件分支">第六章 玩抽签（条件分支）</a></h1>
-<p><strong>条件分支</strong>说的是“如果△△，那么〇〇”的这样的逻辑。根据前提条件，决定走哪一条处理流程。从这里开始，将会越来越有“编程”的味道。这次我们将通过制作抽签游戏，学习<strong>条件分支</strong>的用法。</p>
+<p><strong>条件分支</strong>，说的是“如果△△，那么〇〇”的这样的逻辑判断以后，再根据前提条件，决定走哪一条处理流程。</p>
+<p>从这里开始，将会越来越有“编程”的味道。这次我们将通过制作抽签游戏，学习<strong>条件分支</strong>的用法。</p>
 <h2 id="51-if-语句"><a class="header" href="#51-if-语句">5.1 if 语句</a></h2>
 <p>首先，我们来写一个简单的程序，随机决定是中奖还是没中奖。</p>
 <pre><code class="language-go">package main
@@ -220,7 +221,7 @@ $ go run .
 </ul>
 <p>结果是，“如果 <code>rand.N(2)</code> 的返回值等于 1，则显示为中奖，如果为 0，则显示为未中奖。最后始终显示抽奖结束。”</p>
 <h3 id="else-if"><a class="header" href="#else-if">else if</a></h3>
-<p>判断完一个条件后，如果判断还不足够，并希望确认另一个条件成立不成立，则应该使用 <code>else if</code> 。</p>
+<p>判断完一个条件，如果信息量还不足够，并希望确认另一个条件成立不成立，此时应该使用 <code>else if</code> 。</p>
 <pre><code class="language-go">package main
 
 import (
@@ -250,14 +251,17 @@ $ go run .
 <li>如果第二个条件也没有满足，则执行最后的 <code>{}</code> 的内容，并显示 <code>１等大奖！！！</code> 。</li>
 </ul>
 <h3 id="布尔值"><a class="header" href="#布尔值">布尔值</a></h3>
-<p><code>if △△</code> 的“△△”中所填的内容称为<strong>布尔值</strong>（英文为布尔/boolean，简称布尔/bool）。<strong>布尔值</strong>是只有<strong>真/true</strong> 或<strong>假/false</strong> 两个选择的特殊值。普通数字可以是 0, 1, 2, 3...等无限多，但<strong>布尔值</strong>只有“真”和“假”这两种。</p>
-<p><code>if △△ { 〇〇 } else { ×× }</code> 是指“如果△△的真布尔值为真，则执行〇〇；如果为假，则执行××”。</p>
-<p>然后， <code>==</code> 是一个求真值的符号，如果左右的值相等则为 <code>true</code> ，如果不相等则为 <code>false</code> 。求真值的符号还有其他的，如 <code>&gt;</code> （大于）、 <code>&amp;&amp;</code> （且）、 <code>||</code> （或者）等多种。这些可以组合在一起进行各种判断，但我们会在需要的时候再讨论这些。</p>
+<p><code>if △△</code> 的“△△”中，对应的内容称为<strong>布尔值</strong>（英文为布尔/boolean，简称布尔/bool）。<strong>布尔值</strong>是只有<strong>真/true</strong> 或<strong>假/false</strong> 两个选项的特殊值。</p>
+<p>普通数字可以是 0, 1, 2, 3...等无限多，但<strong>布尔值</strong>只有“真”和“假”这两种。</p>
+<p><code>if △△ { 〇〇 } else { ×× }</code> 这个语句，指**“如果△△的真布尔值为真，则执行〇〇；如果为假，则执行××”**。</p>
+<p>然后， <code>==</code> 是一个求真值的符号，如果左右的值相等，整个式子则为 <code>true</code> ，如果不相等整个式子为 <code>false</code> 。</p>
+<p>还有其他的求真值的符号，如 <code>&gt;</code> （大于）、 <code>&amp;&amp;</code> （且）、 <code>||</code> （或者）等多种。这些可以组合在一起进行判断。我们会在需要的时候再讨论这些。</p>
 <h3 id="面向有经验的人-go-不能使用其他类型代替布尔值"><a class="header" href="#面向有经验的人-go-不能使用其他类型代替布尔值">[面向有经验的人] Go 不能使用其他类型代替布尔值</a></h3>
-<p>Go 不能将用“<strong>布尔值</strong>”以外的类型用作布尔值。例如，在 C 语言中，0 被代表假，其他值被视为真，但在 Go 中，0 不能用来代替真布尔值。必须使用逻辑运算符将其转换为真偽值。</p>
+<p>Go 不能将用“<strong>布尔值</strong>”以外的类型代替布尔值。例如，在 C 语言中，0 代表假，其他值被视为真。</p>
+<p>但在 Go 中，0 不能用来代替布尔值。必须使用逻辑运算符将其转换为布尔值。</p>
 <h2 id="52-switch语句"><a class="header" href="#52-switch语句">5.2 switch语句</a></h2>
-<p>控制条件分支，除了 <code>if</code> 以外，也可以使用 <code>switch</code> 语句。 <code>switch</code> 在需要判断多个条件时非常方便。</p>
-<p><code>switch</code> 有几种语法，但基本模式是“根据 switch 后面的值与哪个 case 相等进行分支”。</p>
+<p>控制条件分支，除了 <code>if</code> 语句以外，也可以使用 <code>switch</code> 语句。 <code>switch</code> 在需要判断多个条件时非常方便。</p>
+<p><code>switch</code> 有几种语法，最基本的模式是“根据 switch 后面的值与哪个 case 相等，进行分支判断”。</p>
 <pre><code class="language-go">package main
 
 import (
@@ -287,11 +291,12 @@ $ go run .
 $ go run .
 是0
 </code></pre>
-<p>当 <code>switch</code> 后面的值与 <code>case</code> 匹配时，将执行 <code>case</code> 的内容。如果与任何 <code>case</code> 不匹配，将执行 <code>default</code> 。</p>
+<p>当 <code>switch</code> 后面的值与某个 <code>case</code> 匹配时，将执行 <code>case</code> 的内容。</p>
+<p>如果与任何 <code>case</code> 都不匹配，将执行 <code>default</code> 。</p>
 <h3 id="面向有经验的人-go-的-switch-不需要-break-语句"><a class="header" href="#面向有经验的人-go-的-switch-不需要-break-语句">[面向有经验的人] go 的 switch 不需要 break 语句</a></h3>
-<p>与 C 语言等不同，go在每个 case 的末尾不需要写 <code>break</code> ，而是默认可以直接跳出 <code>switch</code> 语句，不进入下一个 <code>case</code> 。</p>
+<p>与 C 语言等不同，Go在每个 case 的末尾不需要写 <code>break</code> ，而是默认可以直接跳出 <code>switch</code> 语句，不进入下一个 <code>case</code> 。</p>
 <h3 id="用-case-合并分支"><a class="header" href="#用-case-合并分支">用 case 合并分支</a></h3>
-<p>在 Go 中，可以通过在 <code>case</code> 后面用逗号分隔列出多个值来合并 case。</p>
+<p>在 Go 中，可以通过在 <code>case</code> 后面用逗号分隔，列出多个值来合并 case。</p>
 <pre><code class="language-go">package main
 
 import (
@@ -318,21 +323,21 @@ $ go run .
 其他数字
 </code></pre>
 <h3 id="用-switch-来代替-else-if"><a class="header" href="#用-switch-来代替-else-if">用 switch 来代替 else if</a></h3>
-<p>さ此外，Go 语言还有一种特有的语法，即在 case 后面写条件而不是值。</p>
+<p>此外，Go 语言还有一种特有的语法，即在 case 后面写条件而不是值。</p>
 <pre><code class="language-go">func main() {
-	switch { // この構文では、switchの後ろに値を書かない
+	switch { // 这种写法里面，switch后面没有值
 	case rand.N(2) == 0:
-		fmt.Println("ハズレ")
+		fmt.Println("没中")
 	case rand.N(2) == 0:
-		fmt.Println("３等当たり！")
+		fmt.Println("３等奖！")
 	case rand.N(2) == 0:
-		fmt.Println("２等当たり！")
+		fmt.Println("２等奖！")
 	default:
-		fmt.Println("１等当たり！")
+		fmt.Println("１等大奖！")
 	}
 }
 </code></pre>
-<p>上述内容用 else if 替换后，将变成这样的程序。两者的意思相同。请使用您喜欢的方式。</p>
+<p>上述内容用 else if 重写，会变成这样的程序。两者的意思相同。请使用您喜欢的方式。</p>
 <pre><code class="language-go">package main
 
 import (
@@ -342,19 +347,19 @@ import (
 
 func main() {
 	if rand.N(2) == 0 {
-		fmt.Println("ハズレ")
+		fmt.Println("没中")
 	} else if rand.N(2) == 0 {
-		fmt.Println("３等当たり！")
+		fmt.Println("３等奖！")
 	} else if rand.N(2) == 0 {
-		fmt.Println("２等当たり！")
+		fmt.Println("２等奖！")
 	} else {
-		fmt.Println("１等当たり！")
+		fmt.Println("１等大奖！")
 	}
 }
 </code></pre>
 <h2 id="53-制作抽签程序"><a class="header" href="#53-制作抽签程序">5.3 制作抽签程序</a></h2>
-<p>那么，利用这些知识，我们来制作一个抽签游戏吧。</p>
-<p>从 0 到 4 的 5 个值中抽取一个，并将其与运势对应。</p>
+<p>那么，利用这些知识，让我们做一个抽签游戏吧。</p>
+<p>从 0 到 4 的 5 个值中抽取一个，将其与运势对应。</p>
 <div class="table-wrapper"><table><thead><tr><th>数字</th><th>运势</th></tr></thead><tbody>
 <tr><td>4</td><td>大吉</td></tr>
 <tr><td>3</td><td>吉</td></tr>
@@ -363,7 +368,7 @@ func main() {
 <tr><td>0</td><td>大凶</td></tr>
 </tbody></table>
 </div>
-<p>那么，程序会变成什么样呢？以下是答案示例。</p>
+<p>那么，程序会变成什么样呢？以下是示例答案：</p>
 <pre><code class="language-go">package main
 
 import (
@@ -387,7 +392,7 @@ func main() {
 }
 </code></pre>
 <h3 id="改变概率"><a class="header" href="#改变概率">改变概率</a></h3>
-<p>这样的话，从大吉到大凶的出现概率都是一样的，但这就不太像抽签了。我们来根据运势改变出现的概率。方法有很多，但这次我们简单地将一个运势对应多个数字。</p>
+<p>上面的程序，从大吉到大凶，出现概率都是一样的，但这不太像抽签。我们来根据运势，改变出现的概率。做法有很多，这次我们简单地将一个运势，对应多个数字。</p>
 <div class="table-wrapper"><table><thead><tr><th>数字</th><th>运势</th></tr></thead><tbody>
 <tr><td>9</td><td>大吉</td></tr>
 <tr><td>8, 7, 6</td><td>吉</td></tr>
@@ -396,7 +401,7 @@ func main() {
 <tr><td>0</td><td>大凶</td></tr>
 </tbody></table>
 </div>
-<p>通过这样做，比如吉的出现概率，将会是大吉的三倍。那么，这将会是什么样的程序呢？</p>
+<p>这样做，“吉”的出现概率将会是“大吉”的3倍。那么，写成程序会是怎样呢？</p>
 <pre><code class="language-go">package main
 
 import (
@@ -423,7 +428,7 @@ func main() {
 <h2 id="本章总结"><a class="header" href="#本章总结">本章总结</a></h2>
 <ul>
 <li>if △△ { 〇〇 } else { ×× }` 这个句子的意思，是“如果△△的布尔值为真，则执行〇〇；如果为假，则执行××。”</li>
-<li><code>switch</code> 在需要区分多个条件时非常方便。根据 <code>switch</code> 后面的值与哪个 <code>case</code> 相等，选择执行的分支。</li>
+<li><code>switch</code> 在需要区分多个条件时非常方便。根据 <code>switch</code> 后面的值与哪个 <code>case</code> 相等，选择执行对应的分支。</li>
 </ul>
 
                         </div>

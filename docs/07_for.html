@@ -182,18 +182,18 @@
                     <main>
                         <div class="content-wrap">
                             <h1 id="第七章-做猜数字游戏for循环"><a class="header" href="#第七章-做猜数字游戏for循环">第七章 做猜数字游戏（for循环）</a></h1>
-<p>上次我们学习了条件分支，踏进编程的门槛了。这次我们将学习如何重复处理同一件事。</p>
+<p>上次我们学习了条件分支，踏进编程门槛了。这次我们将学习如何重复处理同一件事。</p>
 <h2 id="71-重复"><a class="header" href="#71-重复">7.1 重复</a></h2>
-<p>使用 <code>for</code> 可以编写重复（循环）处理。Go 的 for 语句有以下三种形式，其他语言中的 <code>while</code> 和 <code>foreach</code> 的功能，也集中在 <code>for</code> 中。</p>
-<p>记住最重要的第一和第二点就可以了，第三点，目前 只需在脑海的角落里留个印象即可。</p>
+<p>使用 <code>for</code> 可以编写重复（循环）处理。Go 的 for 语句有以下三种形式。</p>
+<p>其他语言中的 <code>while</code> 和 <code>foreach</code> 的功能，也集中在 <code>for</code> 中。</p>
+<p>最重要的，是记住的第一和第二条。第三点，目前只需在脑海的角落里留个印象。</p>
 <ul>
 <li><code>for 条件 { ... }</code> - 满足条件的情况下循环处理。相当于其他语言的 <code>while</code> 。</li>
 <li><code>for range 値 { ... }</code> - 按顺序提取数组或切片等并循环。相当于其他语言中的 <code>foreach</code> 。</li>
-<li><code>for 初期化; 条件; 後処理 { ... }</code> - 初期化、条件、後処理を指定して繰り返す。</li>
-<li><code>for 初始化; 循环条件; 循环后处理 { ... }</code> - 指定初始化、条件和循环后语句，以执行循环。</li>
+<li><code>for 初始化; 循环条件; 循环后处理 { ... }</code> - 按“初期化、条件、循环后处理”的流程进行处理。</li>
 </ul>
 <h3 id="711--只有一个条件语句的-for-语句"><a class="header" href="#711--只有一个条件语句的-for-语句">7.1.1  只有一个条件语句的 for 语句</a></h3>
-<p>首先介绍的是在满足条件时重复的 for 文。相当于其他语言中的 <code>while</code> 。</p>
+<p>首先介绍的，是在满足条件时重复的 for 语句。相当于其他语言中的 <code>while</code> 。</p>
 <pre><code class="language-go">package main
 
 import (
@@ -214,8 +214,11 @@ func main() {
 循环
 结束
 </code></pre>
-<p>如果 <code>rand.N(2)</code> 的返回值为 1，则执行 <code>{}</code> 的内容。执行后再次执行 <code>rand.N(2)</code> ，检查返回值是否为 1，如果是，则执行 <code>{}</code> 的内容。这样循环重复。如果不再满足条件，则退出 <code>{}</code> 并显示 <code>结束</code> 。运气好的话会重复很多次，但也可能不是这样。这样，在满足条件的情况下，重复执行 <code>{}</code> 的内容的语句就是 <code>for</code> 语句。</p>
-<p>条件可以省略。在这种情况下，将始终被视为满足条件，形成所谓的“无限循环”。以下代码会输出大量文本，请准备好随时按“Ctrl+C”强制结束程序。</p>
+<p>如果 <code>rand.N(2)</code> 的返回值为 1，则执行 <code>{}</code> 的内容。</p>
+<p>执行后再次执行 <code>rand.N(2)</code> ，检查返回值是否为 1，如果是，则执行 <code>{}</code> 的内容。</p>
+<p>这样循环重复。如果不再满足条件，则退出 <code>{}</code> 并显示 <code>结束</code> 。运气好的话，此语句会循环很多次，但也可能直接结束。</p>
+<p>这样在满足条件的情况下，重复执行 <code>{}</code> 里面的内容的语句就是 <code>for</code> 语句。</p>
+<p>条件可以省略不写。在这种情况下，将始终被视为满足条件，形成所谓的“无限循环”。以下代码会输出大量文本，请准备好随时按“Ctrl+C”强制结束程序。</p>
 <pre><code class="language-go">package main
 
 import "fmt"
@@ -227,7 +230,9 @@ func main() {
 }
 </code></pre>
 <h3 id="712-用-range-指定循环范围"><a class="header" href="#712-用-range-指定循环范围">7.1.2 用 range 指定循环范围</a></h3>
-<p>接下来介绍的是使用 <code>range</code> （范围）的 for 循环。虽然 <code>range</code> 中还有各种不同的用法，但这些将在后面介绍，在本页面中暂时介绍“指定次数重复”的用法。请查看代码。</p>
+<p>接下来介绍的是使用 <code>range</code> （范围）的 for 循环。</p>
+<p><code>range</code> 中还有不同的用法，这些将在后面介绍。本章节中首先介绍的是**“指定次数重复”的 range 用法**。</p>
+<p>请看代码：</p>
 <pre><code class="language-go">package main
 
 import "fmt"
@@ -237,6 +242,18 @@ func main() {
         fmt.Println("循环")
     }
     fmt.Println("结束")
+}	
+</code></pre>
+<pre><code class="language-go">package main
+
+import "fmt"
+
+func main() {
+	var i = 0
+	for i = range 5 { // range 前面用等号的例子
+		fmt.Println(i)
+	}
+  fmt.Println("循环结束后会执行这里")
 }
 </code></pre>
 <pre><code class="language-bash">$ go run .
@@ -247,8 +264,8 @@ func main() {
 循环
 结束
 </code></pre>
-<p>通过在 <code>range</code> 后面写上重复的次数，就可以重复执行 <code>{}</code> 中的处理。
-此外，您还可以将“重复了多少次”放入变量中使用。这可以通过在 <code>range</code> 前面写 <code>:=</code> 或 <code>=</code> 来实现。</p>
+<p>通过在 <code>range</code> 后面写上重复次数，就可以重复执行 <code>{}</code> 中的处理。
+此外，您还可以将“重复几次”放入变量中使用。这可以通过在 <code>range</code> 前面写 <code>:=</code> 或 <code>=</code> 语句来实现。</p>
 <pre><code class="language-go">package main
 
 import "fmt"
@@ -268,10 +285,10 @@ func main() {
 4
 循环结束后会执行这里
 </code></pre>
-<p>请注意，此处 i 的起始值是 0 。
-变量名可以随意，但表示循环次数的值通常使用字母 <code>i</code> 。这个习惯，据说源自编程语言“APL”中使用的希腊字母 ι（伊奥塔）。</p>
+<p>请注意，此处 i 的起始值是 0 。</p>
+<p>变量名可以随意起，但表示循环次数的值，通常会使用字母 <code>i</code> 。这个习惯，据说源自编程语言“APL”中使用的希腊字母 ι（伊奥塔）。</p>
 <h3 id="713-初期化循环条件循环后处理的用法"><a class="header" href="#713-初期化循环条件循环后处理的用法">7.1.3 初期化・循环条件・循环后处理的用法</a></h3>
-<p>最后介绍的是最经典的 for 循环用法。很多人可能在 C 语言中熟悉了这种写法。我们来写一段代码，像在 <code>range</code> 中那样重复执行 5 次。</p>
+<p>最后介绍的，是最经典的 for 循环用法。很多人可能在 C 语言中熟悉了这种写法。我们来写一段代码，像在 <code>range</code> 中那样重复执行 5 次。</p>
 <pre><code class="language-go">package main
 
 import "fmt"
@@ -290,19 +307,21 @@ func main() {
 4
 </code></pre>
 <p>以 <code>初期化语句; 循环条件; 循环后处理</code> 的形式，用英文分号 <code>;</code> 分隔三个表达式。</p>
-<p>这种情况下，这个for语句的意思就是：</p>
+<p>这种情况下，这个 for 语句的意思是：</p>
 <ul>
 <li>将变量 <code>i</code> 初始化为 0，</li>
 <li><code>i</code> 小于 5 的时候重复循环</li>
 <li>每次循环将 <code>i</code> 加 1（ <code>++</code> 是表示将 i 加 1 的符号）</li>
 </ul>
-<p>如您所见，同样的功能，使用 <code>range</code> 可以更写得更短，因此感觉不会有人故意写得这么啰嗦。</p>
-<p>但是，实际上用 <code>range</code> 指定次数循环的功能，是最近才加入的，在此之前我们一直使用这种经典写法。为了阅读老代码，了解这一点是有必要的。</p>
+<p>如您所见，同样的功能，使用 <code>range</code> 可以更写得更短，感觉不会有人故意写得这么啰嗦。</p>
+<p>但是，这个用 <code>range</code> 指定次数循环的功能，是最近才加入的。在此之前我们一直使用这种经典写法。为了阅读老代码，有必要了解这个语法。</p>
 <h2 id="72-循环控制"><a class="header" href="#72-循环控制">7.2 循环控制</a></h2>
-<p>循环可以在中途停止或跳过。</p>
-<p>读到这里，编程用的关键词变多了呢。虽然你可能感到有些吃力，但其实不需要一次记住。只需在多写几次，在实践中逐渐记住即可！</p>
+<p>for 循环，可以在中途停止或跳过。</p>
+<p>读到这里，感觉编程用的关键词变多了呢。</p>
+<p>虽然可能会让你感到有些吃力，但这些关键词，并不需要一记住。</p>
+<p>只需要在实践中多写几次，逐渐掌握即可！</p>
 <h3 id="721-break-中断"><a class="header" href="#721-break-中断">7.2.1 break 中断</a></h3>
-<p>使用关键词 <code>break</code> ，可以在循环中途停止。</p>
+<p>使用关键词 <code>break</code> ，可以在中途停止循环。</p>
 <pre><code class="language-go">package main
 
 import "fmt"
@@ -322,9 +341,9 @@ func main() {
 1
 循环后执行次语句
 </code></pre>
-<p>本来 <code>range </code> 指定执行5 次重复的循环，在满足 <code>if i == 2</code> 的条件时，执行了 <code>break</code> ，并在途中中断。</p>
+<p>可以看到，<code>range </code> 指定执行5 次重复的循环，满足 <code>if i == 2</code> 这个条件时执行了 <code>break</code> ，在途中被中断。</p>
 <h3 id="722-continue-继续"><a class="header" href="#722-continue-继续">7.2.2 continue 继续</a></h3>
-<p>使用 <code>continue</code> 可以跳过本次循环的其余部分，继续进行以后的循环。</p>
+<p>使用 <code>continue</code> 语句，可以跳过本次循环的其余部分，继续下一次循环。</p>
 <pre><code class="language-go">package main
 
 import "fmt"
@@ -335,7 +354,7 @@ func main() {
             fmt.Println("跳过此次循环")
             continue
         }
-        fmt.Println(i) // 如果上面的continue执行了，这个语句这次将不会执行
+        fmt.Println(i) // 如果上面的continue执行了，这次将不会执行这一句
     }
 }
 </code></pre>
@@ -346,9 +365,10 @@ func main() {
 3
 4
 </code></pre>
-<p>循环本身虽然没有中断，但 <code>continue</code> 时应该执行的 <code>fmt.Println(i)</code> 却在该循环中被跳过了，您能理解发生了什么吗？</p>
+<p>循环本身虽然被没有中断，但 <code>continue</code> 时，本该执行的 <code>fmt.Println(i)</code> 却在该次循环中被跳过。</p>
+<p>您能理解发生了什么吗？</p>
 <h3 id="面向有经验的人-多重循环和带标签的-breakcontinue"><a class="header" href="#面向有经验的人-多重循环和带标签的-breakcontinue">[面向有经验的人] 多重循环和带标签的 break、continue</a></h3>
-<p>break 和 continue 通常只能中断或跳过最内层的循环。如果在多重嵌套的情况下想要中断或继续外层循环，则需要与标签结合使用。</p>
+<p>break 和 continue ，通常只能中断或跳过最内层的循环。在多重嵌套的情况下，如果想要中断或继续外层循环，就需要与标签结合使用循环语句。</p>
 <pre><code class="language-go">package main
 
 import "fmt"
@@ -358,17 +378,19 @@ loop: // "loop"标签
     for i := range 3 {
         for j := range 3 {
             if i == 2 {
-                break loop // 指定标签的 break 语句
+                break loop // 指定标签，跳出特定循环的 break 语句
             }
         }
     }
 }
 </code></pre>
-<p>行头中写入 <code>loop:</code> ，可以为接下来的句子（在这种情况下是 <code>for i := ...</code> ）添加标签。虽然额外的缩进，可能会让你感到不适，但请适应。</p>
-<p>学习 break 和 continue 等关键字时，作者本人也曾经觉得非常吃力。但是在不断查阅资料与使用的过程中，逐渐就适应了，所以不要着急，慢慢进行吧。</p>
+<p>行头中写的 <code>loop:</code> ，可以为接下来的句子（在这种情况下是 <code>for i := ...</code> ）添加标签。虽然 <code>loop:</code> 的额外缩进，可能会让你感到不适，但请适应。</p>
+<p>学习 break 和 continue 等关键字时，作者本人也曾经觉得非常吃力。但在不断查阅资料与使用的过程中，逐渐就习惯了，所以不要着急，逐步推进吧。</p>
 <h2 id="73-输入"><a class="header" href="#73-输入">7.3 输入</a></h2>
-<p>赶快用所学的知识，来制作一个猜数字游戏吧……虽然我想这么说，但如果程序无法接收玩家的输入，就没法制作游戏。接受来自终端的输入，只在本章用一次，所以我我说的会比较简略。</p>
-<p>在终端接收输入时，可以使用 <code>fmt.Scanln</code> 。将变量的指针作为参数传给 <code>fmt.Scanln</code> ， <code>fmt.Scanln</code> 会将用户输入的值赋给该变量。至于指针是什么，稍后会解释。</p>
+<p>赶快用所学的知识，做一个猜数字游戏吧……</p>
+<p>虽然我想这么说，但如果程序无法接收玩家输入，就没法做游戏。接受来自终端的输入的函数，只在本章用一次，所以我的介绍会比较简略。</p>
+<p>在终端接收输入，可以使用 <code>fmt.Scanln</code> 。将变量的指针作为参数传给 <code>fmt.Scanln</code> ， <code>fmt.Scanln</code> 就会将用户输入的值，赋值给该变量。</p>
+<p>至于指针是什么，稍后会解释。</p>
 <pre><code class="language-go">package main
 
 import "fmt"
@@ -376,7 +398,7 @@ import "fmt"
 func main() {
     fmt.Println("请输入数字")
     input := 0
-    fmt.Scanln(&amp;input) //加个 &amp; 将 input的指针传给fmt.Scanln
+    fmt.Scanln(&amp;input) //加个 &amp; ，将 input的指针传给fmt.Scanln
     fmt.Println("你输入的值是", input)
 }
 </code></pre>
@@ -385,8 +407,10 @@ func main() {
 （在这里输入数值，然后按回车键结束）
 你输入的值是 42
 </code></pre>
-<h2 id="74-制作数字猜谜游戏"><a class="header" href="#74-制作数字猜谜游戏">7.4 制作数字猜谜游戏</a></h2>
-<p>这下准备好了。我们来制作一个猜数字游戏。生成一个随机的秘密值，玩家需要猜出这个值。如果猜错了，就继续猜，直到猜对为止。同时，作为提示，会显示“答案你比猜的数更大”或“答案你比猜的数更小”。</p>
+<h2 id="74-制作猜数字游戏"><a class="header" href="#74-制作猜数字游戏">7.4 制作猜数字游戏</a></h2>
+<p>前提知识准备好了。接下来我们制作一个猜数字游戏吧。</p>
+<p>用程序生成一个随机的秘密值，玩家需要猜出这个值。如果猜错了，就继续猜，直到猜对为止。</p>
+<p>同时作为提示，程序会显示“答案你比猜的数更大”或“答案你比猜的数更小”。</p>
 <pre><code class="language-go">package main
 
 import (
@@ -438,15 +462,18 @@ func main() {
 答对了！
 游戏结束
 </code></pre>
-<p>综合运用学到的知识，我们已经能够制作猜数字游戏了。能够结合 if 和 for 制作出这样的东西，已经可以称得上是一名合格的程序员了。</p>
-<p>如果有余裕的话，可以设定回答数量的限制，或者统计并显示回答数量，尝试各种玩法会比较好。</p>
-<p>此外，这次制作的是一个非常简单的数字猜测游戏，但不要小看这个数字猜测游戏。稍后将要说明的“数组・切片”结合起来，可以变成真正的推理游戏，类似“Hit and Blow”的东西。真正的游戏所需的精髓，你已经掌握不少了。</p>
+<p>综合运用学到的知识，我们已经能够制作猜数字游戏了。</p>
+<p>能够使用 if 和 for 做东西，已经可以称得上是合格的程序员了。</p>
+<p>如果心有余力，可以设定猜测次数限制，或统计玩家猜了几次，尝试各种玩法。</p>
+<p>此外，这次做的是一个非常简单的数字猜测游戏，但不要小看这个猜数字游戏。</p>
+<p>结合接下来将要说明的“数组・切片”结功能，这个游戏可以变成真正的推理游戏，就像“Hit and Blow”那样。</p>
+<p>真正的游戏所需的精髓，你已经掌握不少了。</p>
 <h2 id="本章总结"><a class="header" href="#本章总结">本章总结</a></h2>
 <ul>
 <li>使用 <code>for</code> 可以编写循环处理。</li>
 <li><code>for 条件 { ... }</code> 在条件满足的情况下重复循环。</li>
-<li><code>for range 回数 { ... }</code> 指定循环固定的次数。</li>
-<li><code>break</code> , <code>continue</code> 可以控制循环的流程。</li>
+<li><code>for range 回数 { ... }</code> 固定次数的循环。</li>
+<li><code>break</code> , <code>continue</code> 可以控制循环流程。</li>
 </ul>
 
                         </div>

@@ -182,10 +182,11 @@
                     <main>
                         <div class="content-wrap">
                             <h1 id="第八章-绘制窗口"><a class="header" href="#第八章-绘制窗口">第八章 绘制窗口</a></h1>
-<p>在终端运行的纯文字程序也差不多让人厌了。这次终于要显示图形了。</p>
+<p>在终端里运行的纯文字程序，也差不多让人厌了。这次终于要显示画面了。</p>
 <h2 id="81-掌握-ebitengine-以前"><a class="header" href="#81-掌握-ebitengine-以前">8.1 掌握 Ebitengine 以前</a></h2>
-<p>因此，我想立即使用 <a href="https://ebitengine.org/ja/">Ebitengine……</a></p>
-<p>但我还没有教完使用 Ebitengine 所需的前提知识。因此，我们先使用作者精心制作的（精简版Ebitengine） <a href="https://pkg.go.dev/github.com/eihigh/miniten">miniten 包</a>，学习制作一款游戏。</p>
+<p>接下来，我想立即使用 <a href="https://ebitengine.org/ja/">Ebitengine……</a></p>
+<p>可是，我还没有教完使用 Ebitengine 所需的前提知识。
+于是，我们先使用作者精心制作的 <a href="https://pkg.go.dev/github.com/eihigh/miniten">miniten 包</a> （精简版Ebitengine），学习制作一款游戏。</p>
 <p>这是一个弹出窗口，并显示“Hello, World!”的程序。</p>
 <pre><code class="language-go">package main
 
@@ -199,23 +200,28 @@ func draw() {
 	miniten.Println("Hello, World!")
 }
 </code></pre>
-<p>那么我们就马上来执行一下吧。</p>
+<p>那么，我们马上来运行它吧。</p>
 <pre><code>$ go run .
 main.go:3:8: no required module provides package github.com/eihigh/miniten; to add it:
         go get github.com/eihigh/miniten
 </code></pre>
-<p>哦...出错了。当使用像 miniten 这样的外部新包时，如果该信息未记录在 <code>go.mod</code> 文件中，就会出现错误。请执行 <code>go mod tidy</code> 命令，以更新 <code>go.mod</code> 文件。</p>
+<p>哦...出错了。</p>
+<p>当使用像 miniten 这样的新的外部包时，如果该包信息未记录在 <code>go.mod</code> 文件中，就会出现错误。</p>
+<p>请执行 <code>go mod tidy</code> 命令，以更新 <code>go.mod</code> 文件。</p>
 <pre><code>$ go mod tidy
-...应该会看到一些log文字...
+...应该会看到一些log...
 </code></pre>
-<p>稍等一下，顺利结束后，再次执行吧。第一次运行，可能会多花一点时间。</p>
+<p>稍等一下，等命令执行完后，再次运行程序吧。</p>
+<p>第一次运行，可能会多花一点时间。</p>
 <pre><code>$ go run .
 </code></pre>
-<p>窗口左上角显示“Hello, World!”就可以了！🎉</p>
+<p>如下图，看到窗口左上角显示“Hello, World!”就可以了！🎉</p>
 <p><img src="https://res.cloudinary.com/zenn/image/fetch/s--w-Avkzr4--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_1200/https://storage.googleapis.com/zenn-user-upload/deployed-images/505053baedfa2e8dfefc1b6f.png%3Fsha%3D4cc9f198d824fb1e04a82beabcdc431c19a026e4" alt="miniten.png" /></p>
-<p>有其他语言经验的人，Go 从互联网上的下载第三方包的步骤，可能简单到令人感动。作者第一次看到的时候，确实也很感动。</p>
+<p>有其他语言经验的人，Go 从互联网上的下载第三方包的步骤，可能简单到令人感动。</p>
+<p>作者第一次看到的时候，确实也很感动。</p>
 <h2 id="82-绘制图形"><a class="header" href="#82-绘制图形">8.2 绘制图形</a></h2>
-<p>那么就按照这个节奏，画矩形和圆吧。稍后会解释为什么，但绘制必须在 <code>draw</code> 函数内进行。</p>
+<p>那么就按照现在的节奏，继续学习画矩形和圆吧。</p>
+<p>绘制必须在 <code>draw</code> 函数里面进行（稍后会解释理由）。</p>
 <pre><code class="language-go">func main() {
 	miniten.Run(draw)
 }
@@ -227,27 +233,30 @@ func draw() {
 }
 </code></pre>
 <p><img src="08_window.assets/3aab663ffcd486d5168f637d.png" alt="shapes" /></p>
-<p>miniten 可以绘制的图形，只有矩形和圆形。其他图形和换颜色，要等到真正入门 Ebitengine 后再进行。</p>
+<p>miniten 可以绘制的图形，只有矩形和圆形。</p>
+<p>花其他形状或换颜色，要等到真正入门 Ebitengine 后再学习。</p>
 <h2 id="83-座标"><a class="header" href="#83-座标">8.3 座标</a></h2>
-<p>这里所说的坐标，是“描述窗口内某个点”的值，由表示横向距离的“X”，和纵向距离的“Y”的组合表示。</p>
+<p>这里所说的坐标，是“代表窗口内某点”的值。</p>
+<p>由表示横向距离的“X”，和纵向距离的“Y”的成对表示。</p>
 <ul>
-<li>窗口左上角是起点坐标，此处的X 为 <code>0</code> ，Y 为 <code>0</code> 。</li>
-<li>从左上角向右移动，X 会增加；向下移动，Y 会增加。</li>
-<li>刚才绘制的矩形，左上角的坐标是 <code>(0, 50)</code> ，也就是横向是窗口最左边，纵向是从窗口顶边下移 50 的位置。</li>
-<li>刚才绘制的矩形，宽度和高度分别为 <code>100</code> ，因此矩形右下角的坐标为 <code>(0+100, 50+100) = (100, 150)</code> 。</li>
+<li>窗口左上角是起点，此处的X 为 <code>0</code> ，Y 为 <code>0</code> 。</li>
+<li>从左上角向右移动，X 增加；向下移动，Y 增加。</li>
+<li>刚才绘制的矩形，左上角坐标是 <code>(0, 50)</code> ，也就是横向在窗口最左边，纵向是在窗口顶部下移 50 的位置。</li>
+<li>刚才绘制的矩形，宽度和高度分别为 <code>100</code> ，因此矩形右下角的坐标是 <code>(0+100, 50+100) = (100, 150)</code> 。</li>
 </ul>
 <p>学校里学习的坐标轴，往上走时 Y 值通常会增加。</p>
-<p>但游戏窗口的坐标，则是往下时 Y 值增加，与学校里常见的相反。</p>
-<p>就是这么规定的，只能习惯。</p>
+<p>但游戏窗口的坐标，往下走的时候 Y 值增加，与学校里常见的相反。</p>
+<p>就是这么规定的，请习惯。</p>
 <h2 id="84-绘制图像"><a class="header" href="#84-绘制图像">8.4 绘制图像</a></h2>
-<p>在 miniten 中可以绘制的图形只有这些，这确实有些无聊。不过请放心，您可以绘制喜欢的图像！</p>
-<p>首先需要准备图像文件。什么图片都可以，但是为了懒得准备图像的你，这里准备了 Go 的吉祥物 gopher 君的图像。</p>
+<p>在 miniten 中，可以绘制的图形只有圆和矩形，可能会让你感到有些无聊。</p>
+<p>不过请放心，在这里。您也可以加载使用喜欢的图片！</p>
+<p>首先需要准备图像文件。什么图都可以，但是为了懒得准备图像的你，这里也准备了 Go 吉祥物 gopher 君的图片。</p>
 <p><img src="08_window.assets/gopher.png" alt="gopher.png" /></p>
-<pre><code class="language-text">该设计采用创意共享 4.0 署名许可。
+<pre><code class="language-text">该设计，采用创意共享 4.0 署名许可。
 阅读本文以获取更多详细信息：https://blog.golang.org/gopher
 </code></pre>
 <p>请右键点击这个 gopher 君，选择“另存为图片”。并将保存的图片文件，移动到<strong>与程序相同的目录</strong>中。</p>
-<p>这是绘制图像的程序。请根据你保存的图像文件名，调整 <code>"gopher.png"</code> 部分。同时也不要忘记添加正确的扩展名。</p>
+<p>这是绘制图像的程序。请根据你保存的图像文件名，调整 <code>"gopher.png"</code> 的文件名部分。同时也不要忘记添加正确的扩展名。</p>
 <pre><code class="language-go">func main() {
 	miniten.Run(draw)
 }
@@ -256,14 +265,14 @@ func draw() {
 	miniten.DrawImage("gopher.png", 0, 0) // 图片文件名、左上角图标
 }
 </code></pre>
-<p>图像如果显示在左上角，成功！🎉</p>
+<p>如果图片显示在左上角，那就成功了！🎉</p>
 <p>![gopher on miniten](08_window.assets/gopher on miniten.png)</p>
-<p>如果显示不正常，请检查一下图片文件名是否正确、是否忘记加扩展名，以及是否放在与程序相同的目录中。</p>
+<p>如果无法正常显示，请检查一下图片文件名是否正确、是否忘记加扩展名，以及是否放在与程序相同的目录中。</p>
 <h2 id="本章总结"><a class="header" href="#本章总结">本章总结</a></h2>
 <ul>
-<li>在 miniten 中，绘制处理写在 draw 函数内。</li>
-<li>绘制图像时，请将图像文件准备在同一目录中。不要忘记扩展名。</li>
-<li>表示窗口某一点的位置的数字，被称为坐标。</li>
+<li>在 miniten 中，绘图的处理，需要写在 draw 函数里面。</li>
+<li>绘制图像时，请将图像文件放在同一目录。同时不要忘记确认扩展名。</li>
+<li>表示窗口某点位置的数字，被称为坐标。</li>
 </ul>
 
                         </div>
