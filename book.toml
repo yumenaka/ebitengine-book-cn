@@ -29,3 +29,8 @@ command = "mdbook-admonish"
 assets_version = "3.0.2" # do not edit: managed by `mdbook-admonish install`
 # cargo install mdbook-cmdrun
 [preprocessor.cmdrun]
+
+# go install github.com/charmbracelet/freeze@latest
+# 自动生成动图的工具
+# go install github.com/charmbracelet/vhs@latest
+# vhs new some_cmd.tape

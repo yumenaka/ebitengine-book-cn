@@ -30,6 +30,7 @@
 
         <!-- Custom theme stylesheets -->
         <link rel="stylesheet" href="theme/pagetoc.css">
+        <link rel="stylesheet" href="./mdbook-admonish.css">
 
     </head>
     <body class="sidebar-visible no-js">
@@ -224,21 +225,25 @@
 <h2 id="24-面向中国大陆用户-go-的安装-与-goproxy"><a class="header" href="#24-面向中国大陆用户-go-的安装-与-goproxy">2.4 [面向中国大陆用户] Go 的安装 与 GOPROXY</a></h2>
 <h3 id="241-go-的安装"><a class="header" href="#241-go-的安装">2.4.1 Go 的安装</a></h3>
 <p>中国大陆用户会面临一个尴尬的问题，就是“国外网站与github经常连不上”。</p>
-<p>一个办法是系统全局挂代理。然后一切如常了。</p>
-<p>另一个办法，就是使用国内镜像。</p>
-<p>首先，是 GO 安装包本身。大陆用户，可以访问以下的链接下载go（<a href="https://studygolang.com/dl">https://studygolang.com/dl</a>）</p>
+<p>一个办法是系统全局挂代理。然后一切如常了。另一个办法，就是使用国内镜像。</p>
+<p>首先，是 GO 安装包本身。大陆用户，可以访问以下链接下载go（<a href="https://studygolang.com/dl">https://studygolang.com/dl</a>）</p>
 <p><img src="02_setup.assets/go_install.png" alt="Go安装包下载" />
 *此链接是中国的编程社区在国内提供的 Go 安装包镜像。与官方源相比，更新可能会晚几天。</p>
 <p>同样的，Windows用户，点击上图红框处下载。</p>
 <p>如果是 Mac，用Intel芯片的老机型，点击【Apple macOS macOS 10.15 or later, Intel 64-bit 处理器】。</p>
 <p>最近出的M芯片Mac机型，则是【Apple macOS macOS 11 or later, Apple 64-bit 处理器】。</p>
 <p>下载之后的安装过程与上面一样，一路下一步即可。</p>
-<h3 id="242--什么是-goproxy"><a class="header" href="#242--什么是-goproxy">2.4.2  什么是 GOPROXY</a></h3>
+<h3 id="242--什么是-goproxy如何设置goproxy"><a class="header" href="#242--什么是-goproxy如何设置goproxy">2.4.2  什么是 GOPROXY，如何设置GOPROXY</a></h3>
 <p>中国大陆用户还需要额外设置 GOPROXY，设置镜像服务器加速包括 ebitengine 在内的第三方包的下载。</p>
 <p>目前推荐的 GOPROXY 设置为 <code>https://goproxy.cn,direct</code>。</p>
 <p>配置中的 goproxy.cn 是一个由大陆 Go 社区维护的镜像服务器，它提供了对 Go 仓库的镜像服务，可以加速 Go 模块的下载速度。详情可以参考网站 <a href="https://goproxy.cn">https://goproxy.cn</a>。</p>
 <p>当你设置 GOPROXY 为  <code>https://goproxy.cn,direct</code> 时，Go 工具链会优先尝试通过 goproxy.cn 获取依赖，如果无法获取，才会回退到直接访问源仓库（direct）。</p>
-<h3 id="243-面向中国大陆用户windows-如何设置-goproxy"><a class="header" href="#243-面向中国大陆用户windows-如何设置-goproxy">2.4.3 [面向中国大陆用户]windows 如何设置 GOPROXY</a></h3>
+<p>至于设置方法，如果你已经安装好了Go，可以用 Go 自带的命令更改GOPROXY的值：</p>
+<pre><code class="language-bash">go env -w GOPROXY=https://goproxy.cn,direct
+</code></pre>
+<p><code>go env -w</code> 是一个用于修改环境变量（类似于设置值）的命令，Go 1.13 及以上的版本可用。</p>
+<p>本质上做的事，和下面的2.4.3 与 2.4.3 相同。</p>
+<h3 id="243-面向有经验的用户windows-如何手动设置-goproxy"><a class="header" href="#243-面向有经验的用户windows-如何手动设置-goproxy">2.4.3 [面向有经验的用户]windows 如何手动设置 GOPROXY</a></h3>
 <ol>
 <li>打开“开始”并搜索“env”</li>
 <li>选择“编辑系统环境变量”</li>
@@ -250,11 +255,7 @@
 </ol>
 <p>动图演示：
 <img src="02_setup.assets/SetGoProxy.gif" alt="设置 GOPROXY" /></p>
-<h3 id="244-面向中国大陆用户macos-或-linux-设置-goproxy"><a class="header" href="#244-面向中国大陆用户macos-或-linux-设置-goproxy">2.4.4 [面向中国大陆用户]macOS 或 Linux 设置 GOPROXY</a></h3>
-<p>打开你的终端并执行</p>
-<pre><code class="language-Bash"> export GOPROXY="https://goproxy.cn,direct"
-</code></pre>
-<p>这种做法是一次性的，重启后会失效。为了使其长期有效，可以这样：</p>
+<h3 id="244-面向有经验的用户macos-或-linux-手动设置-goproxy"><a class="header" href="#244-面向有经验的用户macos-或-linux-手动设置-goproxy">2.4.4 [面向有经验的用户]macOS 或 Linux 手动设置 GOPROXY</a></h3>
 <pre><code class="language-Bash"> echo "export GOPROXY=https://goproxy.cn,direct" &gt;&gt; ~/.profile
  source ~/.profile
 </code></pre>
@@ -352,10 +353,10 @@
 命令可以从本文中复制粘贴。如果复制粘贴并输入正确的命令但没有显示版本，则表示安装未正确完成，请再次确认上面的“Go 安装”部分。</p>
 <h3 id="272-使用历史命令"><a class="header" href="#272-使用历史命令">2.7.2 使用历史命令</a></h3>
 <p>用终端时必备的技巧是“历史命令”。按上箭头键，可以显示刚刚输入的命令，利用这个技巧，可以调用过去的命令。连续按上箭头键可以回溯到更早的命令。如果回溯过头，可以按下箭头键返回。</p>
-<p>“上矢印返回并按回车”是终端操作中节省时间的基本技巧，值得记住！</p>
+<p>“上方向键，并按回车”是终端操作中节省时间的基本技巧，值得记住！</p>
 <h3 id="273-玩一玩示例游戏"><a class="header" href="#273-玩一玩示例游戏">2.7.3 玩一玩示例游戏</a></h3>
-<p>为了纪念你学会使用终端，我们来玩一下 Ebitengine 的示例游戏吧。</p>
-<p>只需输入这个命令，然后敲一下回车即可。因为命令有点长，建议复制粘贴。此外，首次启动可能需要一些时间。</p>
+<p>为了纪念您学会使用终端，我们来玩一下 Ebitengine 的示例游戏吧。</p>
+<p>只需输入这条命令，然后敲一下回车即可。因为命令有点长，建议复制粘贴。此外，首次启动可能需要一些时间。</p>
 <pre><code class="language-cmd">go run github.com/hajimehoshi/ebiten/v2/examples/flappy@latest
 </code></pre>
 <p>使用此命令可以运行 <a href="https://github.com/hajimehoshi/ebiten/tree/main/examples/flappy">examples/flappy</a>。请注意音量。</p>
@@ -363,8 +364,8 @@
 <p><em>笔者的华丽表现</em></p>
 <p>要注意不要玩得太多，偏离游戏开发正题！</p>
 <h3 id="274-关于终端画面用法的补充"><a class="header" href="#274-关于终端画面用法的补充">2.7.4 关于终端画面用法的补充</a></h3>
-<p>以下是 Windows 中终端屏幕的截图。红线标记的文本中， <code>test</code> 之前的是当前目录（也称为工作目录）， <code>&gt;</code> 是提示符。</p>
-<p>当前目录表示“当前工作位置”，提示符表示终端处于“输入接收状态”。在这个提示符后面，输入各种命令是终端操作的基础用法。</p>
+<p>以下是 Windows 终端屏幕的截图。红线标记的文本中， <code>test</code> 之前的是当前目录（也称为工作目录）， <code>&gt;</code> 是命令提示符。</p>
+<p>当前目录表示“当前工作位置”，命令提示符表示终端处于“输入接收状态”。在这个提示符后面，输入各种命令是终端操作的基础用法。</p>
 <p><img src="02_setup.assets/vscode_terminal.png" alt="vscode_terminal.png" /></p>
 <p>当前目录，基本上与在 VSCode 中打开的目录相同，但有时可能需要移动到其他位置。移动时使用 <code>cd</code> 命令，如果需要，请展开以下说明进行阅读。</p>
 <h3 id="275-cd-命令的用法"><a class="header" href="#275-cd-命令的用法">2.7.5 cd 命令的用法</a></h3>
@@ -398,14 +399,19 @@
 <pre><code class="language-cmd">cd /Users/tarou/Desktop/myprogram
 </code></pre>
 <p>还有许多与 Windows 的细微差别，但由于数量众多，无法一一列举。总体而言，我认为比 Windows 更易于理解。</p>
-<h3 id="276-表示提示的字符-"><a class="header" href="#276-表示提示的字符-">2.7.6 表示提示的字符 "$"</a></h3>
-<p>在解释终端操作时，习惯在命令前加上表示提示符的字符 <code>$</code> 以进行强调，并区分输入和输出。例如， <code>go version</code> 的说明如下。</p>
+<h3 id="276-命令提示符-"><a class="header" href="#276-命令提示符-">2.7.6 命令提示符 "$"</a></h3>
+<p>在解释终端操作时，习惯在命令前加上提示用的字符 <code>$</code> 以进行强调，并区分输入和输出。</p>
+<p>例如， <code>go version</code> 命令的用法，用文本说明如下：</p>
 <pre><code class="language-cmd">$ go version
 go version go1.21.4 windows/amd64
 </code></pre>
-<p><code>$</code> 是表示提示符，后续的 <code>go version</code> 是输入的命令，下一行由于不是以 <code>$</code> 开头，因此是输出。 <code>$</code> 仅作为提示的示例。同时您的环境可能使用别的字符，并且请注意<code>$</code><strong>不是</strong>您输入的文本。</p>
+<p>第一行开头的<code>$</code> ，是提示用的“命令提示符”。</p>
+<p>第二行的 <code>go version</code> 是输入的命令。第二行不以 <code>$</code> 开头，因此是程序的输出。</p>
+<p>同时您的环境，可能使用别的字符（中文版的动图，命令提示符用的是<code>&gt;</code>）。并且请注意不管<code>$</code>还是<code>&gt;</code>，都只是提示，<strong>不是</strong>您输入的文本。</p>
+<p><img src="02_setup.assets/go_version.gif" alt="go_version.gif" /></p>
 <h3 id="278-停止命令"><a class="header" href="#278-停止命令">2.7.8 停止命令</a></h3>
-<p>有时您可能想中断那些耗时较长的命令。在这种情况下，可以在终端中按“Ctrl+c”，可以中断程序的运行。</p>
+<p>有时，您可能想中断那些耗时较长的命令。这种情况下，可以在终端中按“Ctrl+c”，中断程序的运行。</p>
+<p><img src="02_setup.assets/ctrl_c.gif" alt="ctrl_c.gif" /></p>
 <h2 id="本章总结"><a class="header" href="#本章总结">本章总结</a></h2>
 <ul>
 <li>Go 是编程的必备工具。</li>
