@@ -11,7 +11,7 @@ default-theme = "rust"
 site-url = "/ebitengine-book-cn/"
 git-repository-url = "https://github.com/yumenaka/ebitengine-book-cn"
 edit-url-template = "https://github.com/yumenaka/ebitengine-book-cn/edit/main/{path}"
-additional-css = ["theme/pagetoc.css"]
+additional-css = ["theme/pagetoc.css", "./mdbook-admonish.css"]
 additional-js = ["theme/pagetoc.js"]
 
 [output.html.playground]
@@ -20,3 +20,12 @@ editable = true
 [build]
 build-dir = "./docs/"
 create-missing = false
+
+[preprocessor]
+
+## cargo install mdbook-admonish
+[preprocessor.admonish]
+command = "mdbook-admonish"
+assets_version = "3.0.2" # do not edit: managed by `mdbook-admonish install`
+# cargo install mdbook-cmdrun
+[preprocessor.cmdrun]
