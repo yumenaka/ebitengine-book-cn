@@ -42,7 +42,7 @@ $ go run .
 
 !954、958、974 等地址仅仅是为了说明“存在地址这个数字”而临时指定的值，因此与实际地址的分配方式有很大不同。请注意。
 
-![メモリの内部](18_pointer.assets/メモリの内部.png) *メモリ内部のイメージ 内存内部的图像*
+![メモリの内部](18_pointer.assets/in_mem.png) *内存内部的图像*
 
 变量存储在内存中，内存上的数据分配了地址，如果掌握了这些，指针就可以轻松应对了。
 
@@ -50,7 +50,7 @@ $ go run .
 
 在 Go 中，如下图所示，可以通过 `&` 获取分配给变量的地址，通过 `*` 获取地址所指向的内容。
 
-![ポインターの矢印](18_pointer.assets/ポインターの矢印.png)
+![变量的指向关系](18_pointer.assets/pointer.png)
 
 这样一来，开头的程序也一定能读懂了。
 
@@ -81,7 +81,7 @@ func main() {
 
 下图中还有一个地方没有解释，那就是 `p *int` 的部分。
 
-![ポインターの矢印](18_pointer.assets/ポインターの矢印.png)
+![变量的指向关系](18_pointer.assets/pointer.png)
 
 在 Go 中，可以将地址赋值给**指针类型**。指针类型以 `*int` 的形式写作 `*型名` 。
 
@@ -95,7 +95,7 @@ nil 指向的地方在 `*` 中使用时会崩溃，所以请小心使用。
 ```go
 func main() {
 	var p *int
-	*p = 42 // クラッシュ
+	*p = 42 // 崩溃
 	fmt.Println(*p)
 }
 ```
@@ -104,7 +104,7 @@ func main() {
 
 ```go
 func main() {
-	p := 何らかの関数() // 返り値が無効な時と有効な時がある
+	p := 某个函数() // 返り値が無効な時と有効な時がある
 	if p != nil {       // 有効な (nilではない) 時だけ処理を行う
 		fmt.Println(*p)
 	}
@@ -153,7 +153,7 @@ fmt.Println(pp.x) // 30
 
 指针只是一个数字，因此只需复制指针，就可以相对快速地在函数中通过指针使用该数据。
 
-![大きなデータとポインター](18_pointer.assets/bigdata_and_pointer.png)
+![大量数据与指针](18_pointer.assets/bigdata_and_pointer.png)
 
 ### 使用场景 2：要求更改原始内容
 
@@ -167,15 +167,15 @@ func f(x int) {
 }
 
 func g(p *int) {
-	*p = 99 // 指し示す先 = オリジナルを書き換える
+	*p = 99 // 指针指向的地方 = 原始值被覆盖
 }
 
 func main() {
 	x := 42
 	f(x)
-	fmt.Println(x) // 42。xは書き換わらない
+	fmt.Println(x) // 42 x没有被更改
 	g(&x)
-	fmt.Println(x) // 99。xは書き換わる
+	fmt.Println(x) // 99 x被更改了
 }
 ```
 
@@ -183,7 +183,7 @@ func main() {
 
 ```go
 x := 0
-fmt.Scanln(&x) // x を書き換えてもらう
+fmt.Scanln(&x) // 此处的 x 被修改
 ```
 
 ### 其他用途
@@ -233,26 +233,26 @@ type wall struct {
 var (
 	x    = 200.0
 	y    = 150.0
-	vy   = 0.0  // Velocity of y (速度のy成分) の略
-	g    = 0.1  // Gravity (重力加速度) の略
-	jump = -4.0 // ジャンプ力
+	vy   = 0.0  // Y方向速度(Velocity of y)的缩写
+	g    = 0.1  // 重力加速度(Gravity) 的缩写
+	jump = -4.0 // 跳跃力
 
-	frames     = 0         // 経過フレーム数
-	interval   = 120       // 壁の追加間隔
-	wallStartX = 640       // 壁の初期X座標
-	walls      = []*wall{} // 壁のX座標と穴のY座標
-	wallWidth  = 20        // 壁の幅
-	wallHeight = 360       // 壁の高さ
-	holeYMax   = 150       // 穴のY座標の最大値
-	holeHeight = 170       // 穴のサイズ（高さ）
+	frames     = 0         // 经过的帧总数
+	interval   = 120       // 土管追加间隔
+	wallStartX = 640       // 土管的初始x坐标
+	walls      = []*wall{} // 土管的X坐标与空洞的Y坐标
+	wallWidth  = 20        // 土管的宽度
+	wallHeight = 360       // 土管的高度
+	holeYMax   = 150       // 空洞的Y坐标的最大值
+	holeHeight = 170       // 空洞的大小（高度）
 
 	gopherWidth  = 60
 	gopherHeight = 75
 
 	scene         = "title"
-	score         = 0     // スコアのグローバル変数
-	isPrevClicked = false // 前のフレームでクリックされていたか
-	isJustClicked = false // 今のフレームでクリックされたか
+	score         = 0     // 分数，全局变量。
+	isPrevClicked = false // 前一帧按钮没按下
+	isJustClicked = false // 这一帧按钮被按下
 )
 
 func main() {
@@ -278,23 +278,23 @@ func drawGame() {
 	if miniten.IsClicked() {
 		vy = jump
 	}
-	vy += g // 速度に加速度を足す
-	y += vy // 位置に速度を足す
+	vy += g // 新的当前速度 = 当前速度+加速度
+	y += vy // 新的当前位置 = 当前位置+速度
 	miniten.DrawImageFS(fsys, "gopher.png", int(x), int(y))
 
-	// 壁追加処理ここから
+	// 从这里开始，写追加土管的代码
 	frames += 1
 	if frames%interval == 0 {
 		wall := &wall{wallStartX, rand.N(holeYMax)}
 		walls = append(walls, wall)
 	}
-	// 壁追加処理ここまで
+	// 追加土管的代码，到这里就结束了
 
 	for i := range walls {
-		walls[i].wallX -= 2 // 少しずつ左へ
+		walls[i].wallX -= 2 // 往左动
 	}
 	for _, wall := range walls {
-		wall.wallX -= 2 // 少しずつ左へ
+		wall.wallX -= 2 // 往左动
 	}
 	for _, wall := range walls {
 		drawWalls(wall)
@@ -311,7 +311,7 @@ func drawGame() {
 }
 
 func drawGameover() {
-	// 背景、gopher、壁の描画はdrawGame関数のコピペ
+	// 将背景、地鼠、土管的drawGame函数粘贴到这里
 	miniten.DrawImageFS(fsys, "sky.png", 0, 0)
 	miniten.DrawImageFS(fsys, "gopher.png", int(x), int(y))
 	for _, wall := range walls {
@@ -333,10 +333,10 @@ func drawGameover() {
 }
 
 func drawWalls(w *wall) {
-	// 上の壁の描画
+	// 描绘上面的土管
 	miniten.DrawImageFS(fsys, "wall.png", w.wallX, w.holeY-wallHeight)
 
-	// 下の壁の描画
+	// 描绘下面的土管
 	miniten.DrawImageFS(fsys, "wall.png", w.wallX, w.holeY+holeHeight)
 }
 
@@ -363,11 +363,11 @@ func hitTestRects(aLeft, aTop, aRight, aBottom, bLeft, bTop, bRight, bBottom int
 ```diff-go
 // before
 	for i := range walls {
-		walls[i].wallX -= 2 // 少しずつ左へ
+		walls[i].wallX -= 2 // 往左移动
 	}
 // after
 	for _, wall := range walls {
-		wall.wallX -= 2 // 少しずつ左へ
+		wall.wallX -= 2 // 往左移动
 	}
 ```
 

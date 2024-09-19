@@ -104,11 +104,11 @@ func fukubiki() {
 
 ```go
 func drawComplexObjects() {
-	// 数百行に渡る長い描画処理...
+	// 已经写好的数百行描绘处理
 }
 
 func draw() {
-	// 簡単に再利用できる
+	// 可以简单地再利用
 	drawComplexObjects()
 	drawComplexObjects()
 	drawComplexObjects()

@@ -181,7 +181,7 @@
                     <main>
                         <div class="content-wrap">
                             <h1 id="第一章-关于这本书"><a class="header" href="#第一章-关于这本书">第一章 关于这本书</a></h1>
-<p><img src="intro.assets/01_game_for_everyone.png" alt="01_game_for_everyone.png" /></p>
+<p><img src="01_intro.assets/01_game_for_everyone.png" alt="01_game_for_everyone.png" /></p>
 <h2 id="11-引言"><a class="header" href="#11-引言">1.1 引言</a></h2>
 <p>欢迎来到《从零开始的游戏编程：Go 语言与 Ebitengine》。</p>
 <p>本书旨在为完全没有编程经验的超初学者提供指导，以“连老妈都能理解”为目标，循序渐进讲解如何从零开始制作游戏。</p>
@@ -196,12 +196,14 @@
 <p>如果你这样想，恭喜，这本书正好适合你。另外本书还推荐给那些“游戏引擎很卡，在我的破电脑上跑不起来”的人。</p>
 <p>笔者入门游戏编程，用的是名为 BASIC 的古老编程语言。尽管 BASIC 仍然是一种伟大的语言，但与现代游戏开发相距甚远。</p>
 <p>在现代，能够实现前面这些这些宏伟目标的东西，笔者认为除了本书中提到的 Go 语言和 Ebitengine，可以说别无他选。</p>
-<p>如果有人因此一辈子用 Go 和 Ebitengine 制作游戏，那将是无上的喜悦。但即使不是这样（也就是说，用其他引擎制作游戏或没去做游戏方面的编程），我也相信在这里学到的知识，一定会对你有所帮助。</p>
+<p>如果有人因此立志用 Go 和 Ebitengine 制作游戏，对我来说将是无上的喜悦。但即使不是这样（也就是说，用其他引擎做游戏或最终没做游戏方面的编程），我也相信在这里学到的知识，一定会对你有所帮助。</p>
 <p>我虽然说了很多，但如果您能当作轻松的业余消遣来读，相信也一定会很有趣😉</p>
 <h2 id="12-这本书的使用方法"><a class="header" href="#12-这本书的使用方法">1.2 这本书的使用方法</a></h2>
 <p>这本书不仅可以在 PC 上阅读，也可以在手机上阅读。不过，实际编程需要用 Windows PC 或 Mac。</p>
-<p>虽然<a href="https://zenn.dev/eihigh/books/ebitengine-book/viewer/intro">（日文版）</a>没有 Zenn 的账户也可以阅读，但如果登录 Zenn 账户，则会有阅读进度记录等功能，因此推荐注册。</p>
-<p>动作确认是在 Windows 10 和 macOS Ventura 上进行的。如果有任何问题，请在以下社群中告知我们。</p>
+<p>中文版托管在  <a href="https://yumenaka.github.io/ebitengine-book-cn/">github.io</a> 上。中文版翻译校对完成后，也会有 Epub版 与 PDF版。</p>
+<p><a href="https://zenn.dev/eihigh/books/ebitengine-book/viewer/intro">（日文原版）</a>虽然没有 Zenn 的账户也可以阅读，但如果登录 Zenn 账户，则会有阅读进度记录等功能，因此推荐注册。</p>
+<p><img src="01_intro.assets/japanese.png" alt="image-japanese—version" /></p>
+<p>代码确认是在 Windows 10、Windows 11 和 macOS Ventura 上进行的。如果有任何问题，请在以下社群中告知我们。</p>
 <h2 id="13-关于编程社群"><a class="header" href="#13-关于编程社群">1.3 关于编程社群</a></h2>
 <p>您可以在 <a href="https://discord.gg/3tVdM5H8cC">Ebitengine 官方 Discord 服务器</a>的 #questions-ja 频道中，直接向作者 @eihigh 询问。
 任何小问题都非常欢迎！</p>
@@ -211,51 +213,57 @@
 <p>全编免费阅读，但如果您从<a href="https://zenn.dev/eihigh/books/ebitengine-book">（日文版）书籍目录画面</a>下方的“徽章（バッジ）”处给作者打赏，作者会非常高兴！</p>
 <h2 id="15-其他学习资料"><a class="header" href="#15-其他学习资料">1.5 其他学习资料</a></h2>
 <p>学习 Go 语言的资料，除了这本书之外还有很多选择。以下是其中的一部分，希望对您有所帮助。</p>
-<h3 id="go指南"><a class="header" href="#go指南"><a href="https://tour.go-zh.org/welcome/1">GO指南</a></a></h3>
-<p>A Tour of Go 是 Go 官方提供的学习内容（链接是由志愿者翻译的中文版）。
-它的特点，是可以使用后面提到的 Go Playground 的功能，一边在左侧阅读解说，一边在右侧编写并即时运行。
-虽然有些内容假设读者有其他语言的编程经验，但依然是快速掌握 Go 的绝佳选择。</p>
-<p><img src="intro.assets/02_go-tour.png" alt="A Tour of Go" /></p>
+<h3 id="go指南"><a class="header" href="#go指南">GO指南</a></h3>
+<p><a href="https://tour.go-zh.org/welcome/1">A Tour of Go</a>  是 Go 官方提供的学习内容（链接是志愿者翻译的中文版）。
+它的特点，是提供了 Go Playground 功能（后面会介绍），一边在左侧阅读文字版解说，一边在右侧编写实际的Go程序，并在浏览器上即时运行。
+虽然教程的内容，假定读者有一定的编程经验，但依然是快速掌握 Go 的绝佳选择。</p>
+<p><img src="01_intro.assets/02_go-tour.png" alt="A Tour of Go" /></p>
 <h3 id="go-playground"><a class="header" href="#go-playground">Go Playground</a></h3>
-<p>Go Playground 是 Go 官方提供的代码执行环境。可以在浏览器上编写并执行，或通过 Share 按钮发布 URL，共享编写的代码片段。</p>
-<p>不过由于 Go Playground 无法响应用户输入，因此不适合做游戏。适合快速检查语法或共享代码片段。
-<img src="intro.assets/03_Go_Playground.png" alt="Go Playground " /></p>
-<h3 id="go语言编程-完全入门日语资料"><a class="header" href="#go语言编程-完全入门日语资料">Go语言编程 完全入门（日语资料）</a></h3>
-<p><a href="https://docs.google.com/presentation/d/1RVx8oeIMAWxbB7ZP2IcgZXnbZokjCmTUca-AbIpORGk/edit#slide=id.g4f417182ce_0_0">《Go语言编程 完全入门》</a>是由致力于 Go 普及的 tenntenn 先生编写的学习内容。
+<p>Go Playground 是 Go 官方提供的代码执行环境。可以在浏览器上编写并执行 Go 程序。或通过 Share 按钮发布 URL，共享编写的 Go 代码片段。</p>
+<p>不过由于 Go Playground 上运行的程序无法响应用户输入，因此不适合做游戏。适合快速检查语法、共享代码片段。
+<img src="01_intro.assets/03_Go_Playground.png" alt="Go Playground " /></p>
+<h3 id="开始使用-go微软出品的golang-教程"><a class="header" href="#开始使用-go微软出品的golang-教程">《开始使用 Go》微软出品的Golang 教程</a></h3>
+<p>虽然 Golang 是谷歌的产品，但却没有妨碍微软为Go写名为<a href="https://learn.microsoft.com/zh-cn/training/paths/go-first-steps/">《开始使用 Go》</a>的在线教程。</p>
+<p><img src="01_intro.assets/image-00060919193013250.png" alt="image-00060919193013250" /></p>
+<p>这个教程，支持包括中文在内的大多数语言。特定章节，还能切换对应Windows、Linux、MacOS的版本。毕竟很多人也在使用微软 Azure 云 部署 Go 服务。培养 Go 开发者，是个互利互惠的好主意。</p>
+<h3 id="go语言编程-完全入门日语资料"><a class="header" href="#go语言编程-完全入门日语资料">《Go语言编程 完全入门》（日语资料）</a></h3>
+<p><a href="https://docs.google.com/presentation/d/1RVx8oeIMAWxbB7ZP2IcgZXnbZokjCmTUca-AbIpORGk/edit#slide=id.g4f417182ce_0_0">《Go语言编程 完全入门》（链接为日文版的谷歌Doc）</a>是由致力于 Go 普及的 tenntenn 先生编写的系列教程。
 内容面向初学者，并且附有实际动手学习的实践环节，非常易于理解，推荐阅读。<br />
-<img src="intro.assets/04_Go%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E5%AE%8C%E5%85%A8%E5%85%A5%E9%97%A8.png" alt="《Go语言编程 完全入门》" /></p>
+<img src="01_intro.assets/04_Go_ABC.png" alt="《Go语言编程 完全入门》" /></p>
 <h2 id="16-学习时的注意事项"><a class="header" href="#16-学习时的注意事项">1.6 学习时的注意事项</a></h2>
-<p>因为 Go 始终在不断发展，某些教程可能因为信息过时而导致“照着做却不成功！”的情况发生。这本书也不例外，所以请尽量参考最新信息。</p>
+<p>因为 Go 始终在不断发展，某些教程可能因为信息过时而导致“照着做却不成功！”。这本书也不例外，所以请尽量参考最新信息。</p>
 <h2 id="17-编程是什么游戏编程是什么"><a class="header" href="#17-编程是什么游戏编程是什么">1.7 编程是什么，游戏编程是什么</a></h2>
 <p>程序究竟是什么？我将尝试以老妈也能理解的方式解释。</p>
-<p>程序是指示计算机执行操作的工具。例如，编写指示计算机“按顺序显示 1 到 10 的数字”的程序，计算机就会按顺序显示 1 到 10 的数字。</p>
-<p>个人电脑、智能手机、游戏机等，所有计算机都由程序控制。如果没有程序，计算机就只是一个空壳。</p>
+<p>程序是指示计算机做事的工具。例如，编写指示计算机“按顺序显示 1 到 10 的数字”的程序，计算机就会按顺序显示 1 到 10 的数字。<br />
+<img src="01_intro.assets/seq.gif" alt="seq.gif" /><br />
+个人电脑、智能手机、游戏机等，所有计算机都由程序控制。如果没有程序，计算机就只是一个空壳。</p>
 <p>游戏编程，就是在编写作为游戏运行的程序。将图像显示在屏幕上、发出声音、对输入作出反应、移动角色等，这些都由程序控制与运行。</p>
-<p>此外，游戏编程的范围，不仅限于我们手头的电脑、手机和游戏机上运行的程序——</p>
+<p>此外，游戏编程的范围，不限于我们手头的电脑、手机和游戏机上运行的程序。</p>
 <p>互联网某处的“游戏服务器”、为游戏开发者提供的“辅助工具”、以及被各种游戏使用、支撑开发的“游戏引擎”等等，游戏编程涉及多个领域，在这里我们不扩展讨论了。</p>
-<p>不过，现代游戏中这些内容都是不可或缺的，因此有意将游戏编程作为职业的人，建议您保持好奇心并积极学习。</p>
+<p>不过，现代游戏中这些内容也是不可或缺的，因此有意将游戏编程作为职业的人，建议您保持好奇心并积极学习。</p>
 <p>在这个连载中，我们将从零开始学习游戏编程。请务必体验一下从无到有，写出一款游戏的感觉。</p>
 <h2 id="18-go-语言与-ebitengine-概述"><a class="header" href="#18-go-语言与-ebitengine-概述">1.8 Go 语言与 Ebitengine 概述</a></h2>
 <p>在本连载中，我将简要介绍将要使用的技术。对技术话题感兴趣的读者可以阅读一下。</p>
-<p>Go 语言是 2009 年正式发布的相对年轻的编程语言。具有语法简单、环境搭建轻松、像脚本语言一样容易执行这样的“易用性”，与可以快速编译与执行速度快这样的“高性能”等特点。</p>
-<p>这种语言，还因由 C 语言的发源地<a href="https://zh.wikipedia.org/wiki/%E8%B4%9D%E5%B0%94%E5%AE%9E%E9%AA%8C%E5%AE%A4">贝尔实验室</a>的资深程序员开发而闻名，Go 语言一方面保留了 C 语言的特征，但在吸取 C 语言的经验和教训的基础上，去除了复杂性，是一种现代化的编程语言。</p>
+<p>Go 语言是 2009 年正式发布的相对年轻的编程语言。语法简单、环境搭建轻松。具有脚本语言一样容易执行这样的“易用性”，与可以快速编译与执行速度快这样的“高性能”等特点。</p>
+<p>这种语言，还因由 C 语言的发源地<a href="https://zh.wikipedia.org/wiki/%E8%B4%9D%E5%B0%94%E5%AE%9E%E9%AA%8C%E5%AE%A4">贝尔实验室</a>的资深程序员开发而闻名，Go 语言一方面保留了 C 语言的特征，也在吸取 C 语言的经验和教训的基础上，去除了复杂性，是现代化的编程语言。</p>
 <p>Go 主要用于 Web 与云服务领域，但 Go 当然也可以制作游戏。在这里，我们将使用 Go 加 Ebitengine 这个库（库：为了让大家分享，而编写的通用游戏组件）来制作游戏。</p>
 <p>Ebitengine（エビテンジン）是由日本人星一（Hajime Hoshi）开发的一个用 Go 开发游戏的库。</p>
 <p>它支撑了许多著名的作品，如<a href="https://store.steampowered.com/app/1783360/_/">《梅格与怪物》</a>、<a href="https://store.steampowered.com/app/1687550/_/">《熊先生的餐厅》</a>，以及备受期待的新作<a href="https://store.steampowered.com/app/2492120/SAEKO_Giantess_Dating_Sim/">《SAEKO: Giantess Dating Sim》</a>。
-游戏特点与 Go 的特性有很多共同之处，比如简单易用，运行速度快。</p>
-<p>Ebitengine 的另一个值得大书特书的特点，就是其支持平台范围广了。</p>
+游戏引擎与 Go 有很多共通之处，比如简单易用，运行速度快。</p>
+<p>Ebitengine 另一个值得大书特书的特点，就是其支持平台范围广了。</p>
 <p>它不仅支持 Windows、macOS、Linux 等桌面环境，还支持使用WebGL在 Web 浏览器上运行 ，以及发布成为 iOS 和 Android 上的智能手机应用，甚至还能移植到 Nintendo Switch 和 Xbox 这些主机上。</p>
 <p>它让用 Go 语言编写的游戏，可以轻松移植到各种平台。</p>
-<p>Ebitengine 官方网站上发布了<a href="https://ebiten-zh.vercel.app/examples/">大量游戏示例</a>，在浏览器上展示了游戏的的效果，代码也可以直接复制粘贴运行。如果您有编程经验，可能只需浏览一遍示例就能掌握用法。请务必查看。</p>
-<p><img src="intro.assets/05_examples.png" alt="官方游戏示例" /></p>
-<p>Ebitengine 是专注于 2D 游戏的引擎。虽然不支持 3D（因此可以保持简易），但也有像 <a href="https://github.com/SolarLune/tetra3d">Tetra3D</a> 这样基于 Ebitengine 的黑科技 3D 引擎，如果感兴趣的话可以去看看。</p>
+<p>Ebitengine 官方网站上发布了<a href="https://ebitengine.org/ja/examples/">大量游戏示例</a>，在浏览器上展示了游戏的的效果，代码可以直接复制粘贴运行。如果您有编程经验，可能只需浏览一遍示例就能掌握用法。请务必查看。</p>
+<p><img src="01_intro.assets/sample.gif" alt="官方游戏示例" /></p>
+<p>Ebitengine 是专注于 2D 游戏的引擎。</p>
+<p>虽然不支持 3D（因此用起来简单），但也有像 <a href="https://github.com/SolarLune/tetra3d">Tetra3D</a> 这样基于 Ebitengine 的黑科技 3D 引擎，感兴趣的话可以去看看。</p>
 <h2 id="19-许可证"><a class="header" href="#19-许可证">1.9 许可证</a></h2>
 <p>Go gopher（GO吉祥物地鼠）图片，采用创意共享 4.0 署名许可。阅读本文，以获取更多详细信息：<a href="https://blog.golang.org/gopher">https://blog.golang.org/gopher </a></p>
-<p>本文用了 Egon Elbre 氏提供的 gopher 图像（ <a href="https://github.com/egonelbre/gophers">https://github.com/egonelbre/gophers</a> ），该图像以 CC0 1.0 Universal 许可提供。</p>
+<p>本教程用了 Egon Elbre 氏提供的 gopher 图像（ <a href="https://github.com/egonelbre/gophers">https://github.com/egonelbre/gophers</a> ），该图像以 CC0 1.0 Universal 许可提供。</p>
 <p>本书的原始图像可以在个人学习范围内自由使用。</p>
 <h2 id="110-关于中文翻译"><a class="header" href="#110-关于中文翻译">1.10 关于中文翻译</a></h2>
 <p>本书在<a href="https://zenn.dev/eihigh">原作者eihigh</a>的许可下翻译，译文同样限定在个人学习范围内自由使用（也就是非商用）。<br />
-为了便于中文读者理解，译文中添加了一些段落，替换了部分截图，并不完全与原文一致。</p>
+为了便于中文读者理解，译文中添加了一些段落，替换了部分截图，不完全与原文一致。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第二章-安装软件配置环境"><a class="header" href="#第二章-安装软件配置环境">第二章 安装软件，配置环境</a></h1>
 <p>本章配合截图，将详细介绍搭建“编程环境”的过程。</p>
 <h2 id="21-必须的东西"><a class="header" href="#21-必须的东西">2.1 必须的东西</a></h2>
@@ -288,12 +296,12 @@
 <p>某些编程语言，会推荐使用版本管理工具来区分多个运行环境版本（比如 python ）。但 Go 向下兼容性很好，基本没有这么做的必要。请放心直接安装最新版 Go 。</p>
 <p>Go 有读取 <code>go.mod</code> 中记录的 Go 版本的功能。可以自动下载正确版本的依赖软件（不污染系统 PATH），将相关工具调整为合适的版本。</p>
 <h3 id="233-面向有编程经验的人gopath-和-goroot"><a class="header" href="#233-面向有编程经验的人gopath-和-goroot">2.3.3 [面向有编程经验的人]GOPATH 和 GOROOT</a></h3>
-<p>现在 Go ，不再需要手动设置环境变量 GOPATH 和 GOROOT 了。那些说需要设置的文章，成文时间比较早，建议不要参考。</p>
+<p>现在的 Go ，不再需要手动设置环境变量 GOPATH 和 GOROOT 了。那些说需要设置的文章，成文时间比较早，建议不要参考。</p>
 <h2 id="24-go-的安装"><a class="header" href="#24-go-的安装">2.4 Go 的安装</a></h2>
 <p>以下均为撰写时的屏幕截图，可能与最新页面有所不同，敬请谅解。</p>
 <p>请访问以下链接（<a href="https://go.dev/dl">go.dev/dl</a>），如果是 Windows，请点击红框部分。 如果是 Mac，请点击 Apple macOS (ARM64) (M1 以后的新Mac电脑) 或 Apple macOS (x86-64) (M1 之前的老Mac电脑) 下载安装程序。</p>
 <p><img src="02_setup.assets/go_site.png" alt="go-dev-dl.png" /></p>
-<p>下载回来的安装程序以后，双击文件运行，一直点击下一步即可完成安装。GO安装完可以直接用，无需重启系统。</p>
+<p>下载安装程序以后，请运行文件。一直点击下一步即可完成安装。GO安装完可以直接用，无需重启系统。</p>
 <p>动图演示：
 <img src="02_setup.assets/windows_install_go.gif" alt="Go安装" /></p>
 <h2 id="24-面向中国大陆用户-go-的安装-与-goproxy"><a class="header" href="#24-面向中国大陆用户-go-的安装-与-goproxy">2.4 [面向中国大陆用户] Go 的安装 与 GOPROXY</a></h2>
@@ -316,7 +324,7 @@
 <pre><code class="language-bash">go env -w GOPROXY=https://goproxy.cn,direct
 </code></pre>
 <p><code>go env -w</code> 是一个用于修改环境变量（类似于设置值）的命令，Go 1.13 及以上的版本可用。</p>
-<p>本质上做的事，和下面的2.4.3 与 2.4.3 相同。</p>
+<p>做的事，本质上和下面的2.4.3 与 2.4.3 相同。</p>
 <h3 id="243-面向有经验的用户windows-如何手动设置-goproxy"><a class="header" href="#243-面向有经验的用户windows-如何手动设置-goproxy">2.4.3 [面向有经验的用户]windows 如何手动设置 GOPROXY</a></h3>
 <ol>
 <li>打开“开始”并搜索“env”</li>
@@ -335,7 +343,7 @@
 </code></pre>
 <h2 id="25-vscode-的安装"><a class="header" href="#25-vscode-的安装">2.5 VSCode 的安装</a></h2>
 <p>VSCode 支持 Windows、macOS、Linux 等多种操作系统。<br />
-虽然这里只说明了 Windows 系统的安装方法，但其他操作系统的安装步骤，也基本上是大同小异。</p>
+虽然这里只说明了 Windows 系统的安装方法，但其他操作系统的安装步骤，也基本上大同小异。</p>
 <h3 id="251-windows-安装-vscode"><a class="header" href="#251-windows-安装-vscode">2.5.1 Windows 安装 VSCode</a></h3>
 <p>请访问以下链接（ <a href="https://code.visualstudio.com/">code.visualstudio.com</a>），并点击 <code>Download for Windows</code> 。</p>
 <p><img src="02_setup.assets/vscode_site.png" alt="img" /></p>
@@ -348,9 +356,9 @@
 <p><img src="02_setup.assets/vscode_install_select_path.png" alt="setup-vscode-4.png" /></p>
 <p>会询问你是否在开始菜单中创建快捷方式，请根据您的喜好进行设置，然后点击下一步。</p>
 <p><img src="02_setup.assets/vscode_start_menu.png" alt="setup-vscode-5.png" /></p>
-<p>您可以自定义各种选项，根据您的喜好进行设置。个人认为 <code>添加[使用Code打开] 到右键菜单</code> 这很方便，因此推荐启用这个功能。点击“下一步”以继续。</p>
+<p>您可以自定义各种选项，根据您的喜好进行设置。个人认为 <code>将[通过Code打开]添加到右键菜单</code> 很方便，因此推荐启用这个功能。点击“下一步”以继续。</p>
 <p><img src="02_setup.assets/vscode_select_method.png" alt="setup-vscode-6.png" /></p>
-<p>最后会显示你的设置，做最后的确认，没问题的话，就点击安装进行安装。</p>
+<p>最后会显示你的设置，做最后确认。没问题的话，就点击安装进行安装。</p>
 <p><img src="02_setup.assets/vscode_check_install_option.png" alt="setup-vscode-7.png" /></p>
 <p>点击完成，结束安装过程。安装后无需重启，可以立即使用。</p>
 <p><img src="02_setup.assets/vscode_start_page_en.png" alt="setup-vscode-8.png" /></p>
@@ -370,7 +378,7 @@
 <img src="02_setup.assets/VSCodeToChinese.gif" alt="VSCode 中文化" /></p>
 <h3 id="253-vscode-安装-go-插件"><a class="header" href="#253-vscode-安装-go-插件">2.5.3 VSCode 安装 Go 插件</a></h3>
 <p>像中文包一样，VSCode 可以通过安装插件来添加各种功能。当然也有方便 Go 开发的插件，快来安装吧。</p>
-<p>先前一样，打开扩展功能侧边栏，在搜索框中输入 <code>go</code> ，并查找 <code>Go</code> 。会有很多结果，但请选择带有表示官方的勾号的选项，并进行安装。</p>
+<p>与先前一样，打开扩展功能侧边栏，在搜索框中输入 <code>go</code> ，并查找 <code>Go</code> 插的相关件。会有很多结果，但请选择带有表示官方勾号的选项，并进行安装。</p>
 <p><img src="02_setup.assets/vscode-go-1.png" alt="vscode-go-1.png" /></p>
 <p>虽然，这项工作可以随时进行。但我一般会先完成 go 开发工具的安装。</p>
 <p>从左下角的设置图标（红圈）选择“命令面板...”。或通过键盘快捷键“Ctrl+Shift+p”来打开命令面板。</p>
@@ -404,16 +412,18 @@
 <p><img src="02_setup.assets/vscode_select_folder.png" alt="vscode_select_folder.png" /></p>
 <p>打开目录时，会显示这样的注意事项。这是为了防止误打开危险文件，但由于这是自己创建的目录，所以没有安全问题。点击“是，我信任此作者”。</p>
 <p><img src="02_setup.assets/vscode_folder_alert.jpg" alt="vscode_folder_alert.png" /></p>
-<p>打开目录，如果左侧的资源管理器（如果未显示，请点击左端的📄图标（红圈））中显示了目录名称（红框。目录名自动大写显示，这没有问题），则表示成功。</p>
+<p>打开目录，如果左侧的资源管理器（如果未显示，请点击左端的📄图标（红圈部分））中显示的目录名称（红框。目录名自动大写显示，这没有问题），则表示成功。</p>
 <p><img src="02_setup.assets/vscode_open_test_folder_done.jpg" alt="vscode-dir-7.png" /></p>
-<p>此外，如果在安装 VSCode 时勾选了 <code>添加[用 Code 打开] 到右键菜单</code> ，也可以通过右键单击目录并选择“用 Code 打开”来打开。</p>
+<p>此外，如果在安装 VSCode 时勾选了 <code>添加[通过 Code 打开] 到右键菜单</code> ，也可以通过右键单击目录并选择“通过 Code 打开”来打开。</p>
 <p><img src="02_setup.assets/windows_open_with_code.gif" alt="vscode-dir-8.png" /></p>
 <p>动图演示：
 <img src="02_setup.assets/OpenFile.gif" alt="用 VSCode 打开目录" /></p>
 <h2 id="27-打开终端"><a class="header" href="#27-打开终端">2.7 打开终端</a></h2>
-<p>接下来的教程，将频繁使用 VSCode 的“终端”功能，因此我们要学会它的使用方法。可以通过菜单栏的“视图”选择“终端”来打开终端（还有其他打开方式）。终端中显示的内容，因操作系统和设置而异。</p>
+<p>接下来的教程，将频繁使用 VSCode 的“终端”功能，因此我们要学会它的使用方法。</p>
+<p>可以通过菜单栏的“视图”选择“终端”来打开终端（还有其他打开方式）。终端中显示的内容，因操作系统和设置而异。</p>
 <p><img src="02_setup.assets/vscode_open_cmd.jpg" alt="setup-terminal-1.png" /></p>
-<p>终端是一个用于“文本”而非“鼠标”操作计算机的工具。可能有些人想起来程序员常常面对的那些神秘黑屏。没错，就是那玩意。</p>
+<p>终端是一个用于“文本”而非“鼠标”操作计算机的工具。可能有些人想起来程序员常常面对的那些神秘黑屏。</p>
+<p>没错，就是那玩意。</p>
 <p><img src="02_setup.assets/cool_cmd.png" alt="プログラマーのイラスト" /></p>
 <p>终端是一个在鼠标诞生前就存在的古老工具，至今仍然受到程序员的青睐。</p>
 <p>·  记住或拼接命令很困难，但一旦准备好了，批量执行的操作就会变得很简单</p>
@@ -439,7 +449,7 @@
 <p>要注意不要玩得太多，偏离游戏开发正题！</p>
 <h3 id="274-关于终端画面用法的补充"><a class="header" href="#274-关于终端画面用法的补充">2.7.4 关于终端画面用法的补充</a></h3>
 <p>以下是 Windows 终端屏幕的截图。红线标记的文本中， <code>test</code> 之前的是当前目录（也称为工作目录）， <code>&gt;</code> 是命令提示符。</p>
-<p>当前目录表示“当前工作位置”，命令提示符表示终端处于“输入接收状态”。在这个提示符后面，输入各种命令是终端操作的基础用法。</p>
+<p>当前目录表示“当前工作位置”，命令提示符表示终端处于“输入接收状态”。在这个提示符后面输入各种命令，是终端操作的基础用法。</p>
 <p><img src="02_setup.assets/vscode_terminal.png" alt="vscode_terminal.png" /></p>
 <p>当前目录，基本上与在 VSCode 中打开的目录相同，但有时可能需要移动到其他位置。移动时使用 <code>cd</code> 命令，如果需要，请展开以下说明进行阅读。</p>
 <h3 id="275-cd-命令的用法"><a class="header" href="#275-cd-命令的用法">2.7.5 cd 命令的用法</a></h3>
@@ -481,7 +491,7 @@ go version go1.21.4 windows/amd64
 </code></pre>
 <p>第一行开头的<code>$</code> ，是提示用的“命令提示符”。</p>
 <p>第二行的 <code>go version</code> 是输入的命令。第二行不以 <code>$</code> 开头，因此是程序的输出。</p>
-<p>同时您的环境，可能使用别的字符（中文版的动图，命令提示符用的是<code>&gt;</code>）。并且请注意不管<code>$</code>还是<code>&gt;</code>，都只是提示，<strong>不是</strong>您输入的文本。</p>
+<p>同时您的环境，可能使用别的字符（比如下面的动图，命令提示符的是<code>&gt;</code>）。并且请注意不管<code>$</code>还是<code>&gt;</code>，都只是提示，<strong>不是</strong>您输入的文本。</p>
 <p><img src="02_setup.assets/go_version.gif" alt="go_version.gif" /></p>
 <h3 id="278-停止命令"><a class="header" href="#278-停止命令">2.7.8 停止命令</a></h3>
 <p>有时，您可能想中断那些耗时较长的命令。这种情况下，可以在终端中按“Ctrl+c”，中断程序的运行。</p>
@@ -501,16 +511,18 @@ go version go1.21.4 windows/amd64
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第三章-你好世界开始开发程序结构"><a class="header" href="#第三章-你好世界开始开发程序结构">第三章 你好，世界！（开始开发，程序结构）</a></h1>
 <p>这次我们将通过一个仅显示 Hello, World! 的经典程序，学习如何开始编程，以及编程的基本工作流程。</p>
 <h2 id="31-程序与源代码"><a class="header" href="#31-程序与源代码">3.1 程序与源代码</a></h2>
-<p>人们有时会特地强调其文本特性。将生成程序的文本，称为“源代码”或“代码”。这些术语，基本上指的是同一个东西，请根据需要在脑中替换。</p>
+<p>人们有时会特地强调文本特性，将生成程序的文本，称为“源代码”或“代码”。这些术语，基本上指的是同一个东西，请根据需要在脑中替换。</p>
 <h2 id="32-创建放程序的地方"><a class="header" href="#32-创建放程序的地方">3.2 创建放程序的地方</a></h2>
-<p>首先，需要一个编写程序的地方。我们来创建一个新的目录。名字随便起，但这一章暂时用 hello 当名字。创建目录后，在 VSCode 中打开它。</p>
+<p>首先，需要一个编写程序的地方。</p>
+<p>让我们来创建一个新的目录。名字随便起，但这一章暂时用 hello 当名字。</p>
 <p><img src="03_hello-world.assets/hello_folder.png" alt="hello_folder" /></p>
+<p>创建目录后，在 VSCode 中打开它。</p>
 <h2 id="33-初始化模块"><a class="header" href="#33-初始化模块">3.3 初始化模块</a></h2>
 <p>打开目录后，接下来需要初始化模块。关于模块的细节，稍后会进行说明，请打开终端并输入以下命令。</p>
 <pre><code class="language-Bash">go mod init hello
 </code></pre>
 <p>如果在资源管理器中生成了名为 go.mod 的文件（红框），则模块初始化成功。<br />
-如果不成功，可能是命令敲错了、Go 安装失败，或者当前目录与 VSCode 打开的目录不同。</p>
+如果不成功，可能是命令敲错了、Go 安装失败，或当前目录与 VSCode 打开的目录不同。</p>
 <p><img src="03_hello-world.assets/go.mod.png" alt="hello-2.png" /></p>
 <h2 id="34-编写程序"><a class="header" href="#34-编写程序">3.4 编写程序</a></h2>
 <p>好了，现在我们有了放程序的地方。<br />
@@ -537,10 +549,11 @@ func main() {
 <pre><code class="language-Bash">go run .
 </code></pre>
 <p>go run 是执行程序的 Go 命令， . 的意思是当前目录。合并后，意思是“执行当前目录的程序！”</p>
-<p>执行命令后，如果终端输出 <code>Hello, World!</code> 则表示运行成功。恭喜您！🎉</p>
-<p>前回说明的那样，如果想要多次执行相同的命令，可以依次按下“上箭头、回车”。</p>
+<p>执行命令后，如果终端输出 <code>Hello, World!</code> 则表示运行成功。恭喜您！🎉
+<img src="03_hello-world.assets/hello1/hello1.gif" alt="go_version.gif" />
+前回说明的那样，如果想要多次执行相同的命令，可以依次按下“上箭头、回车”。</p>
 <h2 id="35-编辑代码"><a class="header" href="#35-编辑代码">3.5 编辑代码</a></h2>
-<p>如果程序顺利执行，那么这次我们尝试将程序修改为显示另一种语言。我们将用以下内容，覆盖之前写的程序。</p>
+<p>如果程序顺利执行，那么这次我们尝试将程序修改为显示另一种语言。我们将用以下内容，改写之前写的程序。</p>
 <pre><code class="language-go">package main
 
 import "fmt"
@@ -549,12 +562,15 @@ func main() {
 	fmt.Println("跨越长城，走向世界！")
 }
 </code></pre>
-<p>修改的是 <code>hello world！</code> 的部分呢。</p>
+<p>修改的是 <code>hello world！</code> 的部分。</p>
 <p>*构成程序的主要字符，必须是半角字符。但夹在 <code>""</code> 之间的部分（称为字符串）等可以使用全角字符。具体情况稍后说明。</p>
-<p>使用 <code>go run .</code> 执行程序时，应该会显示 <code>跨越长城，走向世界！</code> 。显示成功了吗？如果做到的话，请尝试试着显示更多不同的消息吧。</p>
+<p>使用 <code>go run .</code> 执行程序时，应该会显示如下内容：
+<img src="03_hello-world.assets/hello2/hello2.gif" alt="go_version.gif" /></p>
+<p>成功显示文字了吗？</p>
+<p>如果做到的话，请尝试试着显示更多不同的消息吧。</p>
 <h2 id="36-处理错误"><a class="header" href="#36-处理错误">3.6 处理错误</a></h2>
-<p>**“错误”**这个东西，将会长期陪伴你。编辑器报告错误，绝不是在责怪你。</p>
-<p>它会温柔地教你错误的原因和修正方法，甚至比比学校的老师更亲切。</p>
+<p>“错误”  这个东西，将会长期陪伴你。编辑器报告错误，绝不是在责怪你。</p>
+<p>它会温柔地教你错误的原因和修正方法，甚至比学校的老师更亲切。</p>
 <p>在 VSCode 中查看错误信息的方法：</p>
 <ul>
 <li>
@@ -568,8 +584,8 @@ func main() {
 <p><img src="03_hello-world.assets/vscode_show_error_message.png" alt="vscode_show_error_message" /></p>
 <p><img src="03_hello-world.assets/vscode_show_error_message_2.png" alt="vscode_show_error_message_2.png" /></p>
 <p>这里的提示 <code>expected '(', found '{'</code> ，意思是“接下来应该是 <code>(</code>，但实际的符号确实 <code>{</code> ”。实际上，这是编辑器在告诉你在 <code>main</code> 后面应该接 <code>()</code> 。明白这一点，就可以修正这个问题。</p>
-<p>英语写的提示，可能会让人感到害怕，但就算英语半生不熟，也可以连蒙带猜，弄懂大体上的内容。如果报错内容很复杂，也可以将错误信息完整地粘贴到 Google 中搜索，很可能会有人提供解决方案。</p>
-<p>如果仍然感到怵头，可以利用像 ChatGPT 这样的 AI，向他们提问，并附上错误的信息和程序的文本，如果仍然有不明白的地方，可以通过和AI对话，逐步分析错误的原因。</p>
+<p>英语提示，可能会让人感到害怕，但就算英语半生不熟，也可以连蒙带猜，弄懂大体上的内容。如果报错内容很复杂，也可以将错误信息完整地粘贴到 Google 中搜索，很可能会有人提供解决方案。</p>
+<p>如果仍然感到怵头，可以利用像 ChatGPT 这样的 AI，向他们提问，并附上错误的信息和程序的文本，如果仍然有不明白的地方，可以继续和AI对话，逐步分析错误的原因。</p>
 <p>“报错”并不是要责怪你做了坏事。**与其因为害怕出错而烦恼，不如先把想不通的部分写出来试试。**通过“出错”来学习，才是正确与高效的做法。</p>
 <p>无论多么熟练的程序员，都很难一次写好想要的程序。只要是人，都需要依赖“犯错”来寻路。</p>
 <p>（其实，对于熟练的程序员来说，“有错误却没提示”的情况更让人害怕。不骗你。）</p>
@@ -585,7 +601,7 @@ func main() {
 <p>首先创建目录，并初始化模块。</p>
 </li>
 <li>
-<p>创建文件，编写程序。</p>
+<p>创建 .go 文件，编写程序。</p>
 </li>
 <li>
 <p>编辑程序。</p>
@@ -602,7 +618,9 @@ func main() {
 </ul>
 <h2 id="38-理解程序"><a class="header" href="#38-理解程序">3.8 理解程序</a></h2>
 <p>刚才我们通过复制粘贴，体验了一把写程序的过程。接下来，我们要了解程序的细节。不过很难解释清楚每一个细节，现在只需了解大致即可。</p>
-<p>此外，今后也会时不时出现**“声明/declaration”<strong>这个词，简单来说，就是指创建某个东西，告诉电脑</strong>“这里有一个名为〇〇的东西！内容是XXXX！”**的意思。稍微有点难以解释或翻译呢……有个大致的印象就可以了。</p>
+<p>此外，今后也会时不时出现**“声明/declaration”**这个词。</p>
+<p>简单来说，就是指创建某个东西，告诉电脑**“这里有一个名为〇〇的东西！内容是XXXX！”**的意思。</p>
+<p>稍微有点难以解释或翻译呢……有个大致的印象就可以了。</p>
 <pre><code class="language-go">package main // 声明一个包
 
 import "fmt" // 导入模块
@@ -611,7 +629,8 @@ func main() { // 函数声明
 	fmt.Println("Hello World!") // 调用函数
 }
 </code></pre>
-<p><code>package main</code> 表示该程序属于 <code>main</code> 包。包是将程序捆绑在一起的单位，位于同一目录中的程序，基本上属于同一包。</p>
+<p><code>package main</code> 表示该程序属于 <code>main</code> 包。</p>
+<p>包是将程序捆绑在一起的单位，位于同一目录中的程序，基本上属于同一包。</p>
 <p><code>import "fmt"</code> 是用于导入其他包功能的导入语句。 <code>fmt</code> 包提供了在屏幕上显示文本的 <code>Println</code> 等函数。</p>
 <p><code>func main() {</code> 到 <code>}</code> 是 <code>main</code> 函数的声明。函数是指某些处理的集合。</p>
 <p><code>main</code> 包的 <code>main</code> 函数，是一个特殊的函数，表示程序的起点。可以认为在 <code>go run .</code> 中执行的处理，就是去运行这个 <code>main</code> 函数。</p>
@@ -797,7 +816,6 @@ func main() {
 <p>函数可以使用 <code>()</code> 接收输入。这些输入称为参数。给函数提供输入，称为传递参数（简称“传参”）。</p>
 <p>同时传递多个参数，需要用逗号 <code>,</code> 分隔。例如 <code>fmt.Println</code> 函数，就可以把多个参数用空格连接，并把这些内容显示到屏幕上。</p>
 <pre><code class="language-go">fmt.Println("哈哈", "呵呵")
-
 </code></pre>
 <pre><code class="language-bash">$ go run .
 哈哈 呵呵
@@ -1484,7 +1502,7 @@ func draw() {
 	miniten.DrawCircle(200, 200, 50)  // 中心点的坐标（200、200）、圆的半径（50）
 }
 </code></pre>
-<p><img src="08_window.assets/3aab663ffcd486d5168f637d.png" alt="shapes" /></p>
+<p><img src="08_window.assets/hello_miniten.png" alt="shapes" /></p>
 <p>miniten 可以绘制的图形，只有矩形和圆形。</p>
 <p>花其他形状或换颜色，要等到真正入门 Ebitengine 后再学习。</p>
 <h2 id="83-座标"><a class="header" href="#83-座标">8.3 座标</a></h2>
@@ -2057,13 +2075,13 @@ xs := make([]int, 0, 100)
 <li><code>len</code> 函数可以获取切片的长度</li>
 <li>可以使用 <a href="https://pkg.go.dev/slices">slices 包</a>进行其他切片操作</li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="第十二章-飞天地鼠游戏-1会动的墙"><a class="header" href="#第十二章-飞天地鼠游戏-1会动的墙">第十二章 飞天地鼠游戏 （1）会动的墙</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="第十二章-飞天地鼠游戏-1会动的土管"><a class="header" href="#第十二章-飞天地鼠游戏-1会动的土管">第十二章 飞天地鼠游戏 （1）会动的土管</a></h1>
 <p>前一章我们学习了角色移动、管理数据等很多内容。这次我们终于要开始制作游戏了。</p>
 <h2 id="制作飞天地鼠游戏"><a class="header" href="#制作飞天地鼠游戏">制作飞天地鼠游戏</a></h2>
 <p>这次制作的是 Ebitengine 的示例游戏中也包含的，flappy xxxx 游戏。游戏的内容是</p>
 <ul>
 <li>点击后，gopher 君会跳跃。</li>
-<li>右侧的有缺口的墙壁不断靠近，玩家要巧妙地穿过洞。</li>
+<li>右侧的有缺口的土管不断靠近，玩家要巧妙地穿过洞。</li>
 <li>尽量长时间不碰壁、生存下去。</li>
 </ul>
 <p>就是这么简单。让我们开始制作吧。</p>
@@ -2078,8 +2096,8 @@ import (
 var (
 	x    = 200.0
 	y    = 150.0
-	vy   = 0.0  // Velocity of y (Y方向速度) 的略称
-	g    = 0.1  // Gravity (重力加速度) 的略称
+	vy   = 0.0  // Y方向速度(Velocity of y)的缩写
+	g    = 0.1  // 重力加速度(Gravity) 的略称
 	jump = -4.0 // 跳跃力
 )
 
@@ -2096,10 +2114,10 @@ func draw() {
 	miniten.DrawImage("gopher.png", int(x), int(y))
 }
 </code></pre>
-<h2 id="迫近的墙壁"><a class="header" href="#迫近的墙壁">迫近的墙壁</a></h2>
-<p>接下来我们将创建墙壁。作为墙壁的图像，我们准备了这个 <code>wall.png</code> ，请像 gopher 君时一样右键点击“另存为图片”，并将其放置在与程序相同的目录中。</p>
+<h2 id="迫近的土管"><a class="header" href="#迫近的土管">迫近的土管</a></h2>
+<p>接下来我们将创建土管。作为土管的图像，我们准备了这个 <code>wall.png</code> ，请像 gopher 君时一样右键点击“另存为图片”，并将其放置在与程序相同的目录中。</p>
 <p><img src="12_flappy1.assets/wall.png" alt="wall.png" /></p>
-<p>让我们编写一个不断逼近的墙壁。重点是“每隔一定时间添加一堵墙”。</p>
+<p>让我们编写一个不断逼近的土管。重点是“每隔一定时间添加一堵土管”。</p>
 <p>来自前一个程序的更改部分为绿色（TODO）。</p>
 <p>在 Go 中，由多个英语单词组成的名称通常使用大写字母分隔，这被称为驼峰命名法。例如 <code>wallXs</code> 是 <code>wall</code> 和 <code>xs</code> 的合成。</p>
 <pre><code class="language-diff-go">package main
@@ -2111,16 +2129,16 @@ import (
 var (
 	x    = 200.0
 	y    = 150.0
-	vy   = 0.0  // Velocity of y (Y方向速度) 的略称
-	g    = 0.1  // Gravity (重力加速度) 的略称
+	vy   = 0.0  // Y方向速度(Velocity of y)的缩写
+	g    = 0.1  // 重力加速度(Gravity) 的缩写
 	jump = -4.0 // 跳跃力
 
 	frames     = 0       // 经过的帧总数
-	interval   = 120     // 墙的追加间隔
-	wallStartX = 640     // 墙的初始化x坐标
-	wallXs     = []int{} // 墙的x坐标
-	wallWidth  = 20      // 墙的宽度
-	wallHeight = 360     // 墙的高度
+	interval   = 120     // 土管的追加间隔
+	wallStartX = 640     // 土管的初始化x坐标
+	wallXs     = []int{} // 土管的x坐标
+	wallWidth  = 20      // 土管的宽度
+	wallHeight = 360     // 土管的高度
 )
 
 func main() {
@@ -2135,12 +2153,12 @@ func draw() {
 	y += vy // 新的当前位置 = 当前位置+速度
 	miniten.DrawImage("gopher.png", int(x), int(y))
 
-	// 壁追加処理ここから
+	// 从这里开始，写追加土管壁的代码
 	frames += 1
 	if frames%interval == 0 {
 		wallXs = append(wallXs, wallStartX)
 	}
-	// 壁追加処理ここまで
+	// 追加土管壁的代码， 到这里就结束了
 
 	for i := range wallXs {
 		wallXs[i] -= 2 // 往左动
@@ -2150,8 +2168,8 @@ func draw() {
 	}
 }
 </code></pre>
-<p>起动后大约 2 秒钟，如果能看到墙壁从右向左逼近就可以了。</p>
-<p><img src="12_flappy1.assets/%E8%BF%AB%E3%82%8A%E3%81%8F%E3%82%8B%E5%A3%81.png" alt="迫りくる壁" /></p>
+<p>起动后大约 2 秒钟，如果能看到土管从右向左逼近就可以了。</p>
+<p><img src="12_flappy1.assets/hint.png" alt="迫りくる壁" /></p>
 <p><code>frames%interval == 0</code> 的部分是关键。 <code>%</code> 是求余数的符号。余数的特点是会产生如下的周期性。</p>
 <pre><code>原始数字:		0 1 2 3 | 4 5 6 7 | 8 9 10 11 | 12 ...
 除4的余数:	0 1 2 3 | 0 1 2 3 | 0 1  2  3 |  0 ...
@@ -2159,27 +2177,27 @@ func draw() {
 <p>这个性质非常适合“定期做某事”。 <code>frames%120 == 0</code> 意味着“每 120 帧做某事”。</p>
 <p>draw 函数被调用的频率会因您使用的显示器而有所不同，因此请根据需要调整间隔和速度。</p>
 <h2 id="打孔"><a class="header" href="#打孔">打孔</a></h2>
-<p>这次制作的墙壁从上到下完全封闭。我们来打个洞。打洞的方法有几种，这里我们就这样做。</p>
+<p>这次制作的土管从上到下完全封闭。我们来打个洞。打洞的方法有几种，这里我们就这样做。</p>
 <ul>
 <li>
-<p>上面的墙和下面的墙，分开考虑。</p>
+<p>上面的土管和下面的土管，分开考虑。</p>
 </li>
 <li>
 <p>穴的上端 Y 坐标（ <code>holeY</code> ）随机确定。</p>
 </li>
 <li>
-<p>上面的墙，需要比 <code>holeY</code> 高。</p>
+<p>上面的土管，需要比 <code>holeY</code> 高。</p>
 </li>
 <li>
-<p>上面的墙壁的底部，与孔的顶部对齐。</p>
+<p>上面的土管的底部，与孔的顶部对齐。</p>
 </li>
 <li>
-<p>上面的墙的顶部是 <code>holeY - wallHeight</code> 。</p>
+<p>上面的土管的顶部是 <code>holeY - wallHeight</code> 。</p>
 </li>
 <li>
-<p>下面的墙壁，将从 <code>holeY</code> 向下移动一个孔的位置开始绘制。</p>
+<p>下面的土管，将从 <code>holeY</code> 向下移动一个孔的位置开始绘制。</p>
 <ul>
-<li>下的墙的顶部坐标是 <code>holeY + holeHeight</code> 。</li>
+<li>下的土管的顶部坐标是 <code>holeY + holeHeight</code> 。</li>
 </ul>
 </li>
 </ul>
@@ -2195,16 +2213,16 @@ import (
 var (
 	x    = 200.0
 	y    = 150.0
-	vy   = 0.0  // Velocity of y (速度のy成分) の略
-	g    = 0.1  // Gravity (重力加速度) の略
-	jump = -4.0 // ジャンプ力
+	vy   = 0.0  // Y方向速度(Velocity of y)的缩写
+	g    = 0.1  // 重力加速度(Gravity) 的缩写
+	jump = -4.0 // 跳跃力
 
 	frames     = 0       // 经过的帧总数
-	interval   = 120     // 墙的追加间隔
-	wallStartX = 640     // 墙的初始化x坐标
-	wallXs     = []int{} // 墙的x坐标
-	wallWidth  = 20      // 墙的宽度
-	wallHeight = 360     // 墙的高度
+	interval   = 120     // 土管的追加间隔
+	wallStartX = 640     // 土管的初始化x坐标
+	wallXs     = []int{} // 土管的x坐标
+	wallWidth  = 20      // 土管的宽度
+	wallHeight = 360     // 土管的高度
 	holeYs     = []int{} // 洞的 Y 坐标
 	holeYMax   = 150     // 洞的 Y 坐标的最大值
 	holeHeight = 170     // 洞的大小（高度）
@@ -2222,24 +2240,24 @@ func draw() {
 	y += vy // 新的当前位置 = 当前位置+速度
 	miniten.DrawImage("gopher.png", int(x), int(y))
 
-	//  墙壁相关的处理
+	//  土管相关的处理
 	frames += 1
 	if frames%interval == 0 {
 		wallXs = append(wallXs, wallStartX)
 		holeYs = append(holeYs, rand.N(holeYMax))
 	}
-	// 墙壁相关的处理结束
+	// 土管相关的处理结束
 
 	for i := range wallXs {
 		wallXs[i] -= 2 //  往左动
 	}
 	for i := range wallXs {
-		// 描绘上方的墙壁
+		// 描绘上方的土管
 		wallX := wallXs[i]
 		holeY := holeYs[i]
 		miniten.DrawImage("wall.png", wallX, holeY-wallHeight)
 
-		// 描绘下方的墙壁
+		// 描绘下方的土管
 		miniten.DrawImage("wall.png", wallX, holeY+holeHeight)
 	}
 }
@@ -2257,17 +2275,17 @@ func draw() {
 	miniten.DrawImage("gopher.png", int(x), int(y))
 // 以下略
 </code></pre>
-<p>最终，如果出现这样的墙壁与间隔，程序就完成了！</p>
-<p><img src="12_flappy1.assets/%E7%A9%B4%E3%82%92%E9%96%8B%E3%81%91%E3%81%9F%E5%A3%81.jpeg" alt="穴を開けた壁" /></p>
+<p>最终，如果出现这样的土管与间隔，程序就完成了！</p>
+<p><img src="12_flappy1.assets/game_base.jpeg" alt="穴を開けた壁" /></p>
 <h2 id="本章总结-10"><a class="header" href="#本章总结-10">本章总结</a></h2>
-<p>这次我们创建了玩家和逼近的墙，基本上完成了游戏的外观。需要的变量数比以前多，但大部分是调整平衡游戏的固定数字，所以不用担心。下次我们将制作碰撞检测。</p>
+<p>这次我们创建了玩家和逼近的土管，基本上完成了游戏的外观。需要的变量数比以前多，但大部分是调整平衡游戏的固定数字，所以不用担心。下次我们将制作碰撞检测。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="第十三章-飞天地鼠游戏-2碰撞检测"><a class="header" href="#第十三章-飞天地鼠游戏-2碰撞检测">第十三章 飞天地鼠游戏 （2）碰撞检测</a></h1>
-<p>上次我们制作了游戏的外观。这次，我们将实现游戏的核心“与墙壁的碰撞检测”。</p>
+<p>上次我们制作了游戏的外观。这次，我们将实现游戏的核心“与土管的碰撞检测”。</p>
 <h2 id="命中判定"><a class="header" href="#命中判定">命中判定</a></h2>
-<p>现实世界中，只要有物体，就一定会能碰撞，但在游戏世界中，仅仅绘制物体并不会触发碰撞检测，而是会被直接忽略。在游戏世界中，穿透墙壁反而是很自然的规律。当你学习了碰撞检测后，希望你能体会到为世界上所有物体添加碰撞检测的难度，并对开发者多一些理解和宽容。</p>
-<p>那么，碰撞检测的实现难度，会因为目标的形状而大大改变。这次进行的“未经旋转的矩形之间的碰撞检测”在碰撞检测领域算是相对简单的问题。关于其他形状的碰撞检测，请务必查看传说中的神网站“<a href="http://marupeke296.com/GameMain.html">从玩游戏到做游戏（日文网站）</a>”。</p>
-<h3 id="余谈其他碰撞判定的难度排名"><a class="header" href="#余谈其他碰撞判定的难度排名">余谈：其他碰撞判定的难度排名</a></h3>
-<p>笔者主观地对 2D 游戏中的碰撞判定难度进行了排名。从简单到逐渐变难。</p>
+<p>现实世界中，只要有物体，就一定会能碰撞，但在游戏世界中，仅仅绘制物体并不会触发碰撞检测，而是会被直接忽略。游戏世界中，穿墙反而是自然规律。当你学习了碰撞检测后，希望你能体会到为世界上所有的物体添加碰撞检测的难度，并对开发者多一些理解和宽容。</p>
+<p>碰撞检测的实现难度，会因为目标的形状而大大改变。这次做的“未经旋转的矩形之间的碰撞检测”，在碰撞检测领域算是相对简单的问题。关于其他形状的碰撞检测，请务必查看传说中的神网站“<a href="http://marupeke296.com/GameMain.html">从玩游戏到做游戏（日文网站）</a>”。</p>
+<h3 id="余谈各种碰撞判定的难度排名"><a class="header" href="#余谈各种碰撞判定的难度排名">余谈：各种碰撞判定的难度排名</a></h3>
+<p>笔者主观地对 2D 游戏中的碰撞判定难度排了一下名。从上到下，由简单逐渐变难。</p>
 <ul>
 <li>圆和点</li>
 <li>圆和圆</li>
@@ -2275,23 +2293,25 @@ func draw() {
 <li>AABB 之间  ※此次讨论的内容</li>
 <li>胶囊和圆形 ※这个非常好用</li>
 <li>外凸的多角形之间</li>
-<li>任意的多边形之间（难度高到可怕）</li>
+<li>任意形状的多边形之间（难度高到可怕）</li>
 </ul>
-<p>过于复杂的碰撞判定现在多由物理引擎来处理，因此直接制作的机会不多。比起这个，了解具有速度的物体之间的穿透避免等思路更为重要，不过这些内容有机会再进行探讨。</p>
-<p>未进行旋转的四角形之间的碰撞判定可以如图所示，通过 X 和 Y 进行分开考虑，无论从哪个角度看都可以判定重叠。</p>
+<p>过于复杂的碰撞判定现在多由物理引擎处理，直接手写的机会不多。比起这个，学会“避免运动物体穿墙”的思路更为重要，所以高级内容有机会再进行探讨。</p>
+<p>未被旋转的四角形之间的碰撞判定如图所示，把 X 和 Y 分开考虑之后，无论从哪边入手都可以判定重叠。</p>
 <p><img src="13_flappy2.assets/%EF%BC%92%E3%81%A4%E3%81%AE%E7%AE%B1%E3%81%AE%E5%BD%93%E3%81%9F%E3%82%8A%E5%88%A4%E5%AE%9A.png" alt="２つの箱の当たり判定" /></p>
-<p>范围重叠可以用“B 的最大值大于 A 的最小值，并且 A 的最大值大于 B 的最小值”这个条件来表示。写成程序就是</p>
+<p>矩形的重叠，等效于“B 的最大值大于 A 的最小值，且 A 的最大值小于 B 的最小值”这个条件语句。</p>
+<p>翻译成程序就是：</p>
 <pre><code class="language-go">aMin &lt; bMax &amp;&amp; bMin &lt; aMax
 </code></pre>
-<p>语句中的 <code>&amp;&amp;</code> （两个&amp;）表示“且”，当左右都为 true 时，这个式子的结果为 true。排列组合 A 和 B 的位置来模拟，能够得出“这样做没问题”这个结论。</p>
-<div class="table-wrapper"><table><thead><tr><th>図</th><th>aMin &lt; bMax</th><th>bMin &lt; aMax</th><th>结果</th></tr></thead><tbody>
-<tr><td><img src="13_flappy2.assets/%E5%9B%B31.png" alt="図1" /></td><td>true 真</td><td>true 真</td><td>true 真</td></tr>
-<tr><td><img src="13_flappy2.assets/%E5%9B%B32.png" alt="図2" /></td><td>true 真</td><td>true 真</td><td>true 真</td></tr>
-<tr><td><img src="13_flappy2.assets/%E5%9B%B33.png" alt="図3" /></td><td>true 真</td><td><strong>false 假</strong></td><td><strong>false 假</strong></td></tr>
-<tr><td><img src="13_flappy2.assets/%E5%9B%B34.png" alt="図4" /></td><td><strong>false 假</strong></td><td>true 真</td><td><strong>false 假</strong></td></tr>
+<p>语句中的 <code>&amp;&amp;</code> （两个&amp;）表示“且”，当左右都为 true 时，这个式子的结果为 true。</p>
+<p>排列组合 A 和 B 的位置来模拟，能够得出“这样判断没问题”的结论。</p>
+<div class="table-wrapper"><table><thead><tr><th>图</th><th>aMin &lt; bMax</th><th>bMin &lt; aMax</th><th>结果</th></tr></thead><tbody>
+<tr><td><img src="13_flappy2.assets/image1.png" alt="図1" /></td><td>true</td><td>true</td><td>true</td></tr>
+<tr><td><img src="13_flappy2.assets/image2.png" alt="図2" /></td><td>true</td><td>true</td><td>true</td></tr>
+<tr><td><img src="13_flappy2.assets/image3.png" alt="図3" /></td><td>true</td><td><strong>false</strong></td><td><strong>false</strong></td></tr>
+<tr><td><img src="13_flappy2.assets/image4.png" alt="図4" /></td><td><strong>false</strong></td><td>true</td><td><strong>false</strong></td></tr>
 </tbody></table>
 </div>
-<p>接下来只需判断，是否同时在 X 和 Y 方向上都满足条件即可。top 和 bottom 分别意味着顶部和底部。</p>
+<p>接下来只需判断，是否同时在 X 和 Y 方向上都满足类似的条件即可。top 和 bottom ，分别意味着顶部和底部。</p>
 <pre><code class="language-go">if (aLeft &lt; bRight &amp;&amp; bLeft &lt; aRight) &amp;&amp; (aTop &lt; bBottom &amp;&amp; bTop &lt; aBottom) {
     // 碰撞到了
 }
@@ -2301,10 +2321,10 @@ func draw() {
 <li>矩形 A 是地鼠君。</li>
 <li>矩形 B 是墙。</li>
 <li>地鼠矩形的范围，是 <code>从点(x, y) 到点 (x+gopherWidth, y+gopherHeight)</code> 。</li>
-<li>上面的墙壁是 <code>占据的范围是从(wallX, holeY-wallHeight) 到(wallX+wallWidth, holeY)</code> 。</li>
-<li>下面的墙壁是 <code>(wallX, holeY+holeHeight) から (wallX+wallWidth, holeY+holeHeight+wallHeight)</code> 。</li>
+<li>上面的土管是 <code>占据的范围是从(wallX, holeY-wallHeight) 到(wallX+wallWidth, holeY)</code> 。</li>
+<li>下面的土管是 <code>(wallX, holeY+holeHeight) から (wallX+wallWidth, holeY+holeHeight+wallHeight)</code> 。</li>
 </ul>
-<p>事情变得相当棘手，但只要扎实地一个一个地解开，就不难理解。</p>
+<p>事情变得相当棘手，但只要扎实地分步解开，就不难理解。</p>
 <pre><code class="language-diff-go">package main
 
 import (
@@ -2316,19 +2336,19 @@ import (
 var (
 	x    = 200.0
 	y    = 150.0
-	vy   = 0.0  // Velocity of y (速度のy成分) の略
-	g    = 0.1  // Gravity (重力加速度) の略
-	jump = -4.0 // ジャンプ力
+	vy   = 0.0  // Y方向速度(Velocity of y)的缩写
+	g    = 0.1  // 重力加速度(Gravity) 的缩写
+	jump = -4.0 // 跳跃力
 
-	frames     = 0       // 経過フレーム数
-	interval   = 120     // 壁の追加間隔
-	wallStartX = 640     // 壁の初期X座標
-	wallXs     = []int{} // 壁のX座標
-	wallWidth  = 20      // 壁の幅
-	wallHeight = 360     // 壁の高さ
-	holeYs     = []int{} // 穴のY座標
-	holeYMax   = 150     // 穴のY座標の最大値
-	holeHeight = 170     // 穴のサイズ（高さ）
+	frames     = 0       // 经过的帧总数
+	interval   = 120     // 土管追加间隔
+	wallStartX = 640     // 土管的初始X坐标
+	wallXs     = []int{} // 土管的X坐标
+	wallWidth  = 20      // 土管的宽度
+	wallHeight = 360     // 土管的高度
+	holeYs     = []int{} // 空洞的Y坐标
+	holeYMax   = 150     // 空洞的Y坐标的最大值
+	holeHeight = 170     // 空洞的大小（高度）
 
 	gopherWidth  = 60
 	gopherHeight = 75
@@ -2343,108 +2363,108 @@ func draw() {
 	if miniten.IsClicked() {
 		vy = jump
 	}
-	vy += g // 速度に加速度を足す
-	y += vy // 位置に速度を足す
+	vy += g // 新的当前速度 = 当前速度+加速度
+	y += vy // 新的当前位置 = 当前位置+速度
 	miniten.DrawImage("gopher.png", int(x), int(y))
 
-	// 壁追加処理ここから
+	// 从这里开始，写追加土管的代码
 	frames += 1
 	if frames%interval == 0 {
 		wallXs = append(wallXs, wallStartX)
 		holeYs = append(holeYs, rand.N(holeYMax))
 	}
-	// 壁追加処理ここまで
+	// 追加土管的代码，到这里就结束了
 
 	for i := range wallXs {
-		wallXs[i] -= 2 // 少しずつ左へ
+		wallXs[i] -= 2 // 往左动
 	}
 	for i := range wallXs {
-		// 上の壁の描画
+		// 描绘上面的土管
 		wallX := wallXs[i]
 		holeY := holeYs[i]
 		miniten.DrawImage("wall.png", wallX, holeY-wallHeight)
 
-		// 下の壁の描画
+		// 描绘下面的土管
 		miniten.DrawImage("wall.png", wallX, holeY+holeHeight)
 
-		// gopherくんを表す四角形を作る
+		// 制作表示地鼠的矩形
 		aLeft := int(x)
 		aTop := int(y)
 		aRight := int(x) + gopherWidth
 		aBottom := int(y) + gopherHeight
 
-		// 上の壁を表す四角形を作る
+		// 定义表示上面土管的矩形 
 		bLeft := wallX
 		bTop := holeY - wallHeight
 		bRight := wallX + wallWidth
 		bBottom := holeY
 
-		// 上の壁との当たり判定
+		// 上面土管的判定
 		if aLeft &lt; bRight &amp;&amp;
 			bLeft &lt; aRight &amp;&amp;
 			aTop &lt; bBottom &amp;&amp;
 			bTop &lt; aBottom {
-			miniten.Println("上の壁に当たってる")
+			miniten.Println("碰到上面的土管了")
 		}
 
-		// 下の壁を表す四角形を作る
+		// 定义表示下面土管的矩形
 		bLeft = wallX
 		bTop = holeY + holeHeight
 		bRight = wallX + wallWidth
 		bBottom = holeY + holeHeight + wallHeight
 
-		// 下の壁との当たり判定
+		// 地鼠与下面土管的碰撞判定
 		if aLeft &lt; bRight &amp;&amp;
 			bLeft &lt; aRight &amp;&amp;
 			aTop &lt; bBottom &amp;&amp;
 			bTop &lt; aBottom {
-			miniten.Println("下の壁に当たってる")
+			miniten.Println("碰到下面的土管了")
 		}
 	}
 }
 </code></pre>
-<p>Go的书写方式，有一套特定的的规则，规则也规定了换行的位置。如果在编辑器中敲换行后引发错误，可以先不换行，遵循编辑器是一个不错的选择。</p>
-<p>当它接触墙壁的时候，如果屏幕左上角显示了消息，则表示程序运作正常。</p>
+<p>Go的书写格式有一套特定的规则，也规定了换行的位置。如果在编辑器中敲换行后引发错误，取消换行，遵循编辑器的建议是一个不错的选择。</p>
+<p>地鼠接触土管的时候，如果屏幕左上角显示了消息，则表示程序运作正常。</p>
 <p><img src="13_flappy2.assets/hint.jpeg" alt="hint.jpeg" /></p>
 <h4 id="补充"><a class="header" href="#补充">补充</a></h4>
-<p>余談：もっと簡単な方法 余谈：更简单的方法
-由于没有通用性，所以没有介绍，但就这个游戏而言，可以通过判断“头部是否碰到上面的墙壁，脚是否碰到下面的墙壁”来更简单地编写。</p>
-<pre><code class="language-go">// 当たり判定
+<p>补充：更简单的方法
+由于没有通用性，所以没有重点介绍。但这个游戏，可以通过判断“头部是否碰到上面的土管，脚是否碰到下面的土管”来更简单地判断。</p>
+<pre><code class="language-go">// 碰撞判定
 if wallX &lt; int(x)+gopherWidth/2 &amp;&amp; int(x)+gopherWidth/2 &lt; wallX+wallWidth {
-	head := int(y)                // 頭の高さ
-	foot := int(y) + gopherHeight // 足の高さ
+	head := int(y)                // 地鼠头部的位置
+	foot := int(y) + gopherHeight // 地鼠脚尖的位置
 	if head &lt; upperWallHeight {
-		miniten.Println("上の壁に当たってる")
+		miniten.Println("碰到上面的土管了")
 	}
 	if lowerWallY &lt; foot {
-		miniten.Println("下の壁に当たってる")
+		miniten.Println("碰到下面的土管了")
 	}
 }
 </code></pre>
-<p>这个写法之所以能够成立，是因为这个游戏的墙壁必定与地板或天花板相连，否则会出现身体（即头部和脚部之间）碰撞却穿透的现象。
-尽管如此，这种方法在分解为 X 和 Y 进行思考这一点上是相同的，因此仔细考虑一下可能会很有趣。</p>
+<p>这个写法之所以成立，是因为这个游戏内的土管，必定与地板或天花板相连，否则会出现地鼠（的头部和脚部）走捷径穿透土管的现象。
+尽管如此，这个方案，也用了将问题分解为 X 和 Y 两个方向，将问题化整为零的做法。仔细考虑一下，可能会很有意思。</p>
 <h3 id="床和天花板"><a class="header" href="#床和天花板">床和天花板</a></h3>
-<p>顺便说一下，仅靠这些，如果逃到屏幕外的上方和下方，就可以避免碰撞判定。我们来给地板和天花板添加碰撞判定。虽然这样做比与墙壁的碰撞判定简单。这个数值意味着可以稍微超出屏幕底部，但这部分可以根据个人喜好调整。</p>
+<p>顺便说一下，仅靠上述代码，如果地鼠逃到屏幕外的上面和下面，就可以永远避免触发碰撞判定。我们来给地板和天花板添加碰撞判定。做法比与土管的碰撞判定简单。目前的数值，可以允许稍微超出屏幕底部，但这部分可以根据个人喜好调整。</p>
 <pre><code class="language-diff-go">	...前略...
-		// 下の壁との当たり判定
+		// 底部的碰撞判定
 		if aLeft &lt; bRight &amp;&amp;
 			bLeft &lt; aRight &amp;&amp;
 			aTop &lt; bBottom &amp;&amp;
 			bTop &lt; aBottom {
-			miniten.Println("下の壁に当たってる")
+			miniten.Println("碰到底边了")
 		}
 	}
 
 	if y &lt; 0 {
-		miniten.Println("天井に当たってる")
+		miniten.Println("碰到天花板")
 	}
 	if 360 &lt; y {
-		miniten.Println("床に当たってる")
+		miniten.Println("碰到底边了")
 	}
 }
 </code></pre>
 <h2 id="计分"><a class="header" href="#计分">计分</a></h2>
-<p>这个游戏的分数是穿越的墙壁数量。虽然可以考虑多种实现方法，但实际上可以通过“数自己左侧的墙壁数量”这种方式相对简单地实现，所以这次就用这个方法试试看。</p>
+<p>这个游戏的分数，基于穿越的土管数量。虽然可以考虑其他做法，但是“数自己左侧的土管数量”的算法简单易懂，所以这次就用这个方法试试看。</p>
 <pre><code class="language-diff-go">func draw() {
 	miniten.DrawImage("sky.png", 0, 0)
 	score := 0
@@ -2454,11 +2474,11 @@ if wallX &lt; int(x)+gopherWidth/2 &amp;&amp; int(x)+gopherWidth/2 &lt; wallX+wa
 		}
 	}
 	miniten.Println("Score", score)
-	...後略...
+	...后略...
 </code></pre>
 <ul>
 <li><code>score</code> 是表示分数的变量。</li>
-<li><code>wallX &lt; int(x)</code> 可以判断 gopher 的左侧是否有墙。gopher 左侧的墙的数量就是得分。</li>
+<li><code>wallX &lt; int(x)</code> 可以判断 gopher 的左侧是否有墙。gopher 左侧的土管的数量就是得分。</li>
 <li>从索引 0 开始逐个查看，满足条件后不断覆盖 <code>score</code> 。</li>
 <li>不满足条件，也就是说在 gopher 君右侧的墙不会覆盖 <code>score</code> 。因此，最后满足条件（通过）的墙将成为得分。</li>
 <li>切片索引从 0 开始，但为了计算“通过索引 0 的墙得 1 分，经过 1 的墙得 2 分”，我在索引上加了 1。</li>
@@ -2474,38 +2494,38 @@ if wallX &lt; int(x)+gopherWidth/2 &amp;&amp; int(x)+gopherWidth/2 &lt; wallX+wa
 <p>在实现画面迁移之前，我们先考虑一下需要哪些画面。这次我们将制作以下三个画面。</p>
 <ul>
 <li>标题画面。点击后游戏开始。</li>
-<li>游戏画面。撞到墙壁就会游戏结束。</li>
+<li>游戏画面。撞到土管就会游戏结束。</li>
 <li>游戏结束画面。显示分数，点击后返回标题画面。</li>
 </ul>
 <h3 id="考虑骨架结构"><a class="header" href="#考虑骨架结构">考虑骨架结构</a></h3>
 <p>画面迁移虽然听起来复杂，但本质上只是一个 switch 语句。骨架大致是这样的，根据表示画面的变量 <code>scene</code> 来分支处理该帧的操作。 <code>scene</code> 是在满足下一个画面迁移条件时会被更改的东西。反过来说，在不满足迁移条件的情况下，始终保持相同的 <code>scene</code> 。</p>
-<pre><code class="language-go">var scene = "title" // どの画面にいるかを保持する変数
+<pre><code class="language-go">var scene = "title" // 保存当前画面的变量
 
 func draw() {
 	switch scene {
 	case "title":
-		// タイトル画面の処理
-		// クリックされたら scene = "game" にする
+		// 标题画面的处理
+		// 点击之后让 scene = "game" 
 
 	case "game":
-		// ゲーム画面の処理
-		// 壁にぶつかったら scene = "gameover" にする
+		// 游戏画面的处理
+		// 撞上土管之后让 scene = "gameover" 
 
 	case "gameover":
-		// ゲームオーバー画面の処理
-		// クリックされたら scene = "title" にする
+		// 游戏结束画面的处理
+		// 点击之后让 scene = "title"  
 	}
 }
 </code></pre>
 <p>这样虽然简单，但如果将之前实现的 draw 函数的内容移到 <code>case "game":</code> 下面，就会变得非常难以阅读。</p>
 <pre><code class="language-go">	case "game":
-		// スコアの計算
-		// クリックしてジャンプ
-		// 壁を追加する
-		// 壁を移動する
-		// 壁の描画
-		// 壁との当たり判定
-		// 天井、床との当たり判定
+		// 计算得分 
+		// 点击后跳跃
+		// 追加土管
+		// 移动土管
+		// 壁描绘土管
+		// 玩地鼠与土管的碰撞判定
+		// 天花板，地板的碰撞判定
 		// ...
 </code></pre>
 <p>在这种情况下，通过自己创建函数（处理的集合）来整理代码吧。使用函数时，switch 语句可能会是这样的。</p>
@@ -2523,18 +2543,18 @@ func draw() {
 }
 
 func drawTitle() {
-	// タイトル画面の処理
+	// 标题画面的处理
 }
 
 func drawGame() {
 	// 前回までのdraw関数と同じ
-	// スコアの計算
-	// クリックしてジャンプ
+	// 计算得分
+	// 点画面跳跃
 	// ...
 }
 
 func drawGameover() {
-	// ゲームオーバー画面の処理
+	// 游戏结束的处理
 }
 </code></pre>
 <p>反映到实际的程序中：</p>
@@ -2549,19 +2569,19 @@ import (
 var (
 	x    = 200.0
 	y    = 150.0
-	vy   = 0.0  // Velocity of y (速度のy成分) の略
-	g    = 0.1  // Gravity (重力加速度) の略
-	jump = -4.0 // ジャンプ力
+	vy   = 0.0  // Y方向速度(Velocity of y)的缩写
+	g    = 0.1  // 重力加速度(Gravity) 的缩写
+	jump = -4.0 // 跳跃力
 
-	frames     = 0       // 経過フレーム数
-	interval   = 120     // 壁の追加間隔
-	wallStartX = 640     // 壁の初期X座標
-	wallXs     = []int{} // 壁のX座標
-	wallWidth  = 20      // 壁の幅
-	wallHeight = 360     // 壁の高さ
-	holeYs     = []int{} // 穴のY座標
-	holeYMax   = 150     // 穴のY座標の最大値
-	holeHeight = 170     // 穴のサイズ（高さ）
+	frames     = 0       // 经过的帧总数
+	interval   = 120     // 墙的追加间隔
+	wallStartX = 640     // 墙的初始化x坐标
+	wallXs     = []int{} // 墙的x坐标
+	wallWidth  = 20      // 墙的宽度
+	wallHeight = 360     // 墙的高度
+	holeYs     = []int{} // 空洞的y坐标
+	holeYMax   = 150     // 空洞的y坐标的最大值
+	holeHeight = 170     // 空洞的大小（高度）
 
 	gopherWidth  = 60
 	gopherHeight = 75
@@ -2590,7 +2610,7 @@ func drawTitle() {
 }
 
 func drawGame() {
-	// 前回までのdraw関数と同じなので割愛
+	// 和上一章的 drawGame() 函数完全一样，所以这里省略了代码
 }
 
 func drawGameover() {
@@ -2600,7 +2620,7 @@ func drawGameover() {
 <p>背景和“点击开始”的提示，同时显示 gopher 君。如果大家能跟到这里，理解这个应该没问题吧。</p>
 <pre><code class="language-go">func drawTitle() {
 	miniten.DrawImage("sky.png", 0, 0)
-	miniten.Println("クリックしてスタート")
+	miniten.Println("点击后开始")
 	miniten.DrawImage("gopher.png", int(x), int(y))
 	if miniten.IsClicked() {
 		scene = "game"
@@ -2608,9 +2628,8 @@ func drawGameover() {
 }
 </code></pre>
 <p>这下点击后就可以开始游戏了。接下来我们将制作游戏结束画面。</p>
-<p>今まで当たり判定部分では当たった旨を左上に表示するのみでしたが、ゲームオーバー画面に遷移するために <code>scene = "gameover"</code> に書き換えます。
-今まで当たり判定部分では当たった旨を左上に表示するのみでしたが，游戏结束画面に遷移するためにに書き換えます。</p>
-<p>之前的游戏结束画面，都是用左上角显示一行文字来代替。接下来用 <code>scene = "gameover"</code> ，显示专门的游戏结束画面。</p>
+<p>之前的代码，如果满足了碰撞判定的条件，只会在页面的左上角显示游戏结束的文字提示。</p>
+<p>此次为了切换画面游戏结束画面， 会让<code>scene = "gameover"</code> ` ，显示专门的游戏结束画面。</p>
 <p>在 drawGameover 函数中，显示游戏结束的消息和最后的分数。由于分数仍然是局部变量，因此无法在 drawGameover 函数中使用，所以需要将其改为全局变量。</p>
 <p>将以上两个变更，反映到实际的程序中。</p>
 <p>!削除部分为红色（TODO）。</p>
@@ -2625,25 +2644,25 @@ import (
 var (
 	x    = 200.0
 	y    = 150.0
-	vy   = 0.0  // Velocity of y (速度のy成分) の略
-	g    = 0.1  // Gravity (重力加速度) の略
-	jump = -4.0 // ジャンプ力
+	vy   = 0.0  // Y方向速度(Velocity of y)的缩写
+	g    = 0.1  // 重力加速度(Gravity) 的缩写
+	jump = -4.0 // 跳跃力
 
-	frames     = 0       // 経過フレーム数
-	interval   = 120     // 壁の追加間隔
-	wallStartX = 640     // 壁の初期X座標
-	wallXs     = []int{} // 壁のX座標
-	wallWidth  = 20      // 壁の幅
-	wallHeight = 360     // 壁の高さ
-	holeYs     = []int{} // 穴のY座標
-	holeYMax   = 150     // 穴のY座標の最大値
-	holeHeight = 170     // 穴のサイズ（高さ）
+	frames     = 0       // 经过的帧总数
+	interval   = 120     // 墙的追加间隔
+	wallStartX = 640     // 墙的初始化x坐标
+	wallXs     = []int{} // 墙的x坐标
+	wallWidth  = 20      // 墙的宽度
+	wallHeight = 360     // 墙的高度
+	holeYs     = []int{} // 空洞的y坐标
+	holeYMax   = 150     // 空洞的y坐标的最大值
+	holeHeight = 170     // 空洞的大小（高度）
 
 	gopherWidth  = 60
 	gopherHeight = 75
 
 	scene = "title"
-	score = 0 // スコアのグローバル変数
+	score = 0 // 分数是全局变量
 )
 
 func main() {
@@ -2665,7 +2684,7 @@ func draw() {
 
 func drawTitle() {
 	miniten.DrawImage("sky.png", 0, 0)
-	miniten.Println("クリックしてスタート")
+	miniten.Println("点击开始游戏")
 	miniten.DrawImage("gopher.png", int(x), int(y))
 	if miniten.IsClicked() {
 		scene = "game"
@@ -2674,7 +2693,7 @@ func drawTitle() {
 
 func drawGame() {
 	miniten.DrawImage("sky.png", 0, 0)
-	// score := 0 // 削除
+	// score := 0 // 删除这里
 	for i, wallX := range wallXs {
 		if wallX &lt; int(x) {
 			score = i + 1
@@ -2684,43 +2703,43 @@ func drawGame() {
 	if miniten.IsClicked() {
 		vy = jump
 	}
-	vy += g // 速度に加速度を足す
-	y += vy // 位置に速度を足す
+	vy += g // 新的当前速度 = 当前速度+加速度
+	y += vy // 新的当前位置 = 当前位置+速度
 	miniten.DrawImage("gopher.png", int(x), int(y))
 
-	// 壁追加処理ここから
+	// 从这里开始，写追加土管的代码
 	frames += 1
 	if frames%interval == 0 {
 		wallXs = append(wallXs, wallStartX)
 		holeYs = append(holeYs, rand.N(holeYMax))
 	}
-	// 壁追加処理ここまで
+	// 追加土管的代码，到这里就结束了
 
 	for i := range wallXs {
-		wallXs[i] -= 2 // 少しずつ左へ
+		wallXs[i] -= 2 // 往左动
 	}
 	for i := range wallXs {
-		// 上の壁の描画
+		// 描绘上面的土管
 		wallX := wallXs[i]
 		holeY := holeYs[i]
 		miniten.DrawImage("wall.png", wallX, holeY-wallHeight)
 
-		// 下の壁の描画
+		// 描绘下面的土管
 		miniten.DrawImage("wall.png", wallX, holeY+holeHeight)
 
-		// gopherくんを表す四角形を作る
+		// 制作表示地鼠的矩形
 		aLeft := int(x)
 		aTop := int(y)
 		aRight := int(x) + gopherWidth
 		aBottom := int(y) + gopherHeight
 
-		// 上の壁を表す四角形を作る
+		// 定义表示上面土管的矩形 
 		bLeft := wallX
 		bTop := holeY - wallHeight
 		bRight := wallX + wallWidth
 		bBottom := holeY
 
-		// 上の壁との当たり判定
+		// 上面的土管的判定
 		if aLeft &lt; bRight &amp;&amp;
 			bLeft &lt; aRight &amp;&amp;
 			aTop &lt; bBottom &amp;&amp;
@@ -2728,13 +2747,13 @@ func drawGame() {
 			scene = "gameover"
 		}
 
-		// 下の壁を表す四角形を作る
+		// 定义表示下面土管的矩形
 		bLeft = wallX
 		bTop = holeY + holeHeight
 		bRight = wallX + wallWidth
 		bBottom = holeY + holeHeight + wallHeight
 
-		// 下の壁との当たり判定
+		// 地鼠与下面的土管的碰撞判定
 		if aLeft &lt; bRight &amp;&amp;
 			bLeft &lt; aRight &amp;&amp;
 			aTop &lt; bBottom &amp;&amp;
@@ -2752,16 +2771,16 @@ func drawGame() {
 }
 
 func drawGameover() {
-	// 背景、gopher、壁の描画はdrawGame関数のコピペ
+	// 将背景、地鼠、土管的drawGame函数粘贴到这里
 	miniten.DrawImage("sky.png", 0, 0)
 	miniten.DrawImage("gopher.png", int(x), int(y))
 	for i := range wallXs {
-		// 上の壁の描画
+		// 描绘上面的土管
 		wallX := wallXs[i]
 		holeY := holeYs[i]
 		miniten.DrawImage("wall.png", wallX, holeY-wallHeight)
 
-		// 下の壁の描画
+		// 描绘下面的土管
 		miniten.DrawImage("wall.png", wallX, holeY+holeHeight)
 	}
 
@@ -2780,7 +2799,7 @@ func drawGameover() {
 </ul>
 <p>因此，需要写一种判断“玩家没有持续按下按钮，只按下了一瞬间”的方法，以及重置游戏状态的处理。</p>
 <h2 id="刚好被按下的判定"><a class="header" href="#刚好被按下的判定">刚好被按下的判定</a></h2>
-<p>要判断按钮没有持续按下，而只是按下一瞬间，可以判断前一帧没有被按下，而当前帧被按下了即可。这个处理在任何画面中都很方便，所以我们可以把它写在 draw 函数的开头。prev 是 previous（前一个）的缩写。</p>
+<p>要判断按钮没有持续按下，而只是按下一瞬间，可以判断前一帧没有被按下，同时当前帧被按下了即可。这个处理在任何画面中都很方便，所以我们可以把它写在 draw 函数的开头。prev 是 previous（前一个）的缩写。</p>
 <p><code>!</code> 表示否定/not， <code>!true</code> 等于 <code>false</code> ， <code>!false</code> 等于 <code>true</code> 。</p>
 <pre><code class="language-diff-go">package main
 
@@ -2795,8 +2814,8 @@ var (
 	scene = "title"
 	score = 0
 
-	isPrevClicked = false // 前のフレームでクリックされていたか
-	isJustClicked = false // 今のフレームでクリックされたか
+	isPrevClicked = false // 前一帧按钮没按下
+	isJustClicked = false // 这一帧按钮被按下
 )
 
 func main() {
@@ -2804,19 +2823,19 @@ func main() {
 }
 
 func draw() {
-	// 今のフレームでクリックされたか = 今のフレームでクリックされていて、前のフレームでクリックされていない
+	// 这一帧按钮是否被按下 = 前一帧按钮没按下、同时这一帧按钮被按下
 	isJustClicked = miniten.IsClicked() &amp;&amp; !isPrevClicked
-	// 次のフレームに備えて、クリックされたかを保存しておく
+	// 为了下一帧做判断、保存“这一帧按钮被按下”这个状态
 	isPrevClicked = miniten.IsClicked()
 
 	switch scene {
 	case "title":
-	// ...後略...
+	// ...后略...
 </code></pre>
 <p>将这个 <code>isJustClicked</code> 用于游戏结束画面和标题画面。</p>
 <pre><code class="language-diff-go">func drawTitle() {
 	miniten.DrawImage("sky.png", 0, 0)
-	miniten.Println("クリックしてスタート")
+	miniten.Println("点击开始游戏")
 	miniten.DrawImage("gopher.png", int(x), int(y))
 	if isJustClicked {
 		scene = "game"
@@ -2826,16 +2845,16 @@ func draw() {
 // ...中略...
 
 func drawGameover() {
-	// 背景、gopher、壁の描画はdrawGame関数のコピペ
+	// 将背景、地鼠、土管的drawGame函数粘贴到这里
 	miniten.DrawImage("sky.png", 0, 0)
 	miniten.DrawImage("gopher.png", int(x), int(y))
 	for i := range wallXs {
-		// 上の壁の描画
+		// 描绘上面的土管
 		wallX := wallXs[i]
 		holeY := holeYs[i]
 		miniten.DrawImage("wall.png", wallX, holeY-wallHeight)
 
-		// 下の壁の描画
+		// 描绘下面的土管
 		miniten.DrawImage("wall.png", wallX, holeY+holeHeight)
 	}
 
@@ -2848,7 +2867,7 @@ func drawGameover() {
 </code></pre>
 <p>这下可以安全地按住而不会被跳过了。</p>
 <h2 id="游戏结束时的重置"><a class="header" href="#游戏结束时的重置">游戏结束时的重置</a></h2>
-<p>接下来只需重置游戏状态，以便从头开始重新游玩。gopher 君和墙壁的状态将在游戏结束画面中保持以便绘制，并希望在返回标题画面的瞬间重置，因此将在 <code>if isJustClicked</code> 中编写重置处理。</p>
+<p>接下来只需重置游戏状态，以便从头开始重新游玩。gopher 君和土管的状态将在游戏结束画面中保持以便绘制，并希望在返回标题画面的瞬间重置，因此将在 <code>if isJustClicked</code> 中编写重置处理。</p>
 <pre><code class="language-diff-go">	if isJustClicked {
 		scene = "title"
 
@@ -2873,7 +2892,7 @@ func drawGameover() {
 <p>可以考虑这样的打磨方式，如果之后入门 Ebitengine，</p>
 <ul>
 <li>旋转玩家角色等。</li>
-<li>碰到墙壁时发出声音。</li>
+<li>碰到土管时发出声音。</li>
 <li>更改显示分数的位置。</li>
 <li>添加游戏结束的演出。</li>
 </ul>
@@ -2937,7 +2956,7 @@ var fsys embed.FS
 var (
 	x    = 200.0
 	y    = 150.0
-	vy   = 0.0  // Velocity of y (速度のy成分) の略
+	vy   = 0.0  // Y方向速度(Velocity of y)的缩写
 	// ...中略...
 )
 
@@ -2951,7 +2970,7 @@ func draw() {
 
 func drawTitle() {
 	miniten.DrawImageFS(fsys, "sky.png", 0, 0)
-	miniten.Println("クリックしてスタート")
+	miniten.Println("点击开始游戏")
 	miniten.DrawImageFS(fsys, "gopher.png", int(x), int(y))
 	if isJustClicked {
 		scene = "game"
@@ -2960,8 +2979,8 @@ func drawTitle() {
 
 func drawGame() {
 	miniten.DrawImageFS(fsys, "sky.png", 0, 0)
-	// 以下、同様に DrawImage をすべて DrawImageFS に置き換えること
-	// ...後略...
+	// 接下来，将所有的  DrawImage 全部替换成 DrawImageFS 
+	// ...后略...
 </code></pre>
 <p>这个程序将正常编译。</p>
 <pre><code>$ go build
@@ -3035,7 +3054,7 @@ $ go env -u GOOS GOARCH
 
 import "fmt"
 
-var p struct { // p は 位置/position の頭文字
+var p struct { // p 是 位置/position的首字母
 	x int
 	y int
 }
@@ -3056,33 +3075,33 @@ $ go run .
 var x1 int
 </code></pre>
 <p>增加一个 <code>int</code> 类型的变量很简单，但如果想增加结构体类型的变量，由于类型中有换行，且较长，准确地写出所有字段的名称和类型就很麻烦。因此，通常会在类型声明中给结构体起一个喜欢的别名，以便于重复使用。类型宣言的语法是 <code>type 新的类型名 原类型名</code> ，如下所示。</p>
-<pre><code class="language-go">// 構造体型を元に、新たな型 position を宣言する
+<pre><code class="language-go">// 用构造体为基础，声明新的类型 position 
 type position struct {
 	x int
 	y int
 }
 
-// 新たな型を利用する
+// 使用新的类型
 var p0 position
-// 何度でも利用できる
+// 可以多次利用
 var p1 position
 var p2 position
 
-// p0, p1, p2 いずれもフィールド x, y を持つ。
+// p0, p1, p2 都有 x, y 这两个字段
 </code></pre>
 <p>类型宣言中还有“能够声明类型相关的函数”这个附带效果，但这稍后再说。</p>
 <h3 id="扩展解说"><a class="header" href="#扩展解说">扩展解说</a></h3>
 <p>实际上不仅限于结构体， int 等各种类型都可以作为基础进行类型声明，但这是声明方法的高级用法，因此省略。</p>
 <h2 id="结构体的值的表示"><a class="header" href="#结构体的值的表示">结构体的值的表示</a></h2>
 <p>结构体也可以像数组和切片一样使用<strong>复合字面量</strong>通过 <code>类型名称{字段的值, 字段的值...}</code> 表示值。</p>
-<pre><code class="language-go">// position 型が宣言済みとする
+<pre><code class="language-go">// 假设已经声明了 position 
 
 func main() {
-	p := position{3, 4} // xの値、yの値
+	p := position{3, 4} // x的值、y的值
 	fmt.Println(p) // {3 4}
 }
 </code></pre>
-<p>此外，还可以使用 <code>{字段名称: 字段的值, 字段名称: 字段的值 ...}</code> 这种语法。用法是</p>
+<p>此外，还可以使用 <code>{字段名称: 字段值, 字段名称: 字段值 ...}</code> 这种语法。用法是</p>
 <pre><code class="language-go">func main() {
 	p := position{x: 3, y: 4}
 	fmt.Println(p) // {3 4}
@@ -3096,8 +3115,8 @@ func main() {
 <pre><code class="language-go">var p position
 fmt.Println(p) // {0 0}
 </code></pre>
-<p><code>{フィールド名: 値, ...}</code> 的记法允许省略字段。省略的字段将为零值。</p>
-<pre><code class="language-go">p := position{y: 5} // x を省略
+<p><code>{字段名: 值, ...}</code> 这种记法，允许省略字段。省略的字段将为零值。</p>
+<pre><code class="language-go">p := position{y: 5} // x 被省略了
 fmt.Println(p)      // {0 5}
 </code></pre>
 <h2 id="结构体的优点"><a class="header" href="#结构体的优点">结构体的优点</a></h2>
@@ -3106,16 +3125,16 @@ fmt.Println(p)      // {0 5}
 <pre><code class="language-go">var px int
 var py int
 </code></pre>
-<p>如果只有一组的话，作为不同的变量写也没什么大问题，</p>
+<p>如果只有一组变量，作为不同的变量分开写，似乎也没什么问题，</p>
 <pre><code class="language-go">var p0x int
 var p0y int
 var p1x int
 var p1y int
 // ...以下略...
 </code></pre>
-<p>像这样，列出多个变量的集合就很麻烦了。这种时候结构体就派上用场了。</p>
-<pre><code class="language-go">var p0 position // p0.x, p0.y が含まれる
-var p1 position // p1.x, p1.y が含まれる
+<p>但是像这样，使用多个变量的集合就很麻烦了。这时候，结构体就派上用场了。</p>
+<pre><code class="language-go">var p0 position // 包含 p0.x, p0.y  
+var p1 position // 包含 p1.x, p1.y  
 // ...以下略...
 </code></pre>
 <h3 id="优势二批量复制"><a class="header" href="#优势二批量复制">优势二：批量复制</a></h3>
@@ -3131,26 +3150,27 @@ p1y := p0y
 <h3 id="优势-3可选值"><a class="header" href="#优势-3可选值">优势 3：可选值</a></h3>
 <p>已经看到，省略字段的表达在结构体的值中是存在的。</p>
 <p>再贴一遍</p>
-<pre><code class="language-go">p := position{y: 5} // x を省略
+<pre><code class="language-go">p := position{y: 5} // 省略了 x 
 fmt.Println(p)      // {0 5}
 </code></pre>
 <p>这是将选项表示为结构体时很方便。我们来考虑以下的“咖喱饭的订单选项”结构体。</p>
-<pre><code class="language-go">type カレーライスの注文オプション struct {
-	ご飯追加量         int  // 何グラム追加するか
-	トンカツ追加       bool // トンカツ追加するかどうか
-	ソーセージ追加本数 int  // ソーセージ何本追加するか
+<pre><code class="language-go">type 独家秘制咖喱饭 struct {
+	老板加点饭         int  // 要加多少克
+	要不要叉烧       bool // 是否加叉烧
+	来几根脆脆肠 int  // 要加几根脆脆肠
 }
 </code></pre>
 <p>结构体可以省略不必要的字段，因此可以有以下各种用法。</p>
-<pre><code class="language-go">order(カレーライスの注文オプション{}) // 普通のカレーライス
-order(カレーライスの注文オプション{ご飯追加量: 200}) // ご飯大盛り
-order(カレーライスの注文オプション{トンカツ追加: true, ソーセージ追加本数: 3}) // トンカツあり、ソーセージ3本（ご飯並盛り）
+<pre><code class="language-go">order(独家秘制咖喱饭{}) // 标准版咖喱饭
+order(独家秘制咖喱饭{老板加点饭: 200}) // 多来点饭
+order(独家秘制咖喱饭{要不要叉烧: true, 来几根脆脆肠: 3}) // 加叉烧、三根脆脆肠（不加米饭）
 </code></pre>
-<h3 id="面向有经验的人-使零值变得有用"><a class="header" href="#面向有经验的人-使零值变得有用">[面向有经验的人] 使零值变得有用</a></h3>
-<p>“Make the zero value useful” 是 Go 的一个谚语，意思是“将零值变为有用的值”。</p>
-<p>结构体中省略的字段会被赋予零值，但将这个零值转变为有意义的值被认为是编写更易用程序的技巧。例如在上述例子中，米饭的追加量是“从普通份增加多少克”。
-这就是“米饭的量要设定为多少克”，如果省略了字段，米饭的量就会变成零克。咖喱饭不可能没有米饭，因此零值是无效值，“无用值”。</p>
-<p>在这里，加入“增加的量”会使省略时自然地表示出标准份量，因此更显得智能。这就是“让零值变得有用”的思维方式。</p>
+<h3 id="面向有经验的人-使零值有用"><a class="header" href="#面向有经验的人-使零值有用">[面向有经验的人] 使零值有用</a></h3>
+<p>“Make the zero value useful” 是 Go 的一个谚语，意思是“让零值有用”。</p>
+<p>结构体中省略的字段会被赋予零值，但将“零值定义为有用的值”被认为是写好程序的技巧。</p>
+<p>例如在上述例子中，米饭的追加量是“从普通份增加多少克”。</p>
+<p>如果改为“米饭的要多少克”的话，如果没有设定这个字段，米饭的量就会变成 0，因为咖喱饭不能没有米饭，因此零值无效，是“无用的值”。</p>
+<p>在这里，设置这个字段为“加多少饭”，会让此字段未赋值的时候，自然地使用标准份量，程序显得智能。这就是“让零值有用”的思维方式。</p>
 <h3 id="优势-4与切片结合"><a class="header" href="#优势-4与切片结合">优势 4：与切片结合</a></h3>
 <pre><code class="language-go">var xs = []int{}
 var ys = []int{}
@@ -3160,10 +3180,11 @@ var ys = []int{}
 </code></pre>
 <p>切片的优点在于可以随时自由地添加或删除元素，但如果管理两个切片，可能会出现在一个切片中添加了元素而忘记在另一个切片中添加的错误。通过将元素的类型设置为结构体并在一个切片中管理，可以避免此类错误的发生。这也是结构体的一个优点。</p>
 <h2 id="重构吧"><a class="header" href="#重构吧">重构吧</a></h2>
-<p>使用方便的结构体，我们来重构一下弹跳的 gopher 小子游戏。重构是指在不改变程序行为的情况下，仅改善写法。</p>
+<p>使用方便的结构体，我们来重构一下地鼠游戏。</p>
+<p>重构是指在不改变程序行为的情况下，仅改善写法。</p>
 <p>请注意两个变量 <code>wallXs</code> 和 <code>holeYs</code> 。</p>
-<pre><code class="language-go">var wallXs = []int{} // 壁のX座標
-var holeYs = []int{} // 穴のY座標
+<pre><code class="language-go">var wallXs = []int{} // 土管的X坐标 
+var holeYs = []int{} // 空洞的Y坐标
 </code></pre>
 <p>这些可以通过使用结构体，将两个变量汇总成一个 `walls。</p>
 <pre><code class="language-go">var walls = []struct{
@@ -3171,8 +3192,8 @@ var holeYs = []int{} // 穴のY座標
 	holeY int
 }
 </code></pre>
-<p><img src="16_struct.assets/%E3%81%BE%E3%81%A8%E3%82%81%E3%82%8B.png" alt="まとめる前" /> <em>２两个切片...</em></p>
-<p><img src="16_struct.assets/%E3%81%BE%E3%81%A8%E3%82%81%E3%81%9F%E5%BE%8C.png" alt="まとめた後" /> 合并为一个*</p>
+<p><img src="16_struct.assets/before.png" alt="まとめる前" /> <em>２两个切片...</em></p>
+<p><img src="16_struct.assets/after.png" alt="まとめた後" /> 合并为一个*</p>
 <p>我们可以基于此进行重构。range 语句的处理方式与之前有所不同，不再从两个切片中获取值，因此使用循环次数 <code>i</code> 的机会减少了。</p>
 <pre><code class="language-diff-go">package main
 
@@ -3194,27 +3215,27 @@ type wall struct {
 var (
 	x    = 200.0
 	y    = 150.0
-	vy   = 0.0  // Velocity of y (速度のy成分) の略
-	g    = 0.1  // Gravity (重力加速度) の略
-	jump = -4.0 // ジャンプ力
+	vy   = 0.0  // Y方向速度(Velocity of y)的缩写
+	g    = 0.1  // 重力加速度(Gravity) 的缩写
+	jump = -4.0 // 跳跃力
 
-	frames     = 0        // 経過フレーム数
-	interval   = 120      // 壁の追加間隔
-	wallStartX = 640      // 壁の初期X座標
-	walls      = []wall{} // 壁のX座標と穴のY座標
-	wallWidth  = 20       // 壁の幅
-	wallHeight = 360      // 壁の高さ
-	holeYs     = []int{}  // 穴のY座標
-	holeYMax   = 150      // 穴のY座標の最大値
-	holeHeight = 170      // 穴のサイズ（高さ）
+	frames     = 0        // 经过的帧总数
+	interval   = 120      // 土管的追加间隔
+	wallStartX = 640      // 土管的初始化x坐标
+	walls      = []wall{} // 土管的X坐标与空洞的Y坐标
+	wallWidth  = 20       // 土管宽度
+	wallHeight = 360      // 土管高度
+	holeYs     = []int{}  // 空洞的Y坐标 
+	holeYMax   = 150      // 空洞的Y坐标的最大值
+	holeHeight = 170      // 空洞的的大小（高度）
 
 	gopherWidth  = 60
 	gopherHeight = 75
 
 	scene         = "title"
-	score         = 0     // スコアのグローバル変数
-	isPrevClicked = false // 前のフレームでクリックされていたか
-	isJustClicked = false // 今のフレームでクリックされたか
+	score         = 0     // 保存分数的全局变量 
+	isPrevClicked = false // 上一帧是否被点击
+	isJustClicked = false // 这一帧是否被点击
 )
 
 func main() {
@@ -3222,9 +3243,9 @@ func main() {
 }
 
 func draw() {
-	// 今のフレームでクリックされたか = 今のフレームでクリックされていて、前のフレームでクリックされていない
+	// 这一帧按钮是否被按下 = 前一帧按钮没按下、同时这一帧按钮被按下
 	isJustClicked = miniten.IsClicked() &amp;&amp; !isPrevClicked
-	// 次のフレームに備えて、クリックされたかを保存しておく
+	// 为了下一帧做判断、保存“这一帧按钮被按下”这个状态
 	isPrevClicked = miniten.IsClicked()
 
 	switch scene {
@@ -3241,7 +3262,7 @@ func draw() {
 
 func drawTitle() {
 	miniten.DrawImageFS(fsys, "sky.png", 0, 0)
-	miniten.Println("クリックしてスタート")
+	miniten.Println("点击后开始")
 	miniten.DrawImageFS(fsys, "gopher.png", int(x), int(y))
 	if isJustClicked {
 		scene = "game"
@@ -3259,41 +3280,41 @@ func drawGame() {
 	if miniten.IsClicked() {
 		vy = jump
 	}
-	vy += g // 速度に加速度を足す
-	y += vy // 位置に速度を足す
+	vy += g // 新的当前速度 = 当前速度+加速度
+	y += vy // 新的当前位置 = 当前位置+速度
 	miniten.DrawImageFS(fsys, "gopher.png", int(x), int(y))
 
-	// 壁追加処理ここから
+	// 土管相关的处理
 	frames += 1
 	if frames%interval == 0 {
 		wall := wall{wallStartX, rand.N(holeYMax)}
 		walls = append(walls, wall)
 	}
-	// 壁追加処理ここまで
+	// 土管相关的处理结束
 
 	for i := range walls {
 		walls[i].wallX -= 2 // 少しずつ左へ
 	}
 	for _, wall := range walls {
-		// 上の壁の描画
+		// 描绘上方的土管
 		miniten.DrawImageFS(fsys, "wall.png", wall.wallX, wall.holeY-wallHeight)
 
-		// 下の壁の描画
+		// 描绘下面的土管
 		miniten.DrawImageFS(fsys, "wall.png", wall.wallX, wall.holeY+holeHeight)
 
-		// gopherくんを表す四角形を作る
+		// 制作表示地鼠的矩形
 		aLeft := int(x)
 		aTop := int(y)
 		aRight := int(x) + gopherWidth
 		aBottom := int(y) + gopherHeight
 
-		// 上の壁を表す四角形を作る
+		// 定义表示上面土管的矩形
 		bLeft := wall.wallX
 		bTop := wall.holeY - wallHeight
 		bRight := wall.wallX + wallWidth
 		bBottom := wall.holeY
 
-		// 上の壁との当たり判定
+		// 上面土管的判定
 		if aLeft &lt; bRight &amp;&amp;
 			bLeft &lt; aRight &amp;&amp;
 			aTop &lt; bBottom &amp;&amp;
@@ -3301,13 +3322,13 @@ func drawGame() {
 			scene = "gameover"
 		}
 
-		// 下の壁を表す四角形を作る
+		// 定义表示下面土管的矩形
 		bLeft = wall.wallX
 		bTop = wall.holeY + holeHeight
 		bRight = wall.wallX + wallWidth
 		bBottom = wall.holeY + holeHeight + wallHeight
 
-		// 下の壁との当たり判定
+		/// 地鼠与下面土管的碰撞判定
 		if aLeft &lt; bRight &amp;&amp;
 			bLeft &lt; aRight &amp;&amp;
 			aTop &lt; bBottom &amp;&amp;
@@ -3325,14 +3346,14 @@ func drawGame() {
 }
 
 func drawGameover() {
-	// 背景、gopher、壁の描画はdrawGame関数のコピペ
+	// 把绘制背景、地鼠、土管的代码粘贴到这里 
 	miniten.DrawImageFS(fsys, "sky.png", 0, 0)
 	miniten.DrawImageFS(fsys, "gopher.png", int(x), int(y))
 	for _, wall := range walls {
-		// 上の壁の描画
+		// 描绘上方的土管
 		miniten.DrawImageFS(fsys, "wall.png", wall.wallX, wall.holeY-wallHeight)
 
-		// 下の壁の描画
+		// 描绘下面的土管
 		miniten.DrawImageFS(fsys, "wall.png", wall.wallX, wall.holeY+holeHeight)
 	}
 
@@ -3414,11 +3435,11 @@ func drawGameover() {
 <h2 id="函数的使用场合"><a class="header" href="#函数的使用场合">函数的使用场合</a></h2>
 <p>正如已经使用过的那样，除了将长时间的处理切分以便于查看外，当同样的处理需要重复多次时，声明函数并重新使用也是很方便的。</p>
 <pre><code class="language-go">func drawComplexObjects() {
-	// 数百行に渡る長い描画処理...
+	// 已经写好的数百行描绘处理
 }
 
 func draw() {
-	// 簡単に再利用できる
+	// 可以简单地再利用
 	drawComplexObjects()
 	drawComplexObjects()
 	drawComplexObjects()
@@ -3607,11 +3628,11 @@ $ go run .
 <p>这张桌子上的所有数据都井然有序地排列着，每个数据都有一个表示位置的数字。这个数字就是地址/address。最初是表示“住所”的词，有时也被翻译为“番地”。</p>
 <p>下图是这样的内存中变量 <code>x</code> <code>y</code> <code>vy</code> 被保存的样子。</p>
 <p>!954、958、974 等地址仅仅是为了说明“存在地址这个数字”而临时指定的值，因此与实际地址的分配方式有很大不同。请注意。</p>
-<p><img src="18_pointer.assets/%E3%83%A1%E3%83%A2%E3%83%AA%E3%81%AE%E5%86%85%E9%83%A8.png" alt="メモリの内部" /> <em>メモリ内部のイメージ 内存内部的图像</em></p>
+<p><img src="18_pointer.assets/in_mem.png" alt="メモリの内部" /> <em>内存内部的图像</em></p>
 <p>变量存储在内存中，内存上的数据分配了地址，如果掌握了这些，指针就可以轻松应对了。</p>
 <h2 id="和-"><a class="header" href="#和-">&amp; 和 *</a></h2>
 <p>在 Go 中，如下图所示，可以通过 <code>&amp;</code> 获取分配给变量的地址，通过 <code>*</code> 获取地址所指向的内容。</p>
-<p><img src="18_pointer.assets/%E3%83%9B%E3%82%9A%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%81%AE%E7%9F%A2%E5%8D%B0.png" alt="ポインターの矢印" /></p>
+<p><img src="18_pointer.assets/pointer.png" alt="变量的指向关系" /></p>
 <p>这样一来，开头的程序也一定能读懂了。</p>
 <p>再贴一遍</p>
 <pre><code class="language-go">package main
@@ -3632,7 +3653,7 @@ func main() {
 <p>总之只是表示法不同而已，实际上只是整数，所以完全不用担心。例如 <code>0x1400009a020</code> 转换为十进制是 <code>1374390165536</code> 。地址使用十六进制只是一个习惯，所以不必太在意。</p>
 <h2 id="指针类型"><a class="header" href="#指针类型">指针类型</a></h2>
 <p>下图中还有一个地方没有解释，那就是 <code>p *int</code> 的部分。</p>
-<p><img src="18_pointer.assets/%E3%83%9B%E3%82%9A%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%81%AE%E7%9F%A2%E5%8D%B0.png" alt="ポインターの矢印" /></p>
+<p><img src="18_pointer.assets/pointer.png" alt="变量的指向关系" /></p>
 <p>在 Go 中，可以将地址赋值给<strong>指针类型</strong>。指针类型以 <code>*int</code> 的形式写作 <code>*型名</code> 。</p>
 <p>麻烦的是， <code>&amp;</code> 获取的地址结果的类型不是 <code>&amp;int</code> 而是 <code>*int</code> 。不过这是历史原因造成的，只能记住。个人来说，我希望指针类型叫 <code>&amp;int</code> 。</p>
 <h2 id="零值nil"><a class="header" href="#零值nil">零值，nil</a></h2>
@@ -3640,13 +3661,13 @@ func main() {
 nil 指向的地方在 <code>*</code> 中使用时会崩溃，所以请小心使用。</p>
 <pre><code class="language-go">func main() {
 	var p *int
-	*p = 42 // クラッシュ
+	*p = 42 // 崩溃
 	fmt.Println(*p)
 }
 </code></pre>
 <p>利用 nil 的含义，也可以用来表示有无效和有效时的变量。</p>
 <pre><code class="language-go">func main() {
-	p := 何らかの関数() // 返り値が無効な時と有効な時がある
+	p := 某个函数() // 返り値が無効な時と有効な時がある
 	if p != nil {       // 有効な (nilではない) 時だけ処理を行う
 		fmt.Println(*p)
 	}
@@ -3678,7 +3699,7 @@ fmt.Println(pp.x) // 30
 <h3 id="使用场景-1避免大量数据的复制"><a class="header" href="#使用场景-1避免大量数据的复制">使用场景 1：避免大量数据的复制</a></h3>
 <p>当将参数传递给函数时，该参数会被复制。如果该参数非常庞大，复制将耗费时间（复制庞大数据对计算机来说是重负担）。</p>
 <p>指针只是一个数字，因此只需复制指针，就可以相对快速地在函数中通过指针使用该数据。</p>
-<p><img src="18_pointer.assets/bigdata_and_pointer.png" alt="大きなデータとポインター" /></p>
+<p><img src="18_pointer.assets/bigdata_and_pointer.png" alt="大量数据与指针" /></p>
 <h3 id="使用场景-2要求更改原始内容"><a class="header" href="#使用场景-2要求更改原始内容">使用场景 2：要求更改原始内容</a></h3>
 <p>这也是由于参数被复制而引起的事情，但在函数内部对参数这个副本进行的任何修改都不会影响原始变量。</p>
 <p>使用指针时，复制的指针也会指向原始变量，因此即使在函数内部也可以修改原始变量。</p>
@@ -3687,20 +3708,20 @@ fmt.Println(pp.x) // 30
 }
 
 func g(p *int) {
-	*p = 99 // 指し示す先 = オリジナルを書き換える
+	*p = 99 // 指针指向的地方 = 原始值被覆盖
 }
 
 func main() {
 	x := 42
 	f(x)
-	fmt.Println(x) // 42。xは書き換わらない
+	fmt.Println(x) // 42 x没有被更改
 	g(&amp;x)
-	fmt.Println(x) // 99。xは書き換わる
+	fmt.Println(x) // 99 x被更改了
 }
 </code></pre>
 <p>猜数字游戏中出现的 <code>fmt.Scanln</code> 函数取参数为指针也是为了这个原因。</p>
 <pre><code class="language-go">x := 0
-fmt.Scanln(&amp;x) // x を書き換えてもらう
+fmt.Scanln(&amp;x) // 此处的 x 被修改
 </code></pre>
 <h3 id="其他用途"><a class="header" href="#其他用途">其他用途</a></h3>
 <p>基本是以上所述，但在实践中正确区分所有指针，即使是熟练的程序员也非常困难。因此，这次我将传授一个大致可以说是 OK 的粗略指导。虽然提到了尚未涉及的 Go 功能，但请您谅解，并将其放在脑海的一角。</p>
@@ -3741,26 +3762,26 @@ type wall struct {
 var (
 	x    = 200.0
 	y    = 150.0
-	vy   = 0.0  // Velocity of y (速度のy成分) の略
-	g    = 0.1  // Gravity (重力加速度) の略
-	jump = -4.0 // ジャンプ力
+	vy   = 0.0  // Y方向速度(Velocity of y)的缩写
+	g    = 0.1  // 重力加速度(Gravity) 的缩写
+	jump = -4.0 // 跳跃力
 
-	frames     = 0         // 経過フレーム数
-	interval   = 120       // 壁の追加間隔
-	wallStartX = 640       // 壁の初期X座標
-	walls      = []*wall{} // 壁のX座標と穴のY座標
-	wallWidth  = 20        // 壁の幅
-	wallHeight = 360       // 壁の高さ
-	holeYMax   = 150       // 穴のY座標の最大値
-	holeHeight = 170       // 穴のサイズ（高さ）
+	frames     = 0         // 经过的帧总数
+	interval   = 120       // 土管追加间隔
+	wallStartX = 640       // 土管的初始x坐标
+	walls      = []*wall{} // 土管的X坐标与空洞的Y坐标
+	wallWidth  = 20        // 土管的宽度
+	wallHeight = 360       // 土管的高度
+	holeYMax   = 150       // 空洞的Y坐标的最大值
+	holeHeight = 170       // 空洞的大小（高度）
 
 	gopherWidth  = 60
 	gopherHeight = 75
 
 	scene         = "title"
-	score         = 0     // スコアのグローバル変数
-	isPrevClicked = false // 前のフレームでクリックされていたか
-	isJustClicked = false // 今のフレームでクリックされたか
+	score         = 0     // 分数，全局变量。
+	isPrevClicked = false // 前一帧按钮没按下
+	isJustClicked = false // 这一帧按钮被按下
 )
 
 func main() {
@@ -3786,23 +3807,23 @@ func drawGame() {
 	if miniten.IsClicked() {
 		vy = jump
 	}
-	vy += g // 速度に加速度を足す
-	y += vy // 位置に速度を足す
+	vy += g // 新的当前速度 = 当前速度+加速度
+	y += vy // 新的当前位置 = 当前位置+速度
 	miniten.DrawImageFS(fsys, "gopher.png", int(x), int(y))
 
-	// 壁追加処理ここから
+	// 从这里开始，写追加土管的代码
 	frames += 1
 	if frames%interval == 0 {
 		wall := &amp;wall{wallStartX, rand.N(holeYMax)}
 		walls = append(walls, wall)
 	}
-	// 壁追加処理ここまで
+	// 追加土管的代码，到这里就结束了
 
 	for i := range walls {
-		walls[i].wallX -= 2 // 少しずつ左へ
+		walls[i].wallX -= 2 // 往左动
 	}
 	for _, wall := range walls {
-		wall.wallX -= 2 // 少しずつ左へ
+		wall.wallX -= 2 // 往左动
 	}
 	for _, wall := range walls {
 		drawWalls(wall)
@@ -3819,7 +3840,7 @@ func drawGame() {
 }
 
 func drawGameover() {
-	// 背景、gopher、壁の描画はdrawGame関数のコピペ
+	// 将背景、地鼠、土管的drawGame函数粘贴到这里
 	miniten.DrawImageFS(fsys, "sky.png", 0, 0)
 	miniten.DrawImageFS(fsys, "gopher.png", int(x), int(y))
 	for _, wall := range walls {
@@ -3841,10 +3862,10 @@ func drawGameover() {
 }
 
 func drawWalls(w *wall) {
-	// 上の壁の描画
+	// 描绘上面的土管
 	miniten.DrawImageFS(fsys, "wall.png", w.wallX, w.holeY-wallHeight)
 
-	// 下の壁の描画
+	// 描绘下面的土管
 	miniten.DrawImageFS(fsys, "wall.png", w.wallX, w.holeY+holeHeight)
 }
 
@@ -3865,11 +3886,11 @@ func hitTestRects(aLeft, aTop, aRight, aBottom, bLeft, bTop, bRight, bBottom int
 <p>有趣的是墙壁的移动处理。 <code>for range</code> 文中提取的元素类型变成了指针，因此可以通过复制的 <code>wall</code> 指针来修改原始值，结果不再需要使用循环次数 <code>i</code> 。实际上，这种新的写法在 Go 中是常见的写法。</p>
 <pre><code class="language-diff-go">// before
 	for i := range walls {
-		walls[i].wallX -= 2 // 少しずつ左へ
+		walls[i].wallX -= 2 // 往左移动
 	}
 // after
 	for _, wall := range walls {
-		wall.wallX -= 2 // 少しずつ左へ
+		wall.wallX -= 2 // 往左移动
 	}
 </code></pre>
 <h2 id="本章总结-16"><a class="header" href="#本章总结-16">本章总结</a></h2>

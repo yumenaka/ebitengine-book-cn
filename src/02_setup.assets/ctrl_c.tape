@@ -58,7 +58,7 @@
 Output ctrl_c.gif
 
 Require ping
-
+Env PROMPT "$"
 Set Shell "bash"
 Set FontSize 24
 Set Width 1200

@@ -67,7 +67,7 @@ var fsys embed.FS
 var (
 	x    = 200.0
 	y    = 150.0
-	vy   = 0.0  // Velocity of y (速度のy成分) の略
+	vy   = 0.0  // Y方向速度(Velocity of y)的缩写
 	// ...中略...
 )
 
@@ -81,7 +81,7 @@ func draw() {
 
 func drawTitle() {
 	miniten.DrawImageFS(fsys, "sky.png", 0, 0)
-	miniten.Println("クリックしてスタート")
+	miniten.Println("点击开始游戏")
 	miniten.DrawImageFS(fsys, "gopher.png", int(x), int(y))
 	if isJustClicked {
 		scene = "game"
@@ -90,8 +90,8 @@ func drawTitle() {
 
 func drawGame() {
 	miniten.DrawImageFS(fsys, "sky.png", 0, 0)
-	// 以下、同様に DrawImage をすべて DrawImageFS に置き換えること
-	// ...後略...
+	// 接下来，将所有的  DrawImage 全部替换成 DrawImageFS 
+	// ...后略...
 ```
 
 这个程序将正常编译。

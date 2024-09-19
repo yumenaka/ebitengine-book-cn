@@ -80,7 +80,7 @@ func draw() {
 }
 ```
 
-![shapes](08_window.assets/3aab663ffcd486d5168f637d.png)
+![shapes](08_window.assets/hello_miniten.png)
 
 miniten 可以绘制的图形，只有矩形和圆形。
 

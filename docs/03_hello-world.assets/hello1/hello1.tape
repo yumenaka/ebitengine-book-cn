@@ -55,19 +55,15 @@
 #   Hide                            Hide the subsequent commands from the output
 #   Show                            Show the subsequent commands in the output
 
-Output ctrl_c.gif
+Output hello1.gif
 
-Require ping
+Require go
 Env PROMPT "$"
 Set Shell "bash"
-Set FontSize 24
+Set FontSize 32
 Set Width 1200
-Set Height 800
+Set Height 300
 
-Type "ping 127.0.0.1" Sleep 500ms  Enter
+Type "go run ." Sleep 500ms  Enter
 
-Sleep 12s
-
-Ctrl+C
-
-Sleep 10s
+Sleep 5s

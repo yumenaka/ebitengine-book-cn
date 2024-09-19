@@ -1,4 +1,4 @@
-# 第十二章 飞天地鼠游戏 （1）会动的墙
+# 第十二章 飞天地鼠游戏 （1）会动的土管
 
 前一章我们学习了角色移动、管理数据等很多内容。这次我们终于要开始制作游戏了。
 
@@ -7,7 +7,7 @@
 这次制作的是 Ebitengine 的示例游戏中也包含的，flappy xxxx 游戏。游戏的内容是
 
 -  点击后，gopher 君会跳跃。
-- 右侧的有缺口的墙壁不断靠近，玩家要巧妙地穿过洞。
+- 右侧的有缺口的土管不断靠近，玩家要巧妙地穿过洞。
 - 尽量长时间不碰壁、生存下去。
 
 就是这么简单。让我们开始制作吧。
@@ -26,8 +26,8 @@ import (
 var (
 	x    = 200.0
 	y    = 150.0
-	vy   = 0.0  // Velocity of y (Y方向速度) 的略称
-	g    = 0.1  // Gravity (重力加速度) 的略称
+	vy   = 0.0  // Y方向速度(Velocity of y)的缩写
+	g    = 0.1  // 重力加速度(Gravity) 的略称
 	jump = -4.0 // 跳跃力
 )
 
@@ -45,13 +45,13 @@ func draw() {
 }
 ```
 
-##  迫近的墙壁
+##  迫近的土管
 
-接下来我们将创建墙壁。作为墙壁的图像，我们准备了这个 `wall.png` ，请像 gopher 君时一样右键点击“另存为图片”，并将其放置在与程序相同的目录中。
+接下来我们将创建土管。作为土管的图像，我们准备了这个 `wall.png` ，请像 gopher 君时一样右键点击“另存为图片”，并将其放置在与程序相同的目录中。
 
 ![wall.png](12_flappy1.assets/wall.png)
 
-让我们编写一个不断逼近的墙壁。重点是“每隔一定时间添加一堵墙”。
+让我们编写一个不断逼近的土管。重点是“每隔一定时间添加一堵土管”。
 
 来自前一个程序的更改部分为绿色（TODO）。
 
@@ -67,16 +67,16 @@ import (
 var (
 	x    = 200.0
 	y    = 150.0
-	vy   = 0.0  // Velocity of y (Y方向速度) 的略称
-	g    = 0.1  // Gravity (重力加速度) 的略称
+	vy   = 0.0  // Y方向速度(Velocity of y)的缩写
+	g    = 0.1  // 重力加速度(Gravity) 的缩写
 	jump = -4.0 // 跳跃力
 
 	frames     = 0       // 经过的帧总数
-	interval   = 120     // 墙的追加间隔
-	wallStartX = 640     // 墙的初始化x坐标
-	wallXs     = []int{} // 墙的x坐标
-	wallWidth  = 20      // 墙的宽度
-	wallHeight = 360     // 墙的高度
+	interval   = 120     // 土管的追加间隔
+	wallStartX = 640     // 土管的初始化x坐标
+	wallXs     = []int{} // 土管的x坐标
+	wallWidth  = 20      // 土管的宽度
+	wallHeight = 360     // 土管的高度
 )
 
 func main() {
@@ -91,12 +91,12 @@ func draw() {
 	y += vy // 新的当前位置 = 当前位置+速度
 	miniten.DrawImage("gopher.png", int(x), int(y))
 
-	// 壁追加処理ここから
+	// 从这里开始，写追加土管壁的代码
 	frames += 1
 	if frames%interval == 0 {
 		wallXs = append(wallXs, wallStartX)
 	}
-	// 壁追加処理ここまで
+	// 追加土管壁的代码， 到这里就结束了
 
 	for i := range wallXs {
 		wallXs[i] -= 2 // 往左动
@@ -107,9 +107,9 @@ func draw() {
 }
 ```
 
-起动后大约 2 秒钟，如果能看到墙壁从右向左逼近就可以了。
+起动后大约 2 秒钟，如果能看到土管从右向左逼近就可以了。
 
-![迫りくる壁](12_flappy1.assets/迫りくる壁.png)
+![迫りくる壁](12_flappy1.assets/hint.png)
 
  `frames%interval == 0` 的部分是关键。 `%` 是求余数的符号。余数的特点是会产生如下的周期性。
 
@@ -126,20 +126,20 @@ draw 函数被调用的频率会因您使用的显示器而有所不同，因此
 ##  打孔
 
 
-这次制作的墙壁从上到下完全封闭。我们来打个洞。打洞的方法有几种，这里我们就这样做。
+这次制作的土管从上到下完全封闭。我们来打个洞。打洞的方法有几种，这里我们就这样做。
 
-- 上面的墙和下面的墙，分开考虑。
+- 上面的土管和下面的土管，分开考虑。
 
 - 穴的上端 Y 坐标（ `holeY` ）随机确定。
   
--  上面的墙，需要比 `holeY` 高。
+-  上面的土管，需要比 `holeY` 高。
 
-  - 上面的墙壁的底部，与孔的顶部对齐。
-  -  上面的墙的顶部是 `holeY - wallHeight` 。
+  - 上面的土管的底部，与孔的顶部对齐。
+  -  上面的土管的顶部是 `holeY - wallHeight` 。
   
-- 下面的墙壁，将从 `holeY` 向下移动一个孔的位置开始绘制。
+- 下面的土管，将从 `holeY` 向下移动一个孔的位置开始绘制。
 
-  - 下的墙的顶部坐标是 `holeY + holeHeight` 。
+  - 下的土管的顶部坐标是 `holeY + holeHeight` 。
 
 ![img](12_flappy1.assets/hole.png)
 
@@ -155,16 +155,16 @@ import (
 var (
 	x    = 200.0
 	y    = 150.0
-	vy   = 0.0  // Velocity of y (速度のy成分) の略
-	g    = 0.1  // Gravity (重力加速度) の略
-	jump = -4.0 // ジャンプ力
+	vy   = 0.0  // Y方向速度(Velocity of y)的缩写
+	g    = 0.1  // 重力加速度(Gravity) 的缩写
+	jump = -4.0 // 跳跃力
 
 	frames     = 0       // 经过的帧总数
-	interval   = 120     // 墙的追加间隔
-	wallStartX = 640     // 墙的初始化x坐标
-	wallXs     = []int{} // 墙的x坐标
-	wallWidth  = 20      // 墙的宽度
-	wallHeight = 360     // 墙的高度
+	interval   = 120     // 土管的追加间隔
+	wallStartX = 640     // 土管的初始化x坐标
+	wallXs     = []int{} // 土管的x坐标
+	wallWidth  = 20      // 土管的宽度
+	wallHeight = 360     // 土管的高度
 	holeYs     = []int{} // 洞的 Y 坐标
 	holeYMax   = 150     // 洞的 Y 坐标的最大值
 	holeHeight = 170     // 洞的大小（高度）
@@ -182,24 +182,24 @@ func draw() {
 	y += vy // 新的当前位置 = 当前位置+速度
 	miniten.DrawImage("gopher.png", int(x), int(y))
 
-	//  墙壁相关的处理
+	//  土管相关的处理
 	frames += 1
 	if frames%interval == 0 {
 		wallXs = append(wallXs, wallStartX)
 		holeYs = append(holeYs, rand.N(holeYMax))
 	}
-	// 墙壁相关的处理结束
+	// 土管相关的处理结束
 
 	for i := range wallXs {
 		wallXs[i] -= 2 //  往左动
 	}
 	for i := range wallXs {
-		// 描绘上方的墙壁
+		// 描绘上方的土管
 		wallX := wallXs[i]
 		holeY := holeYs[i]
 		miniten.DrawImage("wall.png", wallX, holeY-wallHeight)
 
-		// 描绘下方的墙壁
+		// 描绘下方的土管
 		miniten.DrawImage("wall.png", wallX, holeY+holeHeight)
 	}
 }
@@ -223,10 +223,10 @@ func draw() {
 // 以下略
 ```
 
-最终，如果出现这样的墙壁与间隔，程序就完成了！
+最终，如果出现这样的土管与间隔，程序就完成了！
 
-![穴を開けた壁](12_flappy1.assets/穴を開けた壁.jpeg)
+![穴を開けた壁](12_flappy1.assets/game_base.jpeg)
 
 ## 本章总结
 
-这次我们创建了玩家和逼近的墙，基本上完成了游戏的外观。需要的变量数比以前多，但大部分是调整平衡游戏的固定数字，所以不用担心。下次我们将制作碰撞检测。
+这次我们创建了玩家和逼近的土管，基本上完成了游戏的外观。需要的变量数比以前多，但大部分是调整平衡游戏的固定数字，所以不用担心。下次我们将制作碰撞检测。

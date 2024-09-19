@@ -242,11 +242,11 @@
 <h2 id="函数的使用场合"><a class="header" href="#函数的使用场合">函数的使用场合</a></h2>
 <p>正如已经使用过的那样，除了将长时间的处理切分以便于查看外，当同样的处理需要重复多次时，声明函数并重新使用也是很方便的。</p>
 <pre><code class="language-go">func drawComplexObjects() {
-	// 数百行に渡る長い描画処理...
+	// 已经写好的数百行描绘处理
 }
 
 func draw() {
-	// 簡単に再利用できる
+	// 可以简单地再利用
 	drawComplexObjects()
 	drawComplexObjects()
 	drawComplexObjects()

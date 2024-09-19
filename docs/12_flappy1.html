@@ -182,13 +182,13 @@
                 <div id="content" class="content">
                     <main>
                         <div class="content-wrap">
-                            <h1 id="第十二章-飞天地鼠游戏-1会动的墙"><a class="header" href="#第十二章-飞天地鼠游戏-1会动的墙">第十二章 飞天地鼠游戏 （1）会动的墙</a></h1>
+                            <h1 id="第十二章-飞天地鼠游戏-1会动的土管"><a class="header" href="#第十二章-飞天地鼠游戏-1会动的土管">第十二章 飞天地鼠游戏 （1）会动的土管</a></h1>
 <p>前一章我们学习了角色移动、管理数据等很多内容。这次我们终于要开始制作游戏了。</p>
 <h2 id="制作飞天地鼠游戏"><a class="header" href="#制作飞天地鼠游戏">制作飞天地鼠游戏</a></h2>
 <p>这次制作的是 Ebitengine 的示例游戏中也包含的，flappy xxxx 游戏。游戏的内容是</p>
 <ul>
 <li>点击后，gopher 君会跳跃。</li>
-<li>右侧的有缺口的墙壁不断靠近，玩家要巧妙地穿过洞。</li>
+<li>右侧的有缺口的土管不断靠近，玩家要巧妙地穿过洞。</li>
 <li>尽量长时间不碰壁、生存下去。</li>
 </ul>
 <p>就是这么简单。让我们开始制作吧。</p>
@@ -203,8 +203,8 @@ import (
 var (
 	x    = 200.0
 	y    = 150.0
-	vy   = 0.0  // Velocity of y (Y方向速度) 的略称
-	g    = 0.1  // Gravity (重力加速度) 的略称
+	vy   = 0.0  // Y方向速度(Velocity of y)的缩写
+	g    = 0.1  // 重力加速度(Gravity) 的略称
 	jump = -4.0 // 跳跃力
 )
 
@@ -221,10 +221,10 @@ func draw() {
 	miniten.DrawImage("gopher.png", int(x), int(y))
 }
 </code></pre>
-<h2 id="迫近的墙壁"><a class="header" href="#迫近的墙壁">迫近的墙壁</a></h2>
-<p>接下来我们将创建墙壁。作为墙壁的图像，我们准备了这个 <code>wall.png</code> ，请像 gopher 君时一样右键点击“另存为图片”，并将其放置在与程序相同的目录中。</p>
+<h2 id="迫近的土管"><a class="header" href="#迫近的土管">迫近的土管</a></h2>
+<p>接下来我们将创建土管。作为土管的图像，我们准备了这个 <code>wall.png</code> ，请像 gopher 君时一样右键点击“另存为图片”，并将其放置在与程序相同的目录中。</p>
 <p><img src="12_flappy1.assets/wall.png" alt="wall.png" /></p>
-<p>让我们编写一个不断逼近的墙壁。重点是“每隔一定时间添加一堵墙”。</p>
+<p>让我们编写一个不断逼近的土管。重点是“每隔一定时间添加一堵土管”。</p>
 <p>来自前一个程序的更改部分为绿色（TODO）。</p>
 <p>在 Go 中，由多个英语单词组成的名称通常使用大写字母分隔，这被称为驼峰命名法。例如 <code>wallXs</code> 是 <code>wall</code> 和 <code>xs</code> 的合成。</p>
 <pre><code class="language-diff-go">package main
@@ -236,16 +236,16 @@ import (
 var (
 	x    = 200.0
 	y    = 150.0
-	vy   = 0.0  // Velocity of y (Y方向速度) 的略称
-	g    = 0.1  // Gravity (重力加速度) 的略称
+	vy   = 0.0  // Y方向速度(Velocity of y)的缩写
+	g    = 0.1  // 重力加速度(Gravity) 的缩写
 	jump = -4.0 // 跳跃力
 
 	frames     = 0       // 经过的帧总数
-	interval   = 120     // 墙的追加间隔
-	wallStartX = 640     // 墙的初始化x坐标
-	wallXs     = []int{} // 墙的x坐标
-	wallWidth  = 20      // 墙的宽度
-	wallHeight = 360     // 墙的高度
+	interval   = 120     // 土管的追加间隔
+	wallStartX = 640     // 土管的初始化x坐标
+	wallXs     = []int{} // 土管的x坐标
+	wallWidth  = 20      // 土管的宽度
+	wallHeight = 360     // 土管的高度
 )
 
 func main() {
@@ -260,12 +260,12 @@ func draw() {
 	y += vy // 新的当前位置 = 当前位置+速度
 	miniten.DrawImage("gopher.png", int(x), int(y))
 
-	// 壁追加処理ここから
+	// 从这里开始，写追加土管壁的代码
 	frames += 1
 	if frames%interval == 0 {
 		wallXs = append(wallXs, wallStartX)
 	}
-	// 壁追加処理ここまで
+	// 追加土管壁的代码， 到这里就结束了
 
 	for i := range wallXs {
 		wallXs[i] -= 2 // 往左动
@@ -275,8 +275,8 @@ func draw() {
 	}
 }
 </code></pre>
-<p>起动后大约 2 秒钟，如果能看到墙壁从右向左逼近就可以了。</p>
-<p><img src="12_flappy1.assets/%E8%BF%AB%E3%82%8A%E3%81%8F%E3%82%8B%E5%A3%81.png" alt="迫りくる壁" /></p>
+<p>起动后大约 2 秒钟，如果能看到土管从右向左逼近就可以了。</p>
+<p><img src="12_flappy1.assets/hint.png" alt="迫りくる壁" /></p>
 <p><code>frames%interval == 0</code> 的部分是关键。 <code>%</code> 是求余数的符号。余数的特点是会产生如下的周期性。</p>
 <pre><code>原始数字:		0 1 2 3 | 4 5 6 7 | 8 9 10 11 | 12 ...
 除4的余数:	0 1 2 3 | 0 1 2 3 | 0 1  2  3 |  0 ...
@@ -284,27 +284,27 @@ func draw() {
 <p>这个性质非常适合“定期做某事”。 <code>frames%120 == 0</code> 意味着“每 120 帧做某事”。</p>
 <p>draw 函数被调用的频率会因您使用的显示器而有所不同，因此请根据需要调整间隔和速度。</p>
 <h2 id="打孔"><a class="header" href="#打孔">打孔</a></h2>
-<p>这次制作的墙壁从上到下完全封闭。我们来打个洞。打洞的方法有几种，这里我们就这样做。</p>
+<p>这次制作的土管从上到下完全封闭。我们来打个洞。打洞的方法有几种，这里我们就这样做。</p>
 <ul>
 <li>
-<p>上面的墙和下面的墙，分开考虑。</p>
+<p>上面的土管和下面的土管，分开考虑。</p>
 </li>
 <li>
 <p>穴的上端 Y 坐标（ <code>holeY</code> ）随机确定。</p>
 </li>
 <li>
-<p>上面的墙，需要比 <code>holeY</code> 高。</p>
+<p>上面的土管，需要比 <code>holeY</code> 高。</p>
 </li>
 <li>
-<p>上面的墙壁的底部，与孔的顶部对齐。</p>
+<p>上面的土管的底部，与孔的顶部对齐。</p>
 </li>
 <li>
-<p>上面的墙的顶部是 <code>holeY - wallHeight</code> 。</p>
+<p>上面的土管的顶部是 <code>holeY - wallHeight</code> 。</p>
 </li>
 <li>
-<p>下面的墙壁，将从 <code>holeY</code> 向下移动一个孔的位置开始绘制。</p>
+<p>下面的土管，将从 <code>holeY</code> 向下移动一个孔的位置开始绘制。</p>
 <ul>
-<li>下的墙的顶部坐标是 <code>holeY + holeHeight</code> 。</li>
+<li>下的土管的顶部坐标是 <code>holeY + holeHeight</code> 。</li>
 </ul>
 </li>
 </ul>
@@ -320,16 +320,16 @@ import (
 var (
 	x    = 200.0
 	y    = 150.0
-	vy   = 0.0  // Velocity of y (速度のy成分) の略
-	g    = 0.1  // Gravity (重力加速度) の略
-	jump = -4.0 // ジャンプ力
+	vy   = 0.0  // Y方向速度(Velocity of y)的缩写
+	g    = 0.1  // 重力加速度(Gravity) 的缩写
+	jump = -4.0 // 跳跃力
 
 	frames     = 0       // 经过的帧总数
-	interval   = 120     // 墙的追加间隔
-	wallStartX = 640     // 墙的初始化x坐标
-	wallXs     = []int{} // 墙的x坐标
-	wallWidth  = 20      // 墙的宽度
-	wallHeight = 360     // 墙的高度
+	interval   = 120     // 土管的追加间隔
+	wallStartX = 640     // 土管的初始化x坐标
+	wallXs     = []int{} // 土管的x坐标
+	wallWidth  = 20      // 土管的宽度
+	wallHeight = 360     // 土管的高度
 	holeYs     = []int{} // 洞的 Y 坐标
 	holeYMax   = 150     // 洞的 Y 坐标的最大值
 	holeHeight = 170     // 洞的大小（高度）
@@ -347,24 +347,24 @@ func draw() {
 	y += vy // 新的当前位置 = 当前位置+速度
 	miniten.DrawImage("gopher.png", int(x), int(y))
 
-	//  墙壁相关的处理
+	//  土管相关的处理
 	frames += 1
 	if frames%interval == 0 {
 		wallXs = append(wallXs, wallStartX)
 		holeYs = append(holeYs, rand.N(holeYMax))
 	}
-	// 墙壁相关的处理结束
+	// 土管相关的处理结束
 
 	for i := range wallXs {
 		wallXs[i] -= 2 //  往左动
 	}
 	for i := range wallXs {
-		// 描绘上方的墙壁
+		// 描绘上方的土管
 		wallX := wallXs[i]
 		holeY := holeYs[i]
 		miniten.DrawImage("wall.png", wallX, holeY-wallHeight)
 
-		// 描绘下方的墙壁
+		// 描绘下方的土管
 		miniten.DrawImage("wall.png", wallX, holeY+holeHeight)
 	}
 }
@@ -382,10 +382,10 @@ func draw() {
 	miniten.DrawImage("gopher.png", int(x), int(y))
 // 以下略
 </code></pre>
-<p>最终，如果出现这样的墙壁与间隔，程序就完成了！</p>
-<p><img src="12_flappy1.assets/%E7%A9%B4%E3%82%92%E9%96%8B%E3%81%91%E3%81%9F%E5%A3%81.jpeg" alt="穴を開けた壁" /></p>
+<p>最终，如果出现这样的土管与间隔，程序就完成了！</p>
+<p><img src="12_flappy1.assets/game_base.jpeg" alt="穴を開けた壁" /></p>
 <h2 id="本章总结"><a class="header" href="#本章总结">本章总结</a></h2>
-<p>这次我们创建了玩家和逼近的墙，基本上完成了游戏的外观。需要的变量数比以前多，但大部分是调整平衡游戏的固定数字，所以不用担心。下次我们将制作碰撞检测。</p>
+<p>这次我们创建了玩家和逼近的土管，基本上完成了游戏的外观。需要的变量数比以前多，但大部分是调整平衡游戏的固定数字，所以不用担心。下次我们将制作碰撞检测。</p>
 
                         </div>
                         <div class="sidetoc">

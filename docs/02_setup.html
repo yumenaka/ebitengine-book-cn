@@ -214,12 +214,12 @@
 <p>某些编程语言，会推荐使用版本管理工具来区分多个运行环境版本（比如 python ）。但 Go 向下兼容性很好，基本没有这么做的必要。请放心直接安装最新版 Go 。</p>
 <p>Go 有读取 <code>go.mod</code> 中记录的 Go 版本的功能。可以自动下载正确版本的依赖软件（不污染系统 PATH），将相关工具调整为合适的版本。</p>
 <h3 id="233-面向有编程经验的人gopath-和-goroot"><a class="header" href="#233-面向有编程经验的人gopath-和-goroot">2.3.3 [面向有编程经验的人]GOPATH 和 GOROOT</a></h3>
-<p>现在 Go ，不再需要手动设置环境变量 GOPATH 和 GOROOT 了。那些说需要设置的文章，成文时间比较早，建议不要参考。</p>
+<p>现在的 Go ，不再需要手动设置环境变量 GOPATH 和 GOROOT 了。那些说需要设置的文章，成文时间比较早，建议不要参考。</p>
 <h2 id="24-go-的安装"><a class="header" href="#24-go-的安装">2.4 Go 的安装</a></h2>
 <p>以下均为撰写时的屏幕截图，可能与最新页面有所不同，敬请谅解。</p>
 <p>请访问以下链接（<a href="https://go.dev/dl">go.dev/dl</a>），如果是 Windows，请点击红框部分。 如果是 Mac，请点击 Apple macOS (ARM64) (M1 以后的新Mac电脑) 或 Apple macOS (x86-64) (M1 之前的老Mac电脑) 下载安装程序。</p>
 <p><img src="02_setup.assets/go_site.png" alt="go-dev-dl.png" /></p>
-<p>下载回来的安装程序以后，双击文件运行，一直点击下一步即可完成安装。GO安装完可以直接用，无需重启系统。</p>
+<p>下载安装程序以后，请运行文件。一直点击下一步即可完成安装。GO安装完可以直接用，无需重启系统。</p>
 <p>动图演示：
 <img src="02_setup.assets/windows_install_go.gif" alt="Go安装" /></p>
 <h2 id="24-面向中国大陆用户-go-的安装-与-goproxy"><a class="header" href="#24-面向中国大陆用户-go-的安装-与-goproxy">2.4 [面向中国大陆用户] Go 的安装 与 GOPROXY</a></h2>
@@ -242,7 +242,7 @@
 <pre><code class="language-bash">go env -w GOPROXY=https://goproxy.cn,direct
 </code></pre>
 <p><code>go env -w</code> 是一个用于修改环境变量（类似于设置值）的命令，Go 1.13 及以上的版本可用。</p>
-<p>本质上做的事，和下面的2.4.3 与 2.4.3 相同。</p>
+<p>做的事，本质上和下面的2.4.3 与 2.4.3 相同。</p>
 <h3 id="243-面向有经验的用户windows-如何手动设置-goproxy"><a class="header" href="#243-面向有经验的用户windows-如何手动设置-goproxy">2.4.3 [面向有经验的用户]windows 如何手动设置 GOPROXY</a></h3>
 <ol>
 <li>打开“开始”并搜索“env”</li>
@@ -261,7 +261,7 @@
 </code></pre>
 <h2 id="25-vscode-的安装"><a class="header" href="#25-vscode-的安装">2.5 VSCode 的安装</a></h2>
 <p>VSCode 支持 Windows、macOS、Linux 等多种操作系统。<br />
-虽然这里只说明了 Windows 系统的安装方法，但其他操作系统的安装步骤，也基本上是大同小异。</p>
+虽然这里只说明了 Windows 系统的安装方法，但其他操作系统的安装步骤，也基本上大同小异。</p>
 <h3 id="251-windows-安装-vscode"><a class="header" href="#251-windows-安装-vscode">2.5.1 Windows 安装 VSCode</a></h3>
 <p>请访问以下链接（ <a href="https://code.visualstudio.com/">code.visualstudio.com</a>），并点击 <code>Download for Windows</code> 。</p>
 <p><img src="02_setup.assets/vscode_site.png" alt="img" /></p>
@@ -274,9 +274,9 @@
 <p><img src="02_setup.assets/vscode_install_select_path.png" alt="setup-vscode-4.png" /></p>
 <p>会询问你是否在开始菜单中创建快捷方式，请根据您的喜好进行设置，然后点击下一步。</p>
 <p><img src="02_setup.assets/vscode_start_menu.png" alt="setup-vscode-5.png" /></p>
-<p>您可以自定义各种选项，根据您的喜好进行设置。个人认为 <code>添加[使用Code打开] 到右键菜单</code> 这很方便，因此推荐启用这个功能。点击“下一步”以继续。</p>
+<p>您可以自定义各种选项，根据您的喜好进行设置。个人认为 <code>将[通过Code打开]添加到右键菜单</code> 很方便，因此推荐启用这个功能。点击“下一步”以继续。</p>
 <p><img src="02_setup.assets/vscode_select_method.png" alt="setup-vscode-6.png" /></p>
-<p>最后会显示你的设置，做最后的确认，没问题的话，就点击安装进行安装。</p>
+<p>最后会显示你的设置，做最后确认。没问题的话，就点击安装进行安装。</p>
 <p><img src="02_setup.assets/vscode_check_install_option.png" alt="setup-vscode-7.png" /></p>
 <p>点击完成，结束安装过程。安装后无需重启，可以立即使用。</p>
 <p><img src="02_setup.assets/vscode_start_page_en.png" alt="setup-vscode-8.png" /></p>
@@ -296,7 +296,7 @@
 <img src="02_setup.assets/VSCodeToChinese.gif" alt="VSCode 中文化" /></p>
 <h3 id="253-vscode-安装-go-插件"><a class="header" href="#253-vscode-安装-go-插件">2.5.3 VSCode 安装 Go 插件</a></h3>
 <p>像中文包一样，VSCode 可以通过安装插件来添加各种功能。当然也有方便 Go 开发的插件，快来安装吧。</p>
-<p>先前一样，打开扩展功能侧边栏，在搜索框中输入 <code>go</code> ，并查找 <code>Go</code> 。会有很多结果，但请选择带有表示官方的勾号的选项，并进行安装。</p>
+<p>与先前一样，打开扩展功能侧边栏，在搜索框中输入 <code>go</code> ，并查找 <code>Go</code> 插的相关件。会有很多结果，但请选择带有表示官方勾号的选项，并进行安装。</p>
 <p><img src="02_setup.assets/vscode-go-1.png" alt="vscode-go-1.png" /></p>
 <p>虽然，这项工作可以随时进行。但我一般会先完成 go 开发工具的安装。</p>
 <p>从左下角的设置图标（红圈）选择“命令面板...”。或通过键盘快捷键“Ctrl+Shift+p”来打开命令面板。</p>
@@ -330,16 +330,18 @@
 <p><img src="02_setup.assets/vscode_select_folder.png" alt="vscode_select_folder.png" /></p>
 <p>打开目录时，会显示这样的注意事项。这是为了防止误打开危险文件，但由于这是自己创建的目录，所以没有安全问题。点击“是，我信任此作者”。</p>
 <p><img src="02_setup.assets/vscode_folder_alert.jpg" alt="vscode_folder_alert.png" /></p>
-<p>打开目录，如果左侧的资源管理器（如果未显示，请点击左端的📄图标（红圈））中显示了目录名称（红框。目录名自动大写显示，这没有问题），则表示成功。</p>
+<p>打开目录，如果左侧的资源管理器（如果未显示，请点击左端的📄图标（红圈部分））中显示的目录名称（红框。目录名自动大写显示，这没有问题），则表示成功。</p>
 <p><img src="02_setup.assets/vscode_open_test_folder_done.jpg" alt="vscode-dir-7.png" /></p>
-<p>此外，如果在安装 VSCode 时勾选了 <code>添加[用 Code 打开] 到右键菜单</code> ，也可以通过右键单击目录并选择“用 Code 打开”来打开。</p>
+<p>此外，如果在安装 VSCode 时勾选了 <code>添加[通过 Code 打开] 到右键菜单</code> ，也可以通过右键单击目录并选择“通过 Code 打开”来打开。</p>
 <p><img src="02_setup.assets/windows_open_with_code.gif" alt="vscode-dir-8.png" /></p>
 <p>动图演示：
 <img src="02_setup.assets/OpenFile.gif" alt="用 VSCode 打开目录" /></p>
 <h2 id="27-打开终端"><a class="header" href="#27-打开终端">2.7 打开终端</a></h2>
-<p>接下来的教程，将频繁使用 VSCode 的“终端”功能，因此我们要学会它的使用方法。可以通过菜单栏的“视图”选择“终端”来打开终端（还有其他打开方式）。终端中显示的内容，因操作系统和设置而异。</p>
+<p>接下来的教程，将频繁使用 VSCode 的“终端”功能，因此我们要学会它的使用方法。</p>
+<p>可以通过菜单栏的“视图”选择“终端”来打开终端（还有其他打开方式）。终端中显示的内容，因操作系统和设置而异。</p>
 <p><img src="02_setup.assets/vscode_open_cmd.jpg" alt="setup-terminal-1.png" /></p>
-<p>终端是一个用于“文本”而非“鼠标”操作计算机的工具。可能有些人想起来程序员常常面对的那些神秘黑屏。没错，就是那玩意。</p>
+<p>终端是一个用于“文本”而非“鼠标”操作计算机的工具。可能有些人想起来程序员常常面对的那些神秘黑屏。</p>
+<p>没错，就是那玩意。</p>
 <p><img src="02_setup.assets/cool_cmd.png" alt="プログラマーのイラスト" /></p>
 <p>终端是一个在鼠标诞生前就存在的古老工具，至今仍然受到程序员的青睐。</p>
 <p>·  记住或拼接命令很困难，但一旦准备好了，批量执行的操作就会变得很简单</p>
@@ -365,7 +367,7 @@
 <p>要注意不要玩得太多，偏离游戏开发正题！</p>
 <h3 id="274-关于终端画面用法的补充"><a class="header" href="#274-关于终端画面用法的补充">2.7.4 关于终端画面用法的补充</a></h3>
 <p>以下是 Windows 终端屏幕的截图。红线标记的文本中， <code>test</code> 之前的是当前目录（也称为工作目录）， <code>&gt;</code> 是命令提示符。</p>
-<p>当前目录表示“当前工作位置”，命令提示符表示终端处于“输入接收状态”。在这个提示符后面，输入各种命令是终端操作的基础用法。</p>
+<p>当前目录表示“当前工作位置”，命令提示符表示终端处于“输入接收状态”。在这个提示符后面输入各种命令，是终端操作的基础用法。</p>
 <p><img src="02_setup.assets/vscode_terminal.png" alt="vscode_terminal.png" /></p>
 <p>当前目录，基本上与在 VSCode 中打开的目录相同，但有时可能需要移动到其他位置。移动时使用 <code>cd</code> 命令，如果需要，请展开以下说明进行阅读。</p>
 <h3 id="275-cd-命令的用法"><a class="header" href="#275-cd-命令的用法">2.7.5 cd 命令的用法</a></h3>
@@ -407,7 +409,7 @@ go version go1.21.4 windows/amd64
 </code></pre>
 <p>第一行开头的<code>$</code> ，是提示用的“命令提示符”。</p>
 <p>第二行的 <code>go version</code> 是输入的命令。第二行不以 <code>$</code> 开头，因此是程序的输出。</p>
-<p>同时您的环境，可能使用别的字符（中文版的动图，命令提示符用的是<code>&gt;</code>）。并且请注意不管<code>$</code>还是<code>&gt;</code>，都只是提示，<strong>不是</strong>您输入的文本。</p>
+<p>同时您的环境，可能使用别的字符（比如下面的动图，命令提示符的是<code>&gt;</code>）。并且请注意不管<code>$</code>还是<code>&gt;</code>，都只是提示，<strong>不是</strong>您输入的文本。</p>
 <p><img src="02_setup.assets/go_version.gif" alt="go_version.gif" /></p>
 <h3 id="278-停止命令"><a class="header" href="#278-停止命令">2.7.8 停止命令</a></h3>
 <p>有时，您可能想中断那些耗时较长的命令。这种情况下，可以在终端中按“Ctrl+c”，中断程序的运行。</p>
